@@ -1,7 +1,7 @@
 /*
- Party Shaman 2.0 Support by TheUltimateParad0x & beachtam3
-PVP Enabled + Autokeys
- 
+ Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
+Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
+Developers: TheUltimateParadox - acepimprace- miceiken
 */
 
 //!Reference: PPather.dll
@@ -24,7 +24,7 @@ namespace Glider.Common.Objects
 {
     public class PShaman : PPather
     {
-	string version = "2.0.8b";
+	string version = "2.0.9";
 
 	#region PShaman props
 
@@ -739,6 +739,8 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x20e");
                         break;
                     case "PShaman.ChainHeal":
+					    button = GShortcut.FindMatchingSpellGroup("0x428");
+						break;
                     case "PShaman.ChainHealSelf":
                         button = GShortcut.FindMatchingSpellGroup("0x428");
                         break;
@@ -836,7 +838,10 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x637d");
                         break;
                     case "PShaman.MainWeaponEnchant":
-                        button = GShortcut.FindMatchingSpellGroup("0x3fea");
+                        button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
+                        break;
+					case "PShaman.OffWeaponEnchant":
+                        button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
                         break;
 					case "PShaman.Mount":
                     string mountId = "21176 33809 32458 38576 29465 18243 13328 18247 29466 29467 18244 18241 29468 32319 33999 13335 30480 13329 29745 18794 18795 29746 29747 18793 15292 32314 13334 12351 18245 29469 19029 12330 18796 18798 18797 13327 34092 12354 32316 18791 32317 29470 18248 32858 35906 29471 18242 32859 31829 31830 29102 29227 28915 29228 12302 12303 32857 32860 32768 31831 31832 29229 29104 18766 18767 33225 18902 31833 31834 29230 29105 32861 32862 31835 31836 29231 29103 13086 32318 19030 25473 18788 33977 18786 18777 33182 18787 25528 29223 18772 25531 33184 30609 18789 18790 18776 28936 25529 29224 25533 19872 25527 25477 34129 35513 18773 18785 18778 18774 25532 19902 15293 37012 37676 29472 18246 13317 8586 13326 12353 35226 29221 2411 29220 8595 21218 13332 25475 33976 28481 5656 15290 5872 13333 5655 25471 33176 25470 29744 15277 5864 13321 21323 25476 5668 5665 1132 37011 33183 2414 29743 29222 28927 8563 21321 13331 33224 8632 8631 8629 25472 25474 13322 8588 8591 8592 5873 35225 21324 8589";
@@ -844,9 +849,6 @@ namespace Glider.Common.Objects
                     break;
                     case "PShaman.NS":
                         button = GShortcut.FindMatchingSpellGroup("0x3F3C");
-                        break;
-					case "PShaman.OffWeaponEnchant":
-                        button = GShortcut.FindMatchingSpellGroup("0x3fea");
                         break;
                     case "PShaman.Purge":
                         button = GShortcut.FindMatchingSpellGroup("0x1f4c");
@@ -1873,8 +1875,9 @@ namespace Glider.Common.Objects
                    s.Contains("Warhorse") ||
                    s.Contains("Raptor") ||
                    s.Contains("Kodo") ||
-                   s.Contains("Wolf") ||
+                   s.Contains(" Wolf") ||
                    s.Contains("Saber") ||
+				   s.Contains("Swift") ||
                    s.Contains("Ram") ||
                    s.Contains("Mechanostrider") ||
                    s.Contains("Hawkstrider") ||
@@ -1891,7 +1894,7 @@ namespace Glider.Common.Objects
                    s.Contains("Cheetah") ||
                    s.Contains("Travel form") ||
                    s.Contains("Reins") || // yeah right
-                   s.Contains("Turtle") || // lol.....Mitch <3's Turtles xD
+                   s.Contains("Turtle") || // lol
                    s.Contains("Mistsaber") ||
                    s.Contains("Battlestrider") ||
                    s.Contains("steed") ||
@@ -2050,7 +2053,6 @@ namespace Glider.Common.Objects
 		        //RecallTotems();
 		        RecallTotemsIfNeeded();
 	        }
-		
 	        if(UseSell || UseRepair)
 	        {
 		        if(SellTimer.IsReady)

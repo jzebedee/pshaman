@@ -1,7 +1,7 @@
 /*
- Party Shaman 2.0 Support by TheUltimateParad0x & beachtam3
-PVP Enabled + Autokeys
- 
+ Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
+Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
+Developers: TheUltimateParadox - acepimprace- miceiken
 */
 
 using System;
@@ -18,7 +18,7 @@ namespace Glider.Common.Objects
 {
     public class PShaman : GGameClass
     {
-	string version = "2.0.8b";
+	string version = "2.0.9";
 
          static Mover mover;
         public static Random random = new Random();
@@ -828,16 +828,16 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x637d");
                         break;
                     case "PShaman.MainWeaponEnchant":
-                        button = GShortcut.FindMatchingSpellGroup("0x3fea");
+                        button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
+                        break;
+					case "PShaman.OffWeaponEnchant":
+                        button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
                         break;
                     case "PShaman.Mount":
                         button = GShortcut.FindMatchingSpellGroup("0xa55");
                         break;
                     case "PShaman.NS":
                         button = GShortcut.FindMatchingSpellGroup("0x3F3C");
-                        break;
-                    case "PShaman.OffWeaponEnchant":
-                        button = GShortcut.FindMatchingSpellGroup("0x3fea");
                         break;
                     case "PShaman.Purge":
                         button = GShortcut.FindMatchingSpellGroup("0x1f4c");
