@@ -1,7 +1,7 @@
 /*
- Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
-Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
-Developers: TheUltimateParadox - acepimprace- miceiken
+ Party Shaman 2.0 Support by TheUltimateParad0x & beachtam3
+PVP Enabled + Autokeys
+ 
 */
 
 using System;
@@ -18,7 +18,7 @@ namespace Glider.Common.Objects
 {
     public class PShaman : GGameClass
     {
-	string version = "2.0.9";
+	string version = "2.0.8b";
 
          static Mover mover;
         public static Random random = new Random();
@@ -828,16 +828,16 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x637d");
                         break;
                     case "PShaman.MainWeaponEnchant":
-                        button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
-                        break;
-					case "PShaman.OffWeaponEnchant":
-                        button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
+                        button = GShortcut.FindMatchingSpellGroup("0x3fea");
                         break;
                     case "PShaman.Mount":
                         button = GShortcut.FindMatchingSpellGroup("0xa55");
                         break;
                     case "PShaman.NS":
                         button = GShortcut.FindMatchingSpellGroup("0x3F3C");
+                        break;
+                    case "PShaman.OffWeaponEnchant":
+                        button = GShortcut.FindMatchingSpellGroup("0x3fea");
                         break;
                     case "PShaman.Purge":
                         button = GShortcut.FindMatchingSpellGroup("0x1f4c");
@@ -1663,25 +1663,305 @@ namespace Glider.Common.Objects
         }
 
 
+        /////////////////////////////////////////////////////////////////
+        // Mounting
+
+        private bool IsMounted(GUnit unit)
+        {
+            // Mount test based on spell ID - 5 June 2008
+            int[] mountBuffsID = {
+                35022, //	Black Hawkstrider
+                6896, //	Black Ram
+                17461, //	Black Ram
+                22718, //	Black War Kodo
+                22720, //	Black War Ram
+                22721, //	Black War Raptor
+                22717, //	Black War Steed
+                22723, //	Black War Tiger
+                22724, //	Black War Wolf
+                578, //	Black Wolf
+                35020, //	Blue Hawkstrider
+                10969, //	Blue Mechanostrider
+                33630, //	Blue Mechanostrider
+                6897, //	Blue Ram
+                17463, //	Blue Skeletal Horse
+                43899, //	Brewfest Ram
+                34406, //	Brown Elekk
+                458, //	Brown Horse
+                18990, //	Brown Kodo
+                6899, //	Brown Ram
+                17464, //	Brown Skeletal Horse
+                6654, //	Brown Wolf
+                39315, //	Cobalt Riding Talbuk
+                34896, //	Cobalt War Talbuk
+                39316, //	Dark Riding Talbuk
+                34790, //	Dark War Talbuk
+                17481, //	Deathcharger
+                6653, //	Dire Wolf
+                8395, //	Emerald Raptor
+                36702, //	Fiery Warhorse
+                23509, //	Frostwolf Howler
+                16060, //	Golden Sabercat
+                35710, //	Gray Elekk
+                18989, //	Gray Kodo
+                6777, //	Gray Ram
+                459, //	Gray Wolf
+                35713, //	Great Blue Elekk
+                23249, //	Great Brown Kodo
+                34407, //	Great Elite Elekk
+                23248, //	Great Gray Kodo
+                35712, //	Great Green Elekk
+                35714, //	Great Purple Elekk
+                23247, //	Great White Kodo
+                18991, //	Green Kodo
+                15780, //	Green Mechanostrider
+                17453, //	Green Mechanostrider
+                17465, //	Green Skeletal Warhorse
+                824, //	Horse Riding
+                6743, //	Horse Riding
+                17459, //	Icy Blue Mechanostrider
+                16262, //	Improved Ghost Wolf
+                16287, //	Improved Ghost Wolf
+                10795, //	Ivory Raptor
+                17450, //	Ivory Raptor
+                18995, //	Kodo Riding
+                18996, //	Kodo Riding
+                16084, //	Mottled Red Raptor
+                16055, //	Nightsaber
+                10798, //	Obsidian Raptor
+                42936, //	Ornery Ram
+                44370, //	Pink Elekk Call
+                472, //	Pinto Horse
+                35711, //	Purple Elekk
+                35018, //	Purple Hawkstrider
+                17455, //	Purple Mechanostrider
+                23246, //	Purple Skeletal Warhorse
+                826, //	Ram Riding
+                6744, //	Ram Riding
+                17456, //	Red & Blue Mechanostrider
+                34795, //	Red Hawkstrider
+                10873, //	Red Mechanostrider
+                17462, //	Red Skeletal Horse
+                22722, //	Red Skeletal Warhorse
+                43883, //	Rental Racing Ram
+                18363, //	Riding Kodo
+                30174, //	Riding Turtle
+                39317, //	Silver Riding Talbuk
+                34898, //	Silver War Talbuk
+                8980, //	Skeletal Horse
+                10921, //	Skeletal Horse Riding
+                29059, //	Skeletal Steed
+                42776, //	Spectral Tiger
+                10789, //	Spotted Frostsaber
+                15781, //	Steel Mechanostrider
+                23510, //	Stormpike Battle Charger
+                8394, //	Striped Frostsaber
+                10793, //	Striped Nightsaber
+                897, //	Summon Angry Programmer
+                44369, //	Summon Baby Pink Elekk
+                31700, //	Summon Black Qiraji Battle Tank
+                26655, //	Summon Black Qiraji Battle Tank
+                26656, //	Summon Black Qiraji Battle Tank
+                25863, //	Summon Black Qiraji Battle Tank
+                25953, //	Summon Blue Qiraji Battle Tank
+                32723, //	Summon Bonechewer Riding Wolf
+                34767, //	Summon Charger
+                23214, //	Summon Charger
+                23215, //	Summon Charger
+                34766, //	Summon Charger
+                23261, //	Summon Darkreaver's Fallen Charger
+                31331, //	Summon Dire Wolf
+                23161, //	Summon Dreadsteed
+                38311, //	Summon Eclipsion Hawkstrider
+                1710, //	Summon Felsteed
+                5784, //	Summon Felsteed
+                5968, //	Summon Ghost Saber
+                6084, //	Summon Ghost Saber
+                26056, //	Summon Green Qiraji Battle Tank
+                30829, //	Summon Kessel's Elekk
+                30837, //	Summon Kessel's Elekk
+                30840, //	Summon Kessel's Elekk Trigger
+                39782, //	Summon Lightsworn Elekk
+                18166, //	Summon Magram Ravager
+                26054, //	Summon Red Qiraji Battle Tank
+                41543, //	Summon Reins (Jorus)
+                41544, //	Summon Reins (Malfas)
+                41546, //	Summon Reins (Onyxien)
+                41547, //	Summon Reins (Suraku)
+                41548, //	Summon Reins (Voranaku)
+                41549, //	Summon Reins (Zoya)
+                39783, //	Summon Scryer Hawkstrider
+                7910, //	Summon Tamed Raptor
+                7915, //	Summon Tamed Turtle
+                4946, //	Summon Tamed Wolf
+                13819, //	Summon Warhorse
+                13820, //	Summon Warhorse
+                34768, //	Summon Warhorse
+                34769, //	Summon Warhorse
+                23241, //	Swift Blue Raptor
+                43900, //	Swift Brewfest Ram
+                23238, //	Swift Brown Ram
+                23229, //	Swift Brown Steed
+                23250, //	Swift Brown Wolf
+                23220, //	Swift Dawnsaber
+                23221, //	Swift Frostsaber
+                23239, //	Swift Gray Ram
+                23252, //	Swift Gray Wolf
+                35025, //	Swift Green Hawkstrider
+                23225, //	Swift Green Mechanostrider
+                23219, //	Swift Mistsaber
+                23242, //	Swift Olive Raptor
+                23243, //	Swift Orange Raptor
+                33660, //	Swift Pink Hawkstrider
+                35027, //	Swift Purple Hawkstrider
+                24242, //	Swift Razzashi Raptor
+                42777, //	Swift Spectral Tiger
+                23338, //	Swift Stormsaber
+                23251, //	Swift Timber Wolf
+                35028, //	Swift War Hawkstrider
+                23223, //	Swift White Mechanostrider
+                23240, //	Swift White Ram
+                23228, //	Swift White Steed
+                23222, //	Swift Yellow Mechanostrider
+                24252, //	Swift Zulian Tiger
+                39318, //	Tan Riding Talbuk
+                34899, //	Tan War Talbuk
+                16059, //	Tawny Sabercat
+                18992, //	Teal Kodo
+                22480, //	Tender Wolf Steak
+                10790, //	Tiger
+                10796, //	Turquoise Raptor
+                77, //	Turtle's Shell
+                17454, //	Unpainted Mechanostrider
+                10799, //	Violet Raptor
+                15779, //	White Mechanostrider
+                6898, //	White Ram
+                39319, //	White Riding Talbuk
+                34897, //	White War Talbuk
+                17229, //	Winterspring Frostsaber
+                 };
+
+            Me.Refresh(true);
+            if (Me.HasBuff(mountBuffsID))
+            {
+                return true;
+            }
+
+            // Pontus and Birt code
+            GBuff[] buffs = unit.GetBuffSnapshot();
+
+            foreach (GBuff b in buffs)
+            {
+                string s = b.SpellName;
+
+                if (
+                   s.Contains("Horse") ||
+                   s.Contains("Stallion") ||
+                   s.Contains("Warhorse") ||
+                   s.Contains("Raptor") ||
+                   s.Contains("Kodo") ||
+                   s.Contains("Wolf") ||
+                   s.Contains("Saber") ||
+                   s.Contains("Ram") ||
+                   s.Contains("Mechanostrider") ||
+                   s.Contains("Hawkstrider") ||
+                   s.Contains("Elekk") ||
+                   s.Contains("Steed") ||
+                   s.Contains("Tiger") ||
+                   s.Contains("Talbuk") ||
+                   s.Contains("Frostsaber") ||
+                   s.Contains("Nightsaber") ||
+                   s.Contains("Battle Tank") ||
+                   s.Contains("Charger") ||
+                   s.Contains("Dreadsteed") ||
+                   s.Contains("Frostwolf Howler") ||
+                   s.Contains("Cheetah") ||
+                   s.Contains("Travel form") ||
+                   s.Contains("Reins") || // yeah right
+                   s.Contains("Turtle") || // lol....Mitch <3's Turtles xD
+                   s.Contains("Mistsaber") ||
+                   s.Contains("Battlestrider") ||
+                   s.Contains("steed") ||
+                   s.Contains("Palomino") ||
+                   s.Contains("Amani") ||
+                   s.Contains("Stormsaber") ||
+                   s.Contains("Windrider") ||
+                   s.Contains("Gryphon") ||
+                   s.Contains("Nether Ray") ||
+                   s.Contains("Netherdragon") ||
+                   s.Contains("Raven Lord")
+                )
+                {
+                    if (s != "Ghost Wolf") return true;
+                }
+            }
+
+            return false;
+        }
+#if !PPATHERENABLED
+        private bool WantMount()
+        {
+            if (Context.IsCorpseNearby)
+            {
+                return false;
+            }
+
+            GUnit[] Monsters = GObjectList.GetMonsters();
+            double minDist = 1E100; // Far far away
+            string mobName = "Monster";
+            string oldMobName = mobName;
+
+            foreach (GMonster Add in Monsters)
+            {
+                double d = Add.GetDistanceTo(Me);
+                if (!Add.IsDead && d < minDist)
+                {
+                    if (Add.IsValidProfileTarget)
+                    {
+                        mobName = Add.Name;
+                        minDist = d;
+                    }
+                }
+            }
+            if (minDist < MountDistance) return false;
+            return true;
+        }
         private void MountUp()
         {
+            int MIN_MOUNT_LEVEL = 30;
+            if (GPlayerSelf.Me.Level < MIN_MOUNT_LEVEL) return;
             if (IsMounted()) return;
-            if (Me.IsInCombat) return;
+            if (GPlayerSelf.Me.IsInCombat) return;
+            if (!ForceNoMount.IsReady) return;
+
+            bool HaveMount = new GInterfaceHelper().IsKeyPopulated("Common.Mount");
+            if (!HaveMount) return;
+
+            // if (!WantMount()) return;
             mover.Stop();
             Context.Log("Mount up");
             BuffSnapshot();
             CastSpell("PShaman.Mount");
-            mountBuffID = 0;
-            GSpellTimer Futile = new GSpellTimer(1000, false);
-            while (!Futile.IsReadySlow)
+
+            Thread.Sleep(100);
+
+            string badMount = null; // from ppather mount.cs - June 7 2008
+
+            if (GContext.Main.RedMessage.Contains("while swimming"))
             {
-                Me.SetBuffsDirty();
-                GBuff buff = FindNewBuff();
-                if(buff != null)
-                    mountBuffID = buff.SpellID;
-                if (IsMounted()) return;
+                badMount = "Trying to mount while swimming";
             }
-            Context.Log("Found no mount buff");
+            else if (GContext.Main.RedMessage.Contains("can't mount here"))
+            {
+                badMount = "Trying to mount inside";
+            }
+
+            if (null != badMount)
+            {
+                Context.Log(badMount);
+                ForceNoMount.Reset();
+                return;
+            }
         }
 
         private void Dismount()
@@ -1691,7 +1971,6 @@ namespace Glider.Common.Objects
             Context.Log("Dismount");
             SendKey("PShaman.Mount");
         }
-
         private void RecallTotems()
 	{
 	    if(FireTotem != null ||
@@ -1707,7 +1986,7 @@ namespace Glider.Common.Objects
 		AirTotem = null; AirTotemType = Totem_e.None;
 	    }
 	}
-
+#endif
         private void RecallTotemsIfNeeded()
 	{
 	    bool recall = false;
