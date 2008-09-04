@@ -1,5 +1,5 @@
 /*
- Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
+Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
 Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
 Developers: TheUltimateParadox - acepimprace- miceiken
 */
@@ -844,7 +844,7 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
                         break;
 					case "PShaman.Mount":
-                    string mountId = "21176 33809 32458 38576 29465 18243 13328 18247 29466 29467 18244 18241 29468 32319 33999 13335 30480 13329 29745 18794 18795 29746 29747 18793 15292 32314 13334 12351 18245 29469 19029 12330 18796 18798 18797 13327 34092 12354 32316 18791 32317 29470 18248 32858 35906 29471 18242 32859 31829 31830 29102 29227 28915 29228 12302 12303 32857 32860 32768 31831 31832 29229 29104 18766 18767 33225 18902 31833 31834 29230 29105 32861 32862 31835 31836 29231 29103 13086 32318 19030 25473 18788 33977 18786 18777 33182 18787 25528 29223 18772 25531 33184 30609 18789 18790 18776 28936 25529 29224 25533 19872 25527 25477 34129 35513 18773 18785 18778 18774 25532 19902 15293 37012 37676 29472 18246 13317 8586 13326 12353 35226 29221 2411 29220 8595 21218 13332 25475 33976 28481 5656 15290 5872 13333 5655 25471 33176 25470 29744 15277 5864 13321 21323 25476 5668 5665 1132 37011 33183 2414 29743 29222 28927 8563 21321 13331 33224 8632 8631 8629 25472 25474 13322 8588 8591 8592 5873 35225 21324 8589";
+                    string mountId = "21176 33809 32458 38576 29465 18243 13328 18247 29466 29467 18244 18241 29468 32319 33999 13335 30480 13329 29745 18794 18795 29746 29747 18793 15292 32314 13334 12351 18245 29469 19029 12330 18796 18798 18797 13327 34092 12354 32316 18791 32317 29470 18248 32858 35906 29471 18242 32859 31829 31830 29102 29227 28915 29228 12302 12303 32857 32860 32768 31831 31832 29229 29104 18766 18767 33225 18902 31833 31834 29230 29105 32861 32862 31835 31836 29231 29103 13086 32318 19030 25473 18788 33977 18786 18777 33182 18787 25528 29223 18772 25531 33184 30609 18789 18790 18776 28936 25529 29224 25533 19872 25527 25477 34129 35513 18773 18785 18778 18774 25532 19902 15293 37012 37676 29472 18246 13317 8586 13326 12353 35226 29221 2411 29220 8595 21218 13332 25475 33976 28481 5656 15290 5872 13333 5655 25471 33176 25470 29744 15277 5864 13321 21323 25476 5668 5665 1132 37011 33183 2414 29743 29222 28927 8563 21321 13331 33224 8632 8631 8629 25472 25474 13322 8588 8591 8592 5873 35225 21324 8589 37719";
                     button = GShortcut.FindMatchingShortcut(GShortcutType.Item, mountId);
                     break;
                     case "PShaman.NS":
@@ -1078,7 +1078,7 @@ namespace Glider.Common.Objects
 
 	    Context.SetConfigValue("PShaman.RestWaterTotem", "-", false);
 
-	    Context.SetConfigValue("PShaman.PvPStyle", "Active", false);
+	    Context.SetConfigValue("PShaman.PvPStyle", "Fight back", false);
 
 
 	    Context.SetConfigValue("PShaman.Protected0", "bandage", false);
@@ -1683,7 +1683,7 @@ namespace Glider.Common.Objects
 
         private bool IsMounted(GUnit unit)
         {
-            // Mount test based on spell ID - 5 June 2008
+            // Mount test based on spell ID - 3 Sept 2008
             int[] mountBuffsID = {
                 35022, //	Black Hawkstrider
                 6896, //	Black Ram
@@ -1839,6 +1839,7 @@ namespace Glider.Common.Objects
                 23228, //	Swift White Steed
                 23222, //	Swift Yellow Mechanostrider
                 24252, //	Swift Zulian Tiger
+				49322, //	Swift Zhevra
                 39318, //	Tan Riding Talbuk
                 34899, //	Tan War Talbuk
                 16059, //	Tawny Sabercat
@@ -2090,7 +2091,7 @@ namespace Glider.Common.Objects
 		        {
 		            if(IsMounted())
 		            {
-			            Context.Log("Close to a mine, dismount");
+			            Context.Log("Close to a Mine, dismounting.");
 			            Dismount();
 		            }
 		        }
@@ -2554,7 +2555,7 @@ namespace Glider.Common.Objects
 	    return true;
 	}
 
-	// Lighting bolt
+	// lighning bolt
 	private bool WantBolt()
 	{
             bool want = false;
@@ -2901,7 +2902,7 @@ namespace Glider.Common.Objects
 
 	private bool DoCureDisease()
 	{            
-            Spam("Cure Disease");
+            Spam("Curing Disease");
             bool ok = CastSpellMana("PShaman.CureDisease");
             DiseaseCooldown.Reset();
             return ok;
@@ -2923,7 +2924,7 @@ namespace Glider.Common.Objects
 
 	private bool DoCurePoison()
 	{
-            Spam("Cure Poison");
+            Spam("Curing Poison");
             bool ok = CastSpellMana("PShaman.CurePoison");
             PoisonCooldown.Reset();
             return ok;
@@ -2977,7 +2978,7 @@ namespace Glider.Common.Objects
                     Context.ClearTarget();
 	    }
 
-	    Spam("Combat done. lost " + (int)((CombatStartHealth - Me.Health)*100) + "% health. " + res);
+	    Spam("Combat done. Lost " + (int)((CombatStartHealth - Me.Health)*100) + "% health. " + res);
 	    ForceNoMount.Reset(); // Do not try to mount the next 5 seconds, lootable issues
 
 	    if(Me.IsDead)
@@ -3041,11 +3042,13 @@ namespace Glider.Common.Objects
 	    if(Me.IsDead) return GCombatResult.Died;
 	    if(Unit.IsDead) return GCombatResult.Success;
 	    if(Unit.DistanceToSelf > 40) return GCombatResult.Retry; // The slag ran off
-		
-	    return GCombatResult.Unknown;
-	}
+        if (!Unit.IsValid) return GCombatResult.Bugged;
 
-        
+        GPlayer p = GetClosestPvPPlayer();
+        if (p != null && p.DistanceToSelf + 15 < Unit.DistanceToSelf) return GCombatResult.Retry;
+        return GCombatResult.Unknown;
+	}
+     
         private GCombatResult DoOpener(GUnit Monster)
         {
 
@@ -3123,7 +3126,7 @@ namespace Glider.Common.Objects
 	public override GCombatResult KillTarget(GUnit Target, bool IsAmbush)
 	{
 	   // int ApproachTimeout = 10000;
-            bool Engaged = false;
+       //     bool Engaged = false;
 	    MyCombatStartLocation = Me.Location;
 
 	    Dismount();
@@ -3132,36 +3135,13 @@ namespace Glider.Common.Objects
 
             TryPurge = UsePurge; // Do one initial purge
 
-            if(PvPStyle == PvPStyle_e.Active)
+if (PvPStyle == PvPStyle_e.Active)
+
             {
-                // Look for a killable...
-                GPlayer topwn = GetClosestPvPPlayer();
-                do
-                {
-                    if (topwn != null && !topwn.IsDead && !Me.IsDead &&
-                        topwn.DistanceToSelf < PullDistance &&
-                        radar.GetSpeed(topwn) < 10.0 &&
-                        Math.Abs(topwn.Location.Z - Me.Location.Z) < 15.0)
-                    {
-                        mover.Stop();
-                        if (!topwn.SetAsTarget(false))
-                        {
-                            Context.Log("can not target player " + topwn.Name);
-                        }
-                        else
-                        {
-                            //Context.Log("I will not kill " + topwn.Name + ". Lucky him");
-                            Context.Log("kill " + topwn.Name + ". speed: " + radar.GetSpeed(topwn));
-                            GCombatResult res = KillTarget(topwn, false);
-                            if (res == GCombatResult.Died || Me.IsDead)
-                                return GCombatResult.Died;
-                        }
-                    }
-                    topwn = GetClosestPvPPlayer();
-                } while (topwn != null && !topwn.IsDead && !Me.IsDead &&
-                        topwn.DistanceToSelf < PullDistance);
+                Context.Log("Actively searching for PVP targets");
             }
-	    if(Target.Name == "Wild Sparrowhawk") return GCombatResult.Bugged;
+            if (Target.Name == "Wild Sparrowhawk") return GCombatResult.Bugged;
+            if (Target.Name == "Stormpike Bowman") return GCombatResult.Bugged;
 	    CombatTimer.Reset();
 	    CombatStartHealth = Me.Health;
 	    sawAnEvade = false;
@@ -3221,58 +3201,75 @@ namespace Glider.Common.Objects
 	    {
                 //Context.Log("dt: " + -t.TicksLeft);
                 t.Reset();
-		if(Monster.IsPlayer && 
-		   (Monster.DistanceToSelf > 40 || MyCombatStartLocation.GetDistanceTo(Me.Location) > MaxDistanceFromStart))
-		{
-		    Context.Log("Player ran off ");
-		    return EndCombat(GCombatResult.Retry, Monster);
-		}
-                
-                Engaged |= Target.IsInCombat;
-                if(!Target.IsInCombat && Me.IsInCombat && !Engaged)
+                if (Monster.IsPlayer
+                    && (Monster.DistanceToSelf > 50 || MyCombatStartLocation.GetDistanceTo(Me.Location) > MaxDistanceFromStart))
                 {
-                    List<GUnit> adds = FindUnitsAttackingParty();
-                    foreach(GUnit u in adds)
+                    Context.Log("Target ran off ");
+                    return EndCombat(GCombatResult.Retry, Monster);
+                }
+
+                GUnit changetargetto = null;
+                if (Monster.IsPlayer && !Monster.IsInMeleeRange && PvPStyle == PvPStyle_e.Active)
+                {
+                    GPlayer topwn = GetClosestPvPPlayer();
+                    if (Monster != topwn)
                     {
-                        if(u != Target) 
+                        Context.Log("Another player is closer '" + topwn.Name + "'");
+                        changetargetto = topwn;
+                    }
+
+                }
+                if (!Monster.IsPlayer)
+                {
+                    GUnit closestAgressivePlayer = GetClosestPvPPlayerAttackingMe();
+                    if (closestAgressivePlayer != null)
+                    {
+                        // someone is targetting me
+
+                        if ((PvPStyle == PvPStyle_e.Active) || // some slag targetting me
+                           (PvPStyle == PvPStyle_e.FightBack && IsPlayerFaction(Monster))) // ..while I attack a pet
                         {
-                            Context.Log("Got attacked by another mob before engaging target");
-                            return EndCombat(GCombatResult.Retry, Monster);                    
+                            Context.Log("Attacking a mob while some jackass is kicking my ass. Thats stupid");
+                            changetargetto = closestAgressivePlayer;
                         }
-                            
                     }
                 }
 
-		if(Monster.IsDead) return EndCombat(GCombatResult.Success, Target);
-		if(Me.IsDead)      return EndCombat(GCombatResult.Died, Target);
-		if(Me.Target == null || Me.Target != Target) 
-		{
-		    Context.Log("Lost my target"); // Hmm, this is usually because the mob is dead
-		    return EndCombat(GCombatResult.Success, Target);
-		}
+ //               if (changetargetto != null && changetargetto != Target)
+ //               {
+ //                   ChangeToTarget(changetargetto);
+ //               }
+//
+                if (Monster.IsDead) return EndCombat(GCombatResult.Success, Target);
+                if (Me.IsDead) return EndCombat(GCombatResult.Died, Target);
+                if (Me.Target == null || Me.Target != Target)
+                {
+                    Context.Log("Lost my target"); // Hmm, this is usually because the mob is dead
+                    return EndCombat(GCombatResult.Success, Target);
+                }
 
-		GCombatResult CommonResult; 
-		if(Monster.IsMonster)
-		    CommonResult = Context.CheckCommonCombatResult((GMonster)Monster, IsAmbush);
-		else
-		    CommonResult = PvPCommonResult(Monster);
+                GCombatResult CommonResult;
+                if (Monster.IsMonster)
+                    CommonResult = Context.CheckCommonCombatResult((GMonster)Monster, IsAmbush);
+                else
+                    CommonResult = PvPCommonResult(Monster);
 
-		if(CommonResult == GCombatResult.Bugged)
-		{
-		    if(IgnoreBugged.IsReady)
-			return EndCombat(CommonResult, Target);
-		}
-		else if(CommonResult != GCombatResult.Unknown)
-		{
-		    return EndCombat(CommonResult, Target);
-		}
+                if (CommonResult == GCombatResult.Bugged)
+                {
+                    if (IgnoreBugged.IsReady)
+                        return EndCombat(CommonResult, Target);
+                }
+                else if (CommonResult != GCombatResult.Unknown)
+                {
+                    return EndCombat(CommonResult, Target);
+                }
 
-		if(evades > 5)
-		{
-		    // evaded 5 attacks, must be bugged
-		    Context.Log("Evaded many times now. must be bugged");
-		    return EndCombat(GCombatResult.Bugged, Target);
-		}
+                if (evades > 5)
+                {
+                    // evaded 5 attacks, must be bugged
+                    Context.Log("Evaded many times now. Must be bugged");
+                    return EndCombat(GCombatResult.Bugged, Target);
+                }
 
 		isUnmovable = IsUnmovable(Monster.Name);
 		if(Monster.IsCasting) AddCaster(Target.Name);
@@ -3878,7 +3875,7 @@ namespace Glider.Common.Objects
                        err == "Out of range" ||
                        err == "You are too far away")
                     {
-                        Context.Log("problem: " + err);
+                        Context.Log("Problem: " + err);
                         LoSBlacklist(Me.Target, 3);                         
                     }
                 }                
@@ -4809,7 +4806,7 @@ namespace Glider.Common.Objects
 		{
 		    if ( Merchant.IsRepairEnabled )   // Might as well fix it up while we're here.  
 		    {
-			Context.Log("  Reparing");
+			Context.Log("  Repairing");
 			Merchant.ClickRepairButton();
 		    }
 		}
