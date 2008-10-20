@@ -53,6 +53,11 @@
         <target>PShaman.AvoidAddDist</target>
       </input>
 
+	<checkbox>
+        <label>Use Feral Spirit on Adds</label>
+        <target>PShaman.UseFeralSpirit</target>
+      </checkbox>
+
 
     </group>
 
@@ -280,6 +285,11 @@
     <group>
       <label>Other skills</label>
       
+	<checkbox>
+        <label>Lava Lash</label>
+        <target>PShaman.UseLavaLash</target>
+      </checkbox>
+
       <checkbox>
         <label>Stormstrike</label>
         <target>PShaman.UseStormstrike</target>
@@ -356,12 +366,9 @@
         <options>
           <option>-</option>
             <option>Grounding Totem</option>
-            <option>Grace of Air Totem</option>
             <option>Nature Resistance Totem</option>
 <!--            <option>Sentry Totem</option> -->
-            <option>Tranquil Air Totem</option>
             <option>Windfury Totem</option>
-            <option>Windwall Totem</option>
             <option>Wrath of Air Totem</option>
         </options>
       </combobox>
@@ -420,12 +427,9 @@
         <options>
           <option>-</option>
             <option>Grounding Totem</option>
-            <option>Grace of Air Totem</option>
             <option>Nature Resistance Totem</option>
 <!--            <option>Sentry Totem</option> -->
-            <option>Tranquil Air Totem</option>
             <option>Windfury Totem</option>
-            <option>Windwall Totem</option>
             <option>Wrath of Air Totem</option>
         </options>
       </combobox>

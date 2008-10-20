@@ -1,7 +1,7 @@
 /*
 Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
 Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
-Developers: TheUltimateParadox - acepimprace- miceiken
+Developers: TheUltimateParadox
 */
 
 //!Reference: PPather.dll
@@ -24,7 +24,7 @@ namespace Glider.Common.Objects
 {
     public class PShaman : PPather
     {
-	string version = "2.0.9";
+	string version = "2.0.10";
 
 	#region PShaman props
 
@@ -62,13 +62,10 @@ namespace Glider.Common.Objects
 	        PoisonCleansing ,
 	        DiseaseCleansing,
 
-	        GraceOfAir,
 	        Grounding,
 	        NatureResistance,
 	        Sentry,
-	        Tranquil,
 	        Windfury,
-	        Windwall,
 	        WrathOfAir	    
 	    };
 
@@ -88,7 +85,8 @@ namespace Glider.Common.Objects
 
         Shield_e Shield;
         WhenCast_e WhenShield;
-        
+        bool UseLavaLash;       // Brand new skill introduced in 3.0.2
+        bool UseFeralSpirit;    // Brand new skill introduced in 3.0.2
 	    bool RunFromAddsInCombat      = true;  // Move away if mobs are getting to close while in combat
 	    int AvoidAddDistance    = 23;    // Avoid adds when the get this close to me
           
@@ -230,7 +228,8 @@ namespace Glider.Common.Objects
 	    GSpellTimer Feared = new GSpellTimer(30000);
 	    GSpellTimer CombatTimer = new GSpellTimer(0);	
 	    GSpellTimer LastKillTimer = new GSpellTimer(0);	
-	    GSpellTimer SellTimer = new GSpellTimer(10* 60 * 1000, true);	
+	    GSpellTimer SellTimer = new GSpellTimer(10* 60 * 1000, true);
+        GSpellTimer LavaLash = new GSpellTimer(6 * 60 * 1000, true);
 	    GSpellTimer HealCooldown = new GSpellTimer(700, true);	// to avoid double heals due to slow HP updates
 	    //GSpellTimer LOSCooldown = new GSpellTimer(2000, true); // for line of sight problems
 	    GSpellTimer PoisonCooldown = new GSpellTimer(2000, true);	
@@ -414,13 +413,10 @@ namespace Glider.Common.Objects
 	    case "Poison Cleansing Totem": return Totem_e.PoisonCleansing;
 	    case "Disease Cleansing Totem": return Totem_e.DiseaseCleansing;
 
-	    case "Grace of Air Totem": return Totem_e.GraceOfAir;
 	    case "Grounding Totem": return Totem_e.Grounding;
 	    case "Nature Resistance Totem": return Totem_e.NatureResistance;
 	    case "Sentry Totem": return Totem_e.Sentry;
-	    case "Tranquil Air Totem": return Totem_e.Tranquil;
 	    case "Windfury Totem": return Totem_e.Windfury;
-	    case "Windwall Totem": return Totem_e.Windwall;
 	    case "Wrath of Air Totem": return Totem_e.WrathOfAir;
 	    }
 	    Context.Log("Unknown totem '"  + s + "'");
@@ -450,13 +446,10 @@ namespace Glider.Common.Objects
 	    case Totem_e.ManaTide: return "PShaman.TotemManaTide";
 	    case Totem_e.PoisonCleansing : return "PShaman.TotemPoisonCleansing ";
 	    case Totem_e.DiseaseCleansing: return "PShaman.TotemDiseaseCleansing";
-	    case Totem_e.GraceOfAir: return "PShaman.TotemGraceOfAir";
 	    case Totem_e.Grounding: return "PShaman.TotemGrounding";
 	    case Totem_e.NatureResistance: return "PShaman.TotemNatureResistance";
 	    case Totem_e.Sentry: return "PShaman.TotemSentry";
-	    case Totem_e.Tranquil: return "PShaman.TotemTranquil";
 	    case Totem_e.Windfury: return "PShaman.TotemWindfury";
-	    case Totem_e.Windwall: return "PShaman.TotemWindwall";
 	    case Totem_e.WrathOfAir: return "PShaman.TotemWrathOfAir";
 	    }
 	    Context.Log("Asking for key of unknown totem " + totem);
@@ -534,7 +527,7 @@ namespace Glider.Common.Objects
                     SetConfigValueFromContext(configDialog, "PShaman.BuffName3");
 
 		    SetConfigValueFromContext(configDialog, "PShaman.RunnerAction");
-
+            SetConfigValueFromContext(configDialog, "PShaman.UseLavaLash");
 		    SetConfigValueFromContext(configDialog, "PShaman.UseStormstrike");
 
 		    SetConfigValueFromContext(configDialog, "PShaman.UseGrounding");
@@ -550,7 +543,7 @@ namespace Glider.Common.Objects
 		    SetConfigValueFromContext(configDialog, "PShaman.RageMaxMana");
 
 		    SetConfigValueFromContext(configDialog, "PShaman.AvoidAddDist");
-
+            SetConfigValueFromContext(configDialog, "PShaman.UseFeralSpirit");
 		    SetConfigValueFromContext(configDialog, "PShaman.SpamAlot");
 		    SetConfigValueFromContext(configDialog, "PShaman.NoJumpFromAoE");
 
@@ -653,7 +646,7 @@ namespace Glider.Common.Objects
 
 
 			SetConfigValueFromDialog(configDialog, "PShaman.RunnerAction");
-
+            SetConfigValueFromDialog(configDialog, "PShaman.UseLavaLash");
 			SetConfigValueFromDialog(configDialog, "PShaman.UseStormstrike");
 
 			SetConfigValueFromDialog(configDialog, "PShaman.UseGrounding");
@@ -667,7 +660,7 @@ namespace Glider.Common.Objects
 			SetConfigValueFromDialog(configDialog, "PShaman.UseRage");
 			SetConfigValueFromDialog(configDialog, "PShaman.RageMinHealth");
 			SetConfigValueFromDialog(configDialog, "PShaman.RageMaxMana");
-
+            SetConfigValueFromDialog(configDialog, "PShaman.UseFeralSpirit");
 			SetConfigValueFromDialog(configDialog, "PShaman.AvoidAddDist");
 
 			SetConfigValueFromDialog(configDialog, "PShaman.SpamAlot");
@@ -780,9 +773,6 @@ namespace Glider.Common.Objects
                     case "PShaman.TotemDiseaseCleansing":
                         button = GShortcut.FindMatchingSpellGroup("0x1FEA");
                         break;
-                    case "PShaman.TotemGraceOfAir":
-                        button = GShortcut.FindMatchingSpellGroup("0x2283");
-                        break;
                     case "PShaman.TotemGrounding":
                         button = GShortcut.FindMatchingSpellGroup("0x1FF1");
                         break;
@@ -792,14 +782,8 @@ namespace Glider.Common.Objects
                     case "PShaman.TotemSentry":
                         button = GShortcut.FindMatchingSpellGroup("0x195F");
                         break;
-                    case "PShaman.TotemTranquil":
-                        button = GShortcut.FindMatchingSpellGroup("0x6534");
-                        break;
                     case "PShaman.TotemWindfury":
                         button = GShortcut.FindMatchingSpellGroup("0x2140");
-                        break;
-                    case "PShaman.TotemWindwall":
-                        button = GShortcut.FindMatchingSpellGroup("0x3B03");
                         break;
                     case "PShaman.TotemWrathOfAir":
                         button = GShortcut.FindMatchingSpellGroup("0xE9A");
@@ -823,7 +807,7 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x632f");
                         break;
                     case "PShaman.InterruptShock":
-                        button = GShortcut.FindMatchingSpellGroup("0x1f6a");
+                        button = GShortcut.FindMatchingSpellGroup("0xe28a");
                         break;
                     case "PShaman.LesserHealingWave":
                         button = GShortcut.FindMatchingSpellGroup("0x28e4");
@@ -837,6 +821,12 @@ namespace Glider.Common.Objects
                     case "PShaman.LightningShield":
                         button = GShortcut.FindMatchingSpellGroup("0x637d");
                         break;
+                    case "PShaman.LavaLash":
+                        button = GShortcut.FindMatchingSpellGroup("0xeac7");
+                        break;
+                    case "PShaman.FeralSpirit":
+                        button = GShortcut.FindMatchingSpellGroup("0xc94d");
+                        break;
                     case "PShaman.MainWeaponEnchant":
                         button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
                         break;
@@ -844,7 +834,7 @@ namespace Glider.Common.Objects
                         button = GShortcut.FindMatchingSpellGroup("0x2028 0x1f61 0x1f58 0x1f51");
                         break;
 					case "PShaman.Mount":
-                    string mountId = "21176 33809 32458 38576 29465 18243 13328 18247 29466 29467 18244 18241 29468 32319 33999 13335 30480 13329 29745 18794 18795 29746 29747 18793 15292 32314 13334 12351 18245 29469 19029 12330 18796 18798 18797 13327 34092 12354 32316 18791 32317 29470 18248 32858 35906 29471 18242 32859 31829 31830 29102 29227 28915 29228 12302 12303 32857 32860 32768 31831 31832 29229 29104 18766 18767 33225 18902 31833 31834 29230 29105 32861 32862 31835 31836 29231 29103 13086 32318 19030 25473 18788 33977 18786 18777 33182 18787 25528 29223 18772 25531 33184 30609 18789 18790 18776 28936 25529 29224 25533 19872 25527 25477 34129 35513 18773 18785 18778 18774 25532 19902 15293 37012 37676 29472 18246 13317 8586 13326 12353 35226 29221 2411 29220 8595 21218 13332 25475 33976 28481 5656 15290 5872 13333 5655 25471 33176 25470 29744 15277 5864 13321 21323 25476 5668 5665 1132 37011 33183 2414 29743 29222 28927 8563 21321 13331 33224 8632 8631 8629 25472 25474 13322 8588 8591 8592 5873 35225 21324 8589 49322";
+                        string mountId = "21176 33809 32458 38576 29465 18243 13328 18247 29466 29467 18244 18241 29468 32319 33999 13335 30480 33184 51412 58999 58997 13329 29745 18794 18795 29746 29747 18793 15292 32314 13334 12351 18245 29469 19029 12330 18796 18798 18797 13327 34092 12354 32316 18791 32317 29470 18248 32858 35906 29471 18242 32859 31829 31830 29102 29227 28915 29228 12302 12303 32857 32860 32768 31831 31832 29229 29104 18766 18767 33225 18902 31833 31834 29230 29105 32861 32862 31835 31836 29231 29103 13086 32318 19030 25473 18788 33977 18786 18777 33182 18787 25528 29223 18772 25531 33184 30609 18789 18790 18776 28936 25529 29224 25533 19872 25527 25477 34129 35513 18773 18785 18778 18774 25532 19902 15293 37012 37676 29472 18246 13317 8586 13326 12353 35226 29221 2411 29220 8595 21218 13332 25475 33976 28481 5656 15290 5872 13333 5655 25471 33176 25470 29744 15277 5864 13321 21323 25476 5668 5665 1132 37011 33183 2414 29743 29222 28927 8563 21321 13331 33224 8632 8631 8629 25472 25474 13322 8588 8591 8592 5873 35225 21324 8589 49322";
                     button = GShortcut.FindMatchingShortcut(GShortcutType.Item, mountId);
                     break;
                     case "PShaman.NS":
@@ -925,13 +915,10 @@ namespace Glider.Common.Objects
      Context.AddAutoKey("PShaman.TotemManaSpring");
      Context.AddAutoKey("PShaman.TotemManaTide");
      Context.AddAutoKey("PShaman.TotemDiseaseCleansing");
-     Context.AddAutoKey("PShaman.TotemGraceOfAir");
      Context.AddAutoKey("PShaman.TotemGrounding");
      Context.AddAutoKey("PShaman.TotemNatureResistance");
      Context.AddAutoKey("PShaman.TotemSentry");
-     Context.AddAutoKey("PShaman.TotemTranquil");
      Context.AddAutoKey("PShaman.TotemWindfury");
-     Context.AddAutoKey("PShaman.TotemWindwall");
      Context.AddAutoKey("PShaman.TotemWrathOfAir");
      Context.AddAutoKey("PShaman.InterruptShock");
      Context.AddAutoKey("PShaman.FrostShock");
@@ -948,6 +935,8 @@ namespace Glider.Common.Objects
      Context.AddAutoKey("PShaman.LesserHealingWaveSelf");
      Context.AddAutoKey("PShaman.LightningShield");
      Context.AddAutoKey("PShaman.NS");
+     Context.AddAutoKey("PShaman.LavaLash");
+     Context.AddAutoKey("PShaman.FeralSpirit");
      Context.AddAutoKey("PShaman.UseItem1");
      Context.AddAutoKey("PShaman.UseItem2");
      Context.AddAutoKey("PShaman.UseItem3");
@@ -1030,8 +1019,9 @@ namespace Glider.Common.Objects
             Context.SetConfigValue("PShaman.BuffName3", "", false);
 
 	    Context.SetConfigValue("PShaman.RunnerAction", "Chase while it is safe", false);
-
+        Context.SetConfigValue("PShaman.UseLavaLash", "False", false);
 	    Context.SetConfigValue("PShaman.UseStormstrike", "False", false);
+        Context.SetConfigValue("PShaman.UseStormstrike", "10", false);
 
 	    Context.SetConfigValue("PShaman.UseGrounding", "False", false);
 	    Context.SetConfigValue("PShaman.UseTremor", "False", false);
@@ -1046,7 +1036,7 @@ namespace Glider.Common.Objects
 	    Context.SetConfigValue("PShaman.RageMinHealth", "75", false);
 	    Context.SetConfigValue("PShaman.RageMaxMana", "55", false);
 
-
+        Context.SetConfigValue("PShaman.UseFeralSpirit", "False", false);
 	    Context.SetConfigValue("PShaman.AvoidAddDist", "19", false);
 
 	    Context.SetConfigValue("PShaman.SpamAlot", "True", false);
@@ -1235,7 +1225,7 @@ namespace Glider.Common.Objects
 	    case "Do not chase":            ChaseStyle = ChaseStyle_e.NoChase; break; 
 	    }
 
-
+        UseLavaLash = Context.GetConfigBool("PShaman.UseLavaLash");
 	    UseStormstrike  = Context.GetConfigBool("PShaman.UseStormstrike");
 
 	    UseGrounding  = Context.GetConfigBool("PShaman.UseGrounding");
@@ -1250,7 +1240,7 @@ namespace Glider.Common.Objects
 	    UseRage        = Context.GetConfigBool("PShaman.UseRage");
 	    RageMinHealth  = Context.GetConfigInt("PShaman.RageMinHealth") / 100.0;
 	    RageMaxMana    = Context.GetConfigInt("PShaman.RageMaxMana") / 100.0;
-
+        UseFeralSpirit = Context.GetConfigBool("PShaman.UseFeralSpirit");
 	    AvoidAddDistance   = Context.GetConfigInt("PShaman.AvoidAddDist");
 		
 
@@ -1683,8 +1673,11 @@ namespace Glider.Common.Objects
 
         private bool IsMounted(GUnit unit)
         {
-            // Mount test based on spell ID - 3 Sept 2008
+            // Mount test based on spell ID - Updated: 10.20.2008
             int[] mountBuffsID = {
+                51412, //   Big Battle Bear
+                58999, //   Big Blizzard Bear (Blizzcon 2008 Reward Horde)
+                58997, //   Big Blizzard Bear (Blizzcon 2008 Reward Alliance)
                 35022, //	Black Hawkstrider
                 6896, //	Black Ram
                 17461, //	Black Ram
@@ -1824,6 +1817,7 @@ namespace Glider.Common.Objects
                 23252, //	Swift Gray Wolf
                 35025, //	Swift Green Hawkstrider
                 23225, //	Swift Green Mechanostrider
+                33184, //   Swift Magic Broom
                 23219, //	Swift Mistsaber
                 23242, //	Swift Olive Raptor
                 23243, //	Swift Orange Raptor
@@ -2694,6 +2688,42 @@ namespace Glider.Common.Objects
 	    CastSpellMana("PShaman.Stormstrike", true, true);
 	    return true;
 	}
+    // Lava Lash
+        private bool WantLavaLash()
+    {
+        if (ShouldDPS() &&
+               Target.IsInMeleeRange &&
+               Me.Mana > HealMana &&
+               UseLavaLash &&
+           Interface.IsKeyReady("PShaman.LavaLash"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool DoLavaLash()
+    {
+        Spam("Lava Lash");
+        CastSpellMana("PShaman.LavaLash", true, true);
+        return true;
+    }
+    // Feral Spirit
+    private bool WantFeralSpirit()
+    {
+        if (UseFeralSpirit && ShouldWhiteDPS() && HaveAdd && Interface.IsKeyReady("PShaman.FeralSpirit"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool DoFeralSpirit()
+    {
+        Spam("Feral Spirit");
+        CastSpellMana("PShaman.FeralSpirit", true, true);
+        return true;
+    }
 
 	// Purge
 	private bool WantPurge()
@@ -3431,7 +3461,9 @@ if (PvPStyle == PvPStyle_e.Active)
             if (WantShield()) if (DoShield() || Monster.IsDead) continue;
             
             // DPS
+            if(WantFeralSpirit()) if(DoFeralSpirit() || Monster.IsDead) continue;
 		    if(WantStormstrike()) if(DoStormstrike() || Monster.IsDead) continue;
+            if(WantLavaLash()) if(DoLavaLash() || Monster.IsDead) continue;
 		    if(Monster.DistanceToSelf > BoltDistance && WantBolt()) if(DoBolt() || Monster.IsDead) continue;
 		    if(WantDPSShock()) if(DoDPSShock() || Monster.IsDead) continue;
 
