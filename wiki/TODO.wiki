@@ -1,14 +1,14 @@
 ===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.11 RELEASE*===
 
-- Currently looking for ways to implement all restoration talents. Riptide to be precise.
-- Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
-- Update the look of the Config, perhaps add a restoration tab just for the talents.
-- Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore.
-- Release a non-pather version. This seems to be popular.
-- Totem Recall isn't working properly. It mounts, run away from the totems, press "totem recall" and remounts.
-- Improve on PVP code. I fail at this, will let someone look at it and improve on it.
-- Chain Lightning support for pulling, and once it's off cooldown let it be used again, for the people who want a Elemental Shaman instead.
-- Ankh resurrecting support. We can look at the way ZLock does this since it's basically the same as a Soul Stone.
-- If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
+ - Currently looking for ways to implement all restoration talents. Riptide to be precise.
+ - Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
+ - Update the look of the Config, perhaps add a restoration tab just for the talents.
+ - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore.
+ - Release a non-pather version. This seems to be popular.
+ - Totem Recall isn't working properly. It mounts, run away from the totems, press "totem recall" and remounts.
+ - Improve on PVP code. I fail at this, will let someone look at it and improve on it.
+ - Chain Lightning support for pulling, and once it's off cooldown let it be used again, for the people who want a Elemental Shaman instead.
+ - Ankh resurrecting support. We can look at the way ZLock does this since it's basically the same as a Soul Stone.
+ - If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
 
 ===* IMPLEMENTATION FOR FUTURE RELEASES*===
