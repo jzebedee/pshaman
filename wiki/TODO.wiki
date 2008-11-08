@@ -2,7 +2,7 @@
 -----
      - Currently looking for ways to implement all restoration talents. Riptide to be precise.
 
-   ~~ - Currently looking for ways to implement Cleanse Spirit Skill. ~~ rev21
+   ~~ - Currently looking for ways to implement Cleanse Spirit Skill. ~~  rev21
 
       - Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
 
