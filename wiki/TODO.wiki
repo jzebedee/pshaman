@@ -8,7 +8,7 @@ rev21~~ - Currently looking for ways to implement Cleanse Spirit Skill. ~~
 
       - Update the look of the Config, perhaps add a restoration tab just for the talents.
 
-      - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore.
+rev21~~      - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore. ~~
 
       - Release a non-pather version. This seems to be popular.
 
