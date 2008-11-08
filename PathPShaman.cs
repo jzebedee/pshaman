@@ -96,6 +96,8 @@ namespace Glider.Common.Objects
 
         WhenCast_e WhenPoison;
         WhenCast_e WhenDisease;
+        WhenCast_e WhenCurse;
+
 
         bool TotemsBeforePull ;
         int  WaitTime ;
@@ -233,7 +235,8 @@ namespace Glider.Common.Objects
 	    GSpellTimer HealCooldown = new GSpellTimer(700, true);	// to avoid double heals due to slow HP updates
 	    //GSpellTimer LOSCooldown = new GSpellTimer(2000, true); // for line of sight problems
 	    GSpellTimer PoisonCooldown = new GSpellTimer(2000, true);	
-	    GSpellTimer DiseaseCooldown = new GSpellTimer(2000, true);	
+	    GSpellTimer DiseaseCooldown = new GSpellTimer(2000, true);
+        GSpellTimer CurseCooldown = new GSpellTimer(2000, true);	
 	    GSpellTimer ShieldCooldown = new GSpellTimer(2000, true);	
         GSpellTimer Enchants = new GSpellTimer(29 * 60 * 1000, true);
         GSpellTimer FSR = new GSpellTimer(5000, true); // mana regen tick start timer
@@ -496,6 +499,7 @@ namespace Glider.Common.Objects
 
 		    SetConfigValueFromContext(configDialog, "PShaman.WhenPoison");
 		    SetConfigValueFromContext(configDialog, "PShaman.WhenDisease");
+            SetConfigValueFromContext(configDialog, "PShaman.WhenCurse");
 
 		    SetConfigValueFromContext(configDialog, "PShaman.WhiteDPSLife");
 		    SetConfigValueFromContext(configDialog, "PShaman.DPSLife");
@@ -612,6 +616,7 @@ namespace Glider.Common.Objects
 
 			SetConfigValueFromDialog(configDialog, "PShaman.WhenPoison");
 			SetConfigValueFromDialog(configDialog, "PShaman.WhenDisease");
+            SetConfigValueFromDialog(configDialog, "PShaman.WhenCurse");
 
 			SetConfigValueFromDialog(configDialog, "PShaman.WhiteDPSLife");
 			SetConfigValueFromDialog(configDialog, "PShaman.DPSLife");
@@ -725,6 +730,9 @@ namespace Glider.Common.Objects
                 GShortcut button = null;
                 switch (One.KeyName)
                 {
+                    case "PShaman.CureCurse":
+                        button = GShortcut.FindMatchingSpellGroup("0xcaae");
+                        break;
                     case "PShaman.CureDisease":
                         button = GShortcut.FindMatchingSpellGroup("0xB36");
                         break;
@@ -951,6 +959,7 @@ namespace Glider.Common.Objects
      Context.AddAutoKey("PShaman.TotemTremor");
      Context.AddAutoKey("PShaman.TotemHealingStream");
      Context.AddAutoKey("PShaman.CurePoison");
+     Context.AddAutoKey("PShaman.CureCurse");
      Context.AddAutoKey("PShaman.TotemPoisonCleansing ");
      Context.AddAutoKey("PShaman.CureDisease");
      Context.AddAutoKey("PShaman.TotemicCall");
@@ -984,7 +993,8 @@ namespace Glider.Common.Objects
 	    Context.SetConfigValue("PShaman.Shield", "None", false);
 	    Context.SetConfigValue("PShaman.WhenShield", "After other cast", false);
 
-	    Context.SetConfigValue("PShaman.WhenPoison", "After other cast", false);
+	    Context.SetConfigValue("PShaman.WhenCurse", "After other cast", false);
+        Context.SetConfigValue("PShaman.WhenPoison", "After other cast", false);
 	    Context.SetConfigValue("PShaman.WhenDisease", "After other cast", false);
 
 	    Context.SetConfigValue("PShaman.WhiteDPSLife", "90", false);
@@ -1192,6 +1202,9 @@ namespace Glider.Common.Objects
 
             string wcp = Context.GetConfigString("PShaman.WhenPoison");
             WhenPoison = DecodeWhen(wcp);
+
+            string wcd = Context.GetConfigString("PShaman.WhenCurse");
+            WhenCurse = DecodeWhen(wcd);
 
             string wcd = Context.GetConfigString("PShaman.WhenDisease");
             WhenDisease = DecodeWhen(wcd);
@@ -1557,6 +1570,7 @@ namespace Glider.Common.Objects
             DoRestHeal();
             if(WantCurePoison())  DoCurePoison();
             if(WantCureDisease()) DoCureDisease();
+            if (WantCureCurse()) DoCureCurse();
             if(WantShield()) DoShield();
 	    
 	        bool didSomething = false;
@@ -1959,7 +1973,7 @@ namespace Glider.Common.Objects
 
             Thread.Sleep(100);
 
-            string badMount = null; // from ppather mount.cs - June 7 2008
+            string badMount = null; // From PPather's Mount.cs - June 7 2008
 
             if (GContext.Main.RedMessage.Contains("while swimming"))
             {
@@ -2173,7 +2187,7 @@ namespace Glider.Common.Objects
         }
 
         // Totem cooldown timers
-        // TODO: there are talests for some of them
+        // TODO: there are talents for some of them
 
         // Fire Nova 15s
         // Grounding 15s
@@ -2937,7 +2951,27 @@ namespace Glider.Common.Objects
             DiseaseCooldown.Reset();
             return ok;
 	}
-	
+
+    // Cure Curse
+    private bool WantCureCurse()
+    {
+        if (!CurseCooldown.IsReady) return false;
+        if (!EvalWhenCast(WhenCurse)) return false;
+        GBuff[] buffs = Me.GetBuffSnapshot();
+        foreach (GBuff b in buffs)
+        {
+            if (b.BuffType == GBuffType.Curse) return true;
+        }
+        return false;
+    }
+
+    private bool DoCureCurse()
+    {
+        Spam("Cleansing Curse");
+        bool ok = CastSpellMana("PShaman.CureCurse");
+        CureCooldown.Reset();
+        return ok;
+    }
 
 	// Cure poison
 	private bool WantCurePoison()
@@ -3259,7 +3293,7 @@ if (PvPStyle == PvPStyle_e.Active)
                         if ((PvPStyle == PvPStyle_e.Active) || // some slag targetting me
                            (PvPStyle == PvPStyle_e.FightBack && IsPlayerFaction(Monster))) // ..while I attack a pet
                         {
-                            Context.Log("Attacking a mob while some jackass is kicking my ass. Thats stupid");
+                            Context.Log("Attacking a mob while some jackass is kicking my ass. Thats stupid.");
                             changetargetto = closestAgressivePlayer;
                         }
                     }
@@ -3345,7 +3379,7 @@ if (PvPStyle == PvPStyle_e.Active)
 		    {
 			if(StandingInAoE) // we are inside some AoE effect (posions cloud thunderstom etc)
 			{
-			    Spam("avoid AoE effect");
+			    Spam("Avoiding AoE effect");
 			    StepOutOfAoE();
 			    PullAway.Reset(); 
 			}
@@ -3477,6 +3511,7 @@ if (PvPStyle == PvPStyle_e.Active)
 		    if(WantPurge()) if(DoPurge() || Monster.IsDead) continue;
 		    if(WantCurePoison()) if(DoCurePoison() || Monster.IsDead) continue;
 		    if(WantCureDisease()) if(DoCureDisease() || Monster.IsDead) continue;
+            if (WantCureCurse()) if (DoCureCurse() || Monster.IsDead) continue;
 		    if(Monster.DistanceToSelf <= BoltDistance && WantBolt()) if(DoBolt() || Monster.IsDead) continue;
 
 		    
@@ -3616,7 +3651,7 @@ if (PvPStyle == PvPStyle_e.Active)
 		    GUnit unit = GObjectList.GetNearestAttacker(Monster.GUID);
 		    if(unit != null && unit != Monster)
 		    {
-			Context.Log("got attacked by a different mob! " + unit.Name);
+			Context.Log("Got attacked by a different mob! " + unit.Name);
 			return false;
 		    }
 		    if(IsRanged(Monster.Name) || IsUnmovable(Monster.Name))
@@ -3810,7 +3845,7 @@ if (PvPStyle == PvPStyle_e.Active)
             if(party)
             {
                 String party_key = "Common.TargetParty" + (party_index + 1);
-                Context.Log("Cast spell " + KeyName + " on party member " + target.Name); 
+                Context.Log("Casting spell " + KeyName + " on party member " + target.Name); 
 
                 Context.SendKey(party_key);
                 //Context.Party.CastOnMember(target, KeyName, oldTarget);
@@ -3820,7 +3855,7 @@ if (PvPStyle == PvPStyle_e.Active)
                 // alternative target/cast method
                 string command = "/tar " + target.Name;
 
-                    Context.Log("Cast spell "+KeyName+" on " + target.Name); 
+                    Context.Log("Casting spell "+KeyName+" on " + target.Name); 
                     //Clipboard.SetData(DataFormats.Text, command);
                     SetClipboardText(command);
 
@@ -4275,7 +4310,7 @@ if (PvPStyle == PvPStyle_e.Active)
 		GLocation loc =fireNode.Location;
 		avoidRunInto(loc);
 		if(LastAvoidedNode == null || LastAvoidedNode != fireNode)
-		    Context.Log("Avoid run into fire " + fireNode.Name);
+		    Context.Log("Avoid running into fire " + fireNode.Name);
 		LastAvoidedNode = fireNode;
 	    }
 	}
