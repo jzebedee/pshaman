@@ -54,10 +54,13 @@
       </input>
 
 	<checkbox>
-        <label>Use Feral Spirit on Adds</label>
+        <label>Use Feral Spirit on adds</label>
         <target>PShaman.UseFeralSpirit</target>
       </checkbox>
-
+	<checkbox>
+        <label>Use Feral Spirit on PVP</label>
+        <target>PShaman.UseFeralSpirit</target>
+      </checkbox>
 
     </group>
 
@@ -96,7 +99,7 @@
       <label>Runners</label>
 
       <combobox>
-        <label>if target runs</label>
+        <label>If target runs</label>
         <target>PShaman.RunnerAction</target>
         <width>130</width>
         <options>
@@ -157,10 +160,10 @@
 
 
     <group>
-      <label>Poison and Disease</label>
+      <label>Poisons, Diseases, Curses</label>
 
       <combobox>
-        <label>When to cast cure Poison</label>
+        <label>When to cure Poison</label>
         <target>PShaman.WhenPoison</target>
         <options>
           <option>Never</option>
@@ -171,7 +174,18 @@
       </combobox>
 
       <combobox>
-        <label>When to cast cure Disease</label>
+        <label>When to cleanse Curse</label>
+        <target>PShaman.WhenCurse</target>
+        <options>
+          <option>Never</option>
+          <option>Resting</option>
+          <option>After other cast</option>
+          <option>Always</option>
+        </options>
+      </combobox>
+
+      <combobox>
+        <label>When to cure Disease</label>
         <target>PShaman.WhenDisease</target>
         <options>
           <option>Never</option>
@@ -343,6 +357,7 @@
             <option>Stoneskin Totem</option>
             <option>Stoneclaw Totem</option>
             <option>Earth Elemental Totem</option>
+
         </options>
       </combobox>
 
@@ -369,7 +384,7 @@
             <option>Nature Resistance Totem</option>
 <!--            <option>Sentry Totem</option> -->
             <option>Windfury Totem</option>
-            <option>Wrath of Air Totem</option>
+			<option>Wrath of Air Totem</option>
         </options>
       </combobox>
 
