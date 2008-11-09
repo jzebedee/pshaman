@@ -24,7 +24,7 @@ namespace Glider.Common.Objects
 {
     public class PShaman : PPather
     {
-	string version = "2.0.10";
+	string version = "2.0.11";
 
 	#region PShaman props
 
@@ -33,7 +33,7 @@ namespace Glider.Common.Objects
  	    enum ChaseStyle_e { Chase, ChaseSafe, NoChase };
 	    enum PvPStyle_e { Active, FightBack, Die };
         enum BuffUse_e { NoUse, Food, Potion }
-        enum HealType_e { None, Wave, Lesser, Chain, Panic }
+        enum HealType_e { None, Riptide, Wave, Lesser, Chain, Panic }
         enum Shield_e { None, Lightning, Water, Earth }
         enum WhenCast_e { Never, Resting, AfterCast, Always }
         enum Shock_e { None, Earth, Frost, Flame }
@@ -115,6 +115,9 @@ namespace Glider.Common.Objects
         double HealChainLife;
         double RestHealWaveLife;
         double RestHealChainLife;
+
+        double HealRiptideLife;
+        double RestRiptideLife;
 
         bool HealParty;
         bool HealFriendly; 
@@ -489,9 +492,11 @@ namespace Glider.Common.Objects
 		    SetConfigValueFromContext(configDialog, "PShaman.HealMana");
 		    SetConfigValueFromContext(configDialog, "PShaman.HealPanicLife");
 		    SetConfigValueFromContext(configDialog, "PShaman.HealLesserWaveLife");
+            SetConfigValueFromContext(configDialog, "PShaman.HealRiptideLife");
 		    SetConfigValueFromContext(configDialog, "PShaman.HealWaveLife");
 		    SetConfigValueFromContext(configDialog, "PShaman.HealChainLife");
 		    SetConfigValueFromContext(configDialog, "PShaman.RestHealWaveLife");
+            SetConfigValueFromContext(configDialog, "PShaman.RestRiptideLife");
 		    SetConfigValueFromContext(configDialog, "PShaman.RestHealChainLife");
 
 		    SetConfigValueFromContext(configDialog, "PShaman.Shield");
@@ -605,10 +610,13 @@ namespace Glider.Common.Objects
 
 			SetConfigValueFromDialog(configDialog, "PShaman.HealMana");
 			SetConfigValueFromDialog(configDialog, "PShaman.HealPanicLife");
+            SetConfigValueFromDialog(configDialog, "PShaman.HealRiptidePanicLife");
 			SetConfigValueFromDialog(configDialog, "PShaman.HealLesserWaveLife");
 			SetConfigValueFromDialog(configDialog, "PShaman.HealWaveLife");
 			SetConfigValueFromDialog(configDialog, "PShaman.HealChainLife");
+            SetConfigValueFromDialog(configDialog, "PShaman.HealRiptideLife");
 			SetConfigValueFromDialog(configDialog, "PShaman.RestHealWaveLife");
+            SetConfigValueFromDialog(configDialog, "PShaman.RestRiptideLife");
 			SetConfigValueFromDialog(configDialog, "PShaman.RestHealChainLife");
 
 			SetConfigValueFromDialog(configDialog, "PShaman.Shield");
@@ -811,6 +819,12 @@ namespace Glider.Common.Objects
                     case "PShaman.HealingWave":
                         button = GShortcut.FindMatchingSpellGroup("0x632f");
                         break;
+                    case "PShaman.Riptide":
+                        button = GShortcut.FindMatchingSpellGroup("0xef6f");
+                        break;
+                    case "PShaman.RiptideSelf":
+                        button = GShortcut.FindMatchingSpellGroup("0xef6f");
+                        break;
                     case "PShaman.HealingWaveSelf":
                         button = GShortcut.FindMatchingSpellGroup("0x632f");
                         break;
@@ -965,6 +979,8 @@ namespace Glider.Common.Objects
      Context.AddAutoKey("PShaman.TotemicCall");
      Context.AddAutoKey("PShaman.Stormstrike");
      Context.AddAutoKey("PShaman.Rage");
+     Context.AddAutoKey("PShaman.Riptide");
+     Context.AddAutoKey("PShaman.RiptideSelf");
      Context.AddAutoKey("PShaman.Mount");
      Context.AddAutoKey("PShaman.WaterShield");
 	 Context.AddAutoKey("PShaman.EarthShield");
@@ -983,11 +999,14 @@ namespace Glider.Common.Objects
 	    Context.SetConfigValue("PShaman.HealMana", "30", false);
 	    Context.SetConfigValue("PShaman.HealPanicLife", "25", false);
 	    Context.SetConfigValue("PShaman.HealLesserWaveLife", "35", false);
+        Context.SetConfigValue("PShaman.HealRiptideLife", "45", false);
 	    Context.SetConfigValue("PShaman.HealWaveLife", "60", false);
 	    Context.SetConfigValue("PShaman.HealChainLife", "75", false);
 
+
 	    Context.SetConfigValue("PShaman.RestHealWaveLife", "70", false);
 	    Context.SetConfigValue("PShaman.RestHealChainLife", "75", false);
+        Context.SetConfigValue("PShaman.RestRiptideLife", "80", false);
 
 
 	    Context.SetConfigValue("PShaman.Shield", "None", false);
@@ -1180,10 +1199,12 @@ namespace Glider.Common.Objects
 	    HealMana           = Context.GetConfigInt("PShaman.HealMana") / 100.0;
 	    HealPanicLife      = Context.GetConfigInt("PShaman.HealPanicLife") / 100.0;
 	    HealLesserWaveLife = Context.GetConfigInt("PShaman.HealLesserWaveLife") / 100.0;
+        HealRiptideLife = Context.GetConfigInt("PShaman.HealRiptideLife") / 100.0;
 	    HealWaveLife       = Context.GetConfigInt("PShaman.HealWaveLife") / 100.0;
 	    HealChainLife      = Context.GetConfigInt("PShaman.HealChainLife") / 100.0;
 	    RestHealWaveLife       = Context.GetConfigInt("PShaman.RestHealWaveLife") / 100.0;
 	    RestHealChainLife      = Context.GetConfigInt("PShaman.RestHealChainLife") / 100.0;
+        RestRiptideLife = Context.GetConfigInt("PShaman.RestRiptideLife") / 100.0;
 
         HealFriendly = true; //  Context.GetConfigBool("PShaman.HealFriendly");
         HealParty = Context.Party.HealParty; 
@@ -1203,8 +1224,8 @@ namespace Glider.Common.Objects
             string wcp = Context.GetConfigString("PShaman.WhenPoison");
             WhenPoison = DecodeWhen(wcp);
 
-            string wcd = Context.GetConfigString("PShaman.WhenCurse");
-            WhenCurse = DecodeWhen(wcd);
+            string wcc = Context.GetConfigString("PShaman.WhenCurse");
+            WhenCurse = DecodeWhen(wcc);
 
             string wcd = Context.GetConfigString("PShaman.WhenDisease");
             WhenDisease = DecodeWhen(wcd);
@@ -1690,8 +1711,8 @@ namespace Glider.Common.Objects
             // Mount test based on spell ID - Updated: 10.20.2008
             int[] mountBuffsID = {
                 51412, //   Big Battle Bear
-                58999, //   Big Blizzard Bear (Blizzcon 2008 Reward Horde)
-                58997, //   Big Blizzard Bear (Blizzcon 2008 Reward Alliance)
+                58999, //   Big Blizzard Bear (Blizzcon 2008)
+                58997, //   Big Blizzard Bear (Blizzcon 2007)
                 35022, //	Black Hawkstrider
                 6896, //	Black Ram
                 17461, //	Black Ram
@@ -2240,7 +2261,7 @@ namespace Glider.Common.Objects
             
 
 
-        #region KillTarget
+#region KillTarget
 
 
         // Some combat state
@@ -2350,7 +2371,10 @@ namespace Glider.Common.Objects
             return true;            
         }
 
-        // Heal logic
+/////////////////////////////////////////////////////////
+//////////// Heal logic /////////////////////////////////
+/////////////////////////////////////////////////////////
+
 	    GPlayer HealTarget = null;
         HealType_e HealType = HealType_e.None;
 
@@ -2366,7 +2390,7 @@ namespace Glider.Common.Objects
                 foreach (GPlayer p in plys)
                 {
                     if (p.IsSameFaction && p != Me &&
-                        p.DistanceToSelf < 37 &&
+                        p.DistanceToSelf < 32 &&
                         !p.IsDead && p.HealthPoints != 1)
                     {
                         if(!IsLoSBlacklisted(p))
@@ -2381,7 +2405,7 @@ namespace Glider.Common.Objects
                 {
                     GUnit TargetObject = (GUnit)GObjectList.FindObject(OneGuy);
 
-                    if (TargetObject == null || TargetObject.DistanceToSelf > 37 || TargetObject.IsDead || Target.HealthPoints == 1 )  // Party member is not around or dead, no big deal.
+                    if (TargetObject == null || TargetObject.DistanceToSelf > 34 || TargetObject.IsDead || Target.HealthPoints == 1 )  // Party member is not around or dead, no big deal.
                         continue;
 
                     GPlayer Member = (GPlayer)TargetObject;
@@ -2403,6 +2427,7 @@ namespace Glider.Common.Objects
             int NumberForChain = 0;
             GPlayer targetForPanic = null;
             GPlayer targetForLesser = null;
+            GPlayer targetForRiptide = null;
             GPlayer targetForWave = null;
             GPlayer targetForChain = null;
             
@@ -2416,7 +2441,11 @@ namespace Glider.Common.Objects
                         targetForWave = player;
                         //Context.Log(player.Name + " need a healing wave");
                     }
-                    
+                    if (life < RestRiptideLife)
+                    {
+                        targetForRiptide = player;
+                        //Context.Log(player.Name + " need a healing wave");
+                    }
                     if(life < RestHealChainLife)
                     {
                         if(targetForChain == null || life < targetForChain.Health)
@@ -2432,7 +2461,7 @@ namespace Glider.Common.Objects
                         targetForPanic = player;
                         //Context.Log(player.Name + " need a panic heal");
                     }
-                    
+
                     if(life < HealLesserWaveLife)
                     {
                         targetForLesser = player;
@@ -2444,7 +2473,11 @@ namespace Glider.Common.Objects
                         targetForWave = player;
                         //Context.Log(player.Name + " need a healing wave");
                     }
-                    
+                    if (life < HealRiptideLife)
+                    {
+                        targetForRiptide = player;
+                        //Context.Log(player.Name + " need a healing wave");
+                    }
                     if(life < HealChainLife)
                     {
                         if(targetForChain == null || life < targetForChain.Health)
@@ -2466,6 +2499,11 @@ namespace Glider.Common.Objects
             {
                 HealTarget = targetForLesser;
                 HealType = HealType_e.Lesser;
+            }
+            else if (targetForRiptide != null)
+            {
+                HealTarget = targetForRiptide;
+                HealType = HealType_e.Riptide;
             }
             else if(targetForWave != null)
             {
@@ -2489,6 +2527,7 @@ namespace Glider.Common.Objects
                 if(HealType == HealType_e.None) return false; // doh!
                 if(HealType == HealType_e.Wave)   healkey = "PShaman.HealingWave";
                 if(HealType == HealType_e.Lesser) healkey = "PShaman.LesserHealingWave";
+                if(HealType == HealType_e.Riptide) healkey = "PShaman.Riptide";
                 if(HealType == HealType_e.Chain)  healkey = "PShaman.ChainHeal";                
 
                
@@ -2969,7 +3008,7 @@ namespace Glider.Common.Objects
     {
         Spam("Cleansing Curse");
         bool ok = CastSpellMana("PShaman.CureCurse");
-        CureCooldown.Reset();
+        CurseCooldown.Reset();
         return ok;
     }
 
