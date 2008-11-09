@@ -544,6 +544,11 @@
         <target>PShaman.HealLesserWaveLife</target>
       </input>
 
+	  <input>
+        <label>Riptide Below Life (%)</label>
+        <target>PShaman.HealRiptideLife</target>
+      </input>
+	  
       <input>
         <label>Healing wave under (%)</label>
         <target>PShaman.HealWaveLife</target>
@@ -566,6 +571,11 @@
         <target>PShaman.RestHealWaveLife</target>
       </input>
 
+	  <input>
+        <label>Riptide under (%)</label>
+        <target>PShaman.RestRiptideLife</target>
+      </input>
+	  
       <input>
         <label>Chain Heal if at least 2 members are below(%)</label>
         <target>PShaman.RestHealChainLife</target>
