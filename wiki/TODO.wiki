@@ -1,12 +1,12 @@
 ===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.11 RELEASE*===
 -----
-     - Currently looking for ways to implement all restoration talents. Riptide to be precise.
+rev26~~ - Currently looking for ways to implement all restoration talents. Riptide to be precise.
 
 rev21~~ - Currently looking for ways to implement Cleanse Spirit Skill. ~~  
 
       - Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
 
-      - Update the look of the Config, perhaps add a restoration tab just for the talents.
+rev26~~ - Update the look of the Config, perhaps add a restoration tab just for the talents.
 
 rev21~~      - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore. ~~
 
@@ -20,6 +20,6 @@ rev21~~      - Fix some totems issues, Totem of Wrath for example is listed as a
 
       - Ankh resurrecting support. We can look at the way ZLock does this since it's basically the same as a Soul Stone.
 
-      - If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
+rev26~~ - If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
 ------
 ===* IMPLEMENTATION FOR FUTURE RELEASES*===
