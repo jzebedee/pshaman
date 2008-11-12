@@ -10,15 +10,12 @@ rev26~~ - Update the look of the Config, perhaps add a restoration tab just for 
 
 rev21~~      - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore. ~~
 
-      - Release a non-pather version. This seems to be popular.
+rev28~~      - Release a non-pather version. This seems to be popular. ~~ Thanks Hawker.
 
-      - Totem Recall isn't working properly. It mounts, run away from the totems, press "totem recall" and remounts.
+rev28~~      - Totem Recall isn't working properly. It mounts, run away from the totems, press "totem recall" and remounts. ~~
 
-      - Improve on PVP code. I fail at this, will let someone look at it and improve on it.
+rev28~~      - Improve on PVP code. I fail at this, will let someone look at it and improve on it.~~
 
-      - Chain Lightning support for pulling, and once it's off cooldown let it be used again, for the people who want a Elemental Shaman instead.
-
-      - Ankh resurrecting support. We can look at the way ZLock does this since it's basically the same as a Soul Stone.
 
 rev26~~ - If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
 ------
