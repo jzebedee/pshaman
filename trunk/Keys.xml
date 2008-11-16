@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<Keys>
+  <Key KeyName="Common.Assist" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="F" Auto="True" />
+  <Key KeyName="Common.Back" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="Down" Auto="True" />
+  <Key KeyName="Common.Backpack" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="B" Auto="True" />
+  <Key KeyName="Common.BackpackAll" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="B" Auto="True" />
+  <Key KeyName="Common.Backspace" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="8" />
+  <Key KeyName="Common.Bandage" ShiftState="None" KeyType="ItemDefID" SIM="0x0" Auto="True" />
+  <Key KeyName="Common.Bar1" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="1" Auto="True" />
+  <Key KeyName="Common.Bar2" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="2" Auto="True" />
+  <Key KeyName="Common.Bar3" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="3" Auto="True" />
+  <Key KeyName="Common.Bar4" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="4" Auto="True" />
+  <Key KeyName="Common.Bar5" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="5" Auto="True" />
+  <Key KeyName="Common.Bar6" ShiftState="Shift" KeyType="Char" BarState="Indifferent" Char="6" Auto="True" />
+  <Key KeyName="Common.Character" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="C" Auto="True" />
+  <Key KeyName="Common.Drink" ShiftState="None" KeyType="ItemDefID" SIM="0x49b" />
+  <Key KeyName="Common.Eat" ShiftState="None" KeyType="ItemDefID" SIM="0x0" Auto="True" />
+  <Key KeyName="Common.Escape" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="27" Auto="True" />
+  <Key KeyName="Common.Fish" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="Common.Forward" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="Up" Auto="True" />
+  <Key KeyName="Common.Hearth" ShiftState="None" KeyType="ItemDefID" SIM="0x0" Auto="True" />
+  <Key KeyName="Common.Jump" ShiftState="None" KeyType="Char" BarState="Indifferent" Char=" " Auto="True" />
+  <Key KeyName="Common.LureSlot" ShiftState="None" KeyType="ItemDefID" SIM="0x0" Auto="True" />
+  <Key KeyName="Common.Mount" ShiftState="None" KeyType="SpellID" SIM="0x5ab7" />
+  <Key KeyName="Common.Paste" ShiftState="Ctrl" KeyType="VChar" BarState="Indifferent" VK="86" />
+  <Key KeyName="Common.PetAttack" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="1" Auto="True" />
+  <Key KeyName="Common.PetFollow" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="2" Auto="True" />
+  <Key KeyName="Common.PostCombat" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.PostDismount" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.PostLoot" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.Potion" ShiftState="None" KeyType="ItemDefID" SIM="0x0" Auto="True" />
+  <Key KeyName="Common.PreCombat" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.PreMount" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.Return" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="13" />
+  <Key KeyName="Common.RotateLeft" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="Left" Auto="True" />
+  <Key KeyName="Common.RotateRight" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="Right" Auto="True" />
+  <Key KeyName="Common.Sit" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="X" Auto="True" />
+  <Key KeyName="Common.StrafeLeft" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="Q" Auto="True" />
+  <Key KeyName="Common.StrafeRight" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="E" Auto="True" />
+  <Key KeyName="Common.Target" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="Tab" Auto="True" />
+  <Key KeyName="Common.TargetLastHostile" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="G" Auto="True" />
+  <Key KeyName="Common.TargetParty1" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="F2" Auto="True" />
+  <Key KeyName="Common.TargetParty2" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="F3" Auto="True" />
+  <Key KeyName="Common.TargetParty3" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="F4" Auto="True" />
+  <Key KeyName="Common.TargetParty4" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="F5" Auto="True" />
+  <Key KeyName="Common.TargetSelf" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="F1" Auto="True" />
+  <Key KeyName="Common.Time1" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.Time30" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.Time5" ShiftState="None" KeyType="VChar" BarState="Indifferent" VK="0" Auto="True" />
+  <Key KeyName="Common.ToggleCombat" ShiftState="None" KeyType="Char" BarState="Indifferent" Char="T" Auto="True" />
+  <Key KeyName="Deathknight.BloodStrike" ShiftState="None" KeyType="SpellID" SIM="0xc306" Auto="True" />
+  <Key KeyName="Deathknight.BoneShield" ShiftState="None" KeyType="SpellID" SIM="0xc046" Auto="True" />
+  <Key KeyName="Deathknight.DeathCoil" ShiftState="None" KeyType="SpellID" SIM="0xb9b5" Auto="True" />
+  <Key KeyName="Deathknight.DeathGrip" ShiftState="None" KeyType="SpellID" SIM="0xc1a8" Auto="True" />
+  <Key KeyName="Deathknight.DeathStrike" ShiftState="None" KeyType="SpellID" SIM="0xc34e" Auto="True" />
+  <Key KeyName="Deathknight.FrostStrike" ShiftState="None" KeyType="SpellID" SIM="0xbff7" Auto="True" />
+  <Key KeyName="Deathknight.Gnaw" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="5" Auto="True" />
+  <Key KeyName="Deathknight.HeartStrike" ShiftState="None" KeyType="SpellID" SIM="0xd70a" Auto="True" />
+  <Key KeyName="Deathknight.IcyTouch" ShiftState="None" KeyType="SpellID" SIM="0xb1a5" Auto="True" />
+  <Key KeyName="Deathknight.MindFreeze" ShiftState="None" KeyType="SpellID" SIM="0xb9a8" Auto="True" />
+  <Key KeyName="Deathknight.PlagueStrike" ShiftState="None" KeyType="SpellID" SIM="0xb196" Auto="True" />
+  <Key KeyName="Deathknight.RaiseDead" ShiftState="None" KeyType="SpellID" SIM="0xb5f8" Auto="True" />
+  <Key KeyName="Deathknight.RuneTap" ShiftState="None" KeyType="SpellID" SIM="0xbf56" Auto="True" />
+  <Key KeyName="Deathknight.ScourgeStrike" ShiftState="None" KeyType="SpellID" SIM="0xd732" Auto="True" />
+  <Key KeyName="Druid.Barkskin" ShiftState="None" KeyType="SpellID" SIM="0x591c" Auto="True" />
+  <Key KeyName="Druid.Bash" ShiftState="None" KeyType="SpellID" SIM="0x145b" Auto="True" />
+  <Key KeyName="Druid.BearForm" ShiftState="None" KeyType="SpellID" SIM="0x156f" Auto="True" />
+  <Key KeyName="Druid.Bite" ShiftState="None" KeyType="SpellID" SIM="0x5828" Auto="True" />
+  <Key KeyName="Druid.CatForm" ShiftState="None" KeyType="SpellID" SIM="0x300" Auto="True" />
+  <Key KeyName="Druid.Charge" ShiftState="None" KeyType="SpellID" SIM="0x4253" Auto="True" />
+  <Key KeyName="Druid.Claw" ShiftState="None" KeyType="SpellID" SIM="0x43a" Auto="True" />
+  <Key KeyName="Druid.Cower" ShiftState="None" KeyType="SpellID" SIM="0x2326" Auto="True" />
+  <Key KeyName="Druid.Cure" ShiftState="Alt" KeyType="SpellID" SIM="0x22f2" Auto="True" />
+  <Key KeyName="Druid.DemoRoar" ShiftState="None" KeyType="SpellID" SIM="0x63" Auto="True" />
+  <Key KeyName="Druid.Enrage" ShiftState="None" KeyType="SpellID" SIM="0x146d" Auto="True" />
+  <Key KeyName="Druid.Faerie" ShiftState="None" KeyType="SpellID" SIM="0x302" Auto="True" />
+  <Key KeyName="Druid.Fury" ShiftState="None" KeyType="SpellID" SIM="0x1461" Auto="True" />
+  <Key KeyName="Druid.HealingTouch" ShiftState="Alt" KeyType="SpellID" SIM="0x1441" Auto="True" />
+  <Key KeyName="Druid.HealingTouchOther" ShiftState="None" KeyType="SpellID" SIM="0x1441" Auto="True" />
+  <Key KeyName="Druid.Mangle" ShiftState="None" KeyType="SpellID" SIM="0x847d" Auto="True" />
+  <Key KeyName="Druid.Mark" ShiftState="Alt" KeyType="SpellID" SIM="0x466" Auto="True" />
+  <Key KeyName="Druid.MarkOther" ShiftState="None" KeyType="SpellID" SIM="0x466" Auto="True" />
+  <Key KeyName="Druid.Maul" ShiftState="None" KeyType="SpellID" SIM="0x1a97" Auto="True" />
+  <Key KeyName="Druid.Moonfire" ShiftState="None" KeyType="SpellID" SIM="0x22d9" Auto="True" />
+  <Key KeyName="Druid.NS" ShiftState="None" KeyType="SpellID" SIM="0x42dc" Auto="True" />
+  <Key KeyName="Druid.Pounce" ShiftState="None" KeyType="SpellID" SIM="0x232d" Auto="True" />
+  <Key KeyName="Druid.Prowl" ShiftState="None" KeyType="SpellID" SIM="0x145f" Auto="True" />
+  <Key KeyName="Druid.Ravage" ShiftState="None" KeyType="SpellID" SIM="0x1a81" Auto="True" />
+  <Key KeyName="Druid.Regrowth" ShiftState="Alt" KeyType="SpellID" SIM="0x22e8" Auto="True" />
+  <Key KeyName="Druid.Rejuvenation" ShiftState="Alt" KeyType="SpellID" SIM="0x306" Auto="True" />
+  <Key KeyName="Druid.RejuvenationOther" ShiftState="None" KeyType="SpellID" SIM="0x306" Auto="True" />
+  <Key KeyName="Druid.RemoveCurse" ShiftState="Alt" KeyType="SpellID" SIM="0xade" Auto="True" />
+  <Key KeyName="Druid.Rip" ShiftState="None" KeyType="SpellID" SIM="0x437" Auto="True" />
+  <Key KeyName="Druid.Starfire" ShiftState="None" KeyType="SpellID" SIM="0xb60" Auto="True" />
+  <Key KeyName="Druid.Swipe" ShiftState="None" KeyType="SpellID" SIM="0x30b" Auto="True" />
+  <Key KeyName="Druid.Thorns" ShiftState="Alt" KeyType="SpellID" SIM="0x1d3" Auto="True" />
+  <Key KeyName="Druid.ThornsOther" ShiftState="None" KeyType="SpellID" SIM="0x1d3" Auto="True" />
+  <Key KeyName="Hunter.Aspect" ShiftState="None" KeyType="SpellID" SIM="0x336d" Auto="True" />
+  <Key KeyName="Hunter.CallPet" ShiftState="None" KeyType="SpellID" SIM="0x373" Auto="True" />
+  <Key KeyName="Hunter.FeedMacro" ShiftState="None" KeyType="Char" BarState="Bar1" Char="1" Auto="True" />
+  <Key KeyName="Hunter.FeedPet" ShiftState="None" KeyType="SpellID" SIM="0x1b4f" Auto="True" />
+  <Key KeyName="Hunter.Feign" ShiftState="None" KeyType="SpellID" SIM="0x1508" Auto="True" />
+  <Key KeyName="Hunter.FirstShot" ShiftState="None" KeyType="SpellID" SIM="0x7ba" Auto="True" />
+  <Key KeyName="Hunter.Intimidation" ShiftState="None" KeyType="SpellID" SIM="0x4c79" Auto="True" />
+  <Key KeyName="Hunter.Mark" ShiftState="None" KeyType="SpellID" SIM="0x46a" Auto="True" />
+  <Key KeyName="Hunter.MendPet" ShiftState="None" KeyType="SpellID" SIM="0x88" Auto="True" />
+  <Key KeyName="Hunter.RaptorStrike" ShiftState="None" KeyType="SpellID" SIM="0xb9d" Auto="True" />
+  <Key KeyName="Hunter.RepeatShot" ShiftState="None" KeyType="SpellID" SIM="0xbe4" Auto="True" />
+  <Key KeyName="Hunter.RevivePet" ShiftState="None" KeyType="SpellID" SIM="0x3d6" Auto="True" />
+  <Key KeyName="Hunter.SecondShot" ShiftState="None" KeyType="SpellID" SIM="0x13fc" Auto="True" />
+  <Key KeyName="Hunter.Shoot" ShiftState="None" KeyType="SpellID" SIM="0x4b" Auto="True" />
+  <Key KeyName="Hunter.Trap" ShiftState="None" KeyType="SpellID" SIM="0x35e3" Auto="True" />
+  <Key KeyName="Hunter.TrapAdd" ShiftState="None" KeyType="SpellID" SIM="0x5db" Auto="True" />
+  <Key KeyName="Hunter.Viper" ShiftState="None" KeyType="SpellID" SIM="0x851a" Auto="True" />
+  <Key KeyName="Hunter.Wrath" ShiftState="None" KeyType="SpellID" SIM="0x4c76" Auto="True" />
+  <Key KeyName="Mage.ArcaneIntellect" ShiftState="Alt" KeyType="SpellID" SIM="0x5b3" Auto="True" />
+  <Key KeyName="Mage.ArcaneIntellectOther" ShiftState="Alt" KeyType="SpellID" SIM="0x5b3" Auto="True" />
+  <Key KeyName="Mage.ArcaneMissiles" ShiftState="None" KeyType="SpellID" SIM="0x1417" Auto="True" />
+  <Key KeyName="Mage.Combustion" ShiftState="None" KeyType="SpellID" SIM="0x2b79" Auto="True" />
+  <Key KeyName="Mage.ConjureFood" ShiftState="None" KeyType="SpellID" SIM="0x24b" Auto="True" />
+  <Key KeyName="Mage.ConjureWater" ShiftState="None" KeyType="SpellID" SIM="0x1580" Auto="True" />
+  <Key KeyName="Mage.Counterspell" ShiftState="None" KeyType="SpellID" SIM="0x85b" Auto="True" />
+  <Key KeyName="Mage.CreateManastone" ShiftState="None" KeyType="SpellID" SIM="0x2f7" Auto="True" />
+  <Key KeyName="Mage.DampenMagic" ShiftState="None" KeyType="SpellID" SIM="0x25c" Auto="True" />
+  <Key KeyName="Mage.Evocation" ShiftState="None" KeyType="SpellID" SIM="0x2f13" Auto="True" />
+  <Key KeyName="Mage.Fireball" ShiftState="None" KeyType="SpellID" SIM="0x85" Auto="True" />
+  <Key KeyName="Mage.Fireblast" ShiftState="None" KeyType="SpellID" SIM="0x858" Auto="True" />
+  <Key KeyName="Mage.FrostArmor" ShiftState="None" KeyType="SpellID" SIM="0xa8" Auto="True" />
+  <Key KeyName="Mage.Frostbolt" ShiftState="None" KeyType="SpellID" SIM="0x74" Auto="True" />
+  <Key KeyName="Mage.FrostNova" ShiftState="None" KeyType="SpellID" SIM="0x7a" Auto="True" />
+  <Key KeyName="Mage.IceBarrier" ShiftState="None" KeyType="SpellID" SIM="0x2ca2" Auto="True" />
+  <Key KeyName="Mage.MeleeSpell" ShiftState="None" KeyType="SpellID" SIM="0x78" Auto="True" />
+  <Key KeyName="Mage.Poly" ShiftState="None" KeyType="SpellID" SIM="0x76" Auto="True" />
+  <Key KeyName="Mage.RemoveCurse" ShiftState="None" KeyType="SpellID" SIM="0x1db" Auto="True" />
+  <Key KeyName="Mage.Scorch" ShiftState="None" KeyType="SpellID" SIM="0xb84" Auto="True" />
+  <Key KeyName="Mage.UseManastone" ShiftState="None" KeyType="ItemDefID" SIM="0x158a" Auto="True" />
+  <Key KeyName="Mage.Wand" ShiftState="None" KeyType="SpellID" SIM="0x139b" Auto="True" />
+  <Key KeyName="Paladin.Aura" ShiftState="None" KeyType="SpellID" SIM="0x1d1" Auto="True" />
+  <Key KeyName="Paladin.Blessing" ShiftState="Alt" KeyType="SpellID" SIM="0x4d1c" Auto="True" />
+  <Key KeyName="Paladin.BlessingOther" ShiftState="None" KeyType="SpellID" SIM="0x4d1c" Auto="True" />
+  <Key KeyName="Paladin.BlessingWisdomOther" ShiftState="None" KeyType="SpellID" SIM="0x4d1e" Auto="True" />
+  <Key KeyName="Paladin.BOP" ShiftState="Alt" KeyType="SpellID" SIM="0x3fe" Auto="True" />
+  <Key KeyName="Paladin.BOPOther" ShiftState="None" KeyType="SpellID" SIM="0x3fe" Auto="True" />
+  <Key KeyName="Paladin.Cleanse" ShiftState="Alt" KeyType="SpellID" SIM="0x137b" Auto="True" />
+  <Key KeyName="Paladin.CrusaderStrike" ShiftState="None" KeyType="SpellID" SIM="0x8a43" Auto="True" />
+  <Key KeyName="Paladin.DivineFavor" ShiftState="None" KeyType="SpellID" SIM="0x4ef8" Auto="True" />
+  <Key KeyName="Paladin.DivineShield" ShiftState="None" KeyType="SpellID" SIM="0x282" Auto="True" />
+  <Key KeyName="Paladin.FastHeal" ShiftState="Alt" KeyType="SpellID" SIM="0x4d26" Auto="True" />
+  <Key KeyName="Paladin.FastHealOther" ShiftState="None" KeyType="SpellID" SIM="0x4d26" Auto="True" />
+  <Key KeyName="Paladin.HammerJustice" ShiftState="None" KeyType="SpellID" SIM="0x355" Auto="True" />
+  <Key KeyName="Paladin.HammerWrath" ShiftState="None" KeyType="SpellID" SIM="0x5ed3" Auto="True" />
+  <Key KeyName="Paladin.Heal" ShiftState="Alt" KeyType="SpellID" SIM="0x27b" Auto="True" />
+  <Key KeyName="Paladin.HealOther" ShiftState="None" KeyType="SpellID" SIM="0x27b" Auto="True" />
+  <Key KeyName="Paladin.Judge" ShiftState="None" KeyType="SpellID" SIM="0x4f2f" Auto="True" />
+  <Key KeyName="Paladin.LayHands" ShiftState="None" KeyType="SpellID" SIM="0x279" Auto="True" />
+  <Key KeyName="Paladin.SealCommand" ShiftState="None" KeyType="SpellID" SIM="0x4f97" Auto="True" />
+  <Key KeyName="Paladin.SealCrusader" ShiftState="None" KeyType="SpellID" SIM="0x525a" Auto="True" />
+  <Key KeyName="Priest.CureDisease" ShiftState="Alt" KeyType="SpellID" SIM="0x210" Auto="True" />
+  <Key KeyName="Priest.Dispel" ShiftState="Alt" KeyType="SpellID" SIM="0x20f" Auto="True" />
+  <Key KeyName="Priest.Fade" ShiftState="None" KeyType="SpellID" SIM="0x24a" Auto="True" />
+  <Key KeyName="Priest.FlashHeal" ShiftState="Alt" KeyType="SpellID" SIM="0x80d" Auto="True" />
+  <Key KeyName="Priest.FlashHealOther" ShiftState="None" KeyType="SpellID" SIM="0x80d" Auto="True" />
+  <Key KeyName="Priest.InnerFire" ShiftState="None" KeyType="SpellID" SIM="0x24c" Auto="True" />
+  <Key KeyName="Priest.MindBlast" ShiftState="None" KeyType="SpellID" SIM="0x1f9c" Auto="True" />
+  <Key KeyName="Priest.MindFlay" ShiftState="None" KeyType="SpellID" SIM="0x3c2f" Auto="True" />
+  <Key KeyName="Priest.PWFort" ShiftState="Alt" KeyType="SpellID" SIM="0x4db" Auto="True" />
+  <Key KeyName="Priest.PWFortOther" ShiftState="None" KeyType="SpellID" SIM="0x4db" Auto="True" />
+  <Key KeyName="Priest.Renew" ShiftState="Alt" KeyType="SpellID" SIM="0x8b" Auto="True" />
+  <Key KeyName="Priest.RenewOther" ShiftState="None" KeyType="SpellID" SIM="0x8b" Auto="True" />
+  <Key KeyName="Priest.RestHeal" ShiftState="Alt" KeyType="SpellID" SIM="0x80c" Auto="True" />
+  <Key KeyName="Priest.RestHealOther" ShiftState="None" KeyType="SpellID" SIM="0x80c" Auto="True" />
+  <Key KeyName="Priest.Shadowform" ShiftState="None" KeyType="SpellID" SIM="0x3c71" Auto="True" />
+  <Key KeyName="Priest.Shield" ShiftState="Alt" KeyType="SpellID" SIM="0x11" Auto="True" />
+  <Key KeyName="Priest.ShieldOther" ShiftState="None" KeyType="SpellID" SIM="0x11" Auto="True" />
+  <Key KeyName="Priest.SWPain" ShiftState="None" KeyType="SpellID" SIM="0x24d" Auto="True" />
+  <Key KeyName="Priest.Vampiric" ShiftState="None" KeyType="SpellID" SIM="0x3bb6" Auto="True" />
+  <Key KeyName="Priest.Wand" ShiftState="None" KeyType="SpellID" SIM="0x139b" Auto="True" />
+  <Key KeyName="PShaman.BuffUsable1" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.BuffUsable2" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.ChainHeal" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.ChainHealSelf" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.CureCurse" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.CureDisease" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.CurePoison" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.DPSShock" ShiftState="None" KeyType="SpellID" SIM="0x1f6c" Auto="True" />
+  <Key KeyName="PShaman.EarthShield" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.EarthShock" ShiftState="None" KeyType="SpellID" SIM="0x1f6c" Auto="True" />
+  <Key KeyName="PShaman.FeralSpirit" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.FlameShock" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.FrostShock" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.HealingWave" ShiftState="None" KeyType="SpellID" SIM="0x14c" Auto="True" />
+  <Key KeyName="PShaman.HealingWaveSelf" ShiftState="Alt" KeyType="SpellID" SIM="0x14c" Auto="True" />
+  <Key KeyName="PShaman.InterruptShock" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.LavaLash" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.LesserHealingWave" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.LesserHealingWaveSelf" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.LightningBolt" ShiftState="None" KeyType="SpellID" SIM="0x211" Auto="True" />
+  <Key KeyName="PShaman.LightningShield" ShiftState="None" KeyType="SpellID" SIM="0x144" Auto="True" />
+  <Key KeyName="PShaman.MainWeaponEnchant" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.Mount" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.NS" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.OffWeaponEnchant" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.Purge" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.Rage" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.Riptide" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.RiptideSelf" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.RunnerShock" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.Stormstrike" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemDiseaseCleansing" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemEarthbind" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemEarthElemental" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemFireElemental" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemFireNova" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemFireResistance" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemFlametongue" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemFrostResistance" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemGrounding" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemHealingStream" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemicCall" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemMagma" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemManaSpring" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemManaTide" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemNatureResistance" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemPoisonCleansing " ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemSearing" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemSentry" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemStoneclaw" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemStoneskin" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemStrength" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemTremor" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemWindfury" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemWrath" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.TotemWrathOfAir" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.UseItem1" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.UseItem2" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.UseItem3" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.UseItem4" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="PShaman.WaterShield" ShiftState="None" KeyType="SpellID" SIM="0x0" Auto="True" />
+  <Key KeyName="Rogue.AdrenalineRush" ShiftState="None" KeyType="SpellID" SIM="0x35b6" Auto="True" />
+  <Key KeyName="Rogue.Backstab" ShiftState="None" KeyType="SpellID" SIM="0x35" Auto="True" />
+  <Key KeyName="Rogue.BladeFlurry" ShiftState="None" KeyType="SpellID" SIM="0x3635" Auto="True" />
+  <Key KeyName="Rogue.CheapShot" ShiftState="None" KeyType="SpellID" SIM="0x729" Auto="True" />
+  <Key KeyName="Rogue.ColdBlood" ShiftState="None" KeyType="SpellID" SIM="0x3761" Auto="True" />
+  <Key KeyName="Rogue.Evasion" ShiftState="None" KeyType="SpellID" SIM="0x149d" Auto="True" />
+  <Key KeyName="Rogue.Eviscerate" ShiftState="None" KeyType="SpellID" SIM="0x832" Auto="True" />
+  <Key KeyName="Rogue.Feint" ShiftState="None" KeyType="SpellID" SIM="0x7ae" Auto="True" />
+  <Key KeyName="Rogue.GhostlyStrike" ShiftState="None" KeyType="SpellID" SIM="0x37c6" Auto="True" />
+  <Key KeyName="Rogue.Gouge" ShiftState="None" KeyType="SpellID" SIM="0x6f0" Auto="True" />
+  <Key KeyName="Rogue.Kick" ShiftState="None" KeyType="SpellID" SIM="0x6e6" Auto="True" />
+  <Key KeyName="Rogue.KidneyShot" ShiftState="None" KeyType="SpellID" SIM="0x198" Auto="True" />
+  <Key KeyName="Rogue.Poison1" ShiftState="None" KeyType="ItemDefID" SIM="0xb4c" Auto="True" />
+  <Key KeyName="Rogue.Poison2" ShiftState="None" KeyType="ItemDefID" SIM="0xb4c" Auto="True" />
+  <Key KeyName="Rogue.Ranged" ShiftState="None" KeyType="SpellID" SIM="0xacc" Auto="True" />
+  <Key KeyName="Rogue.Riposte" ShiftState="None" KeyType="SpellID" SIM="0x37ab" Auto="True" />
+  <Key KeyName="Rogue.Sinister" ShiftState="None" KeyType="SpellID" SIM="0x6d8" Auto="True" />
+  <Key KeyName="Rogue.Stealth" ShiftState="None" KeyType="SpellID" SIM="0x6f8" Auto="True" />
+  <Key KeyName="Rogue.Vanish" ShiftState="None" KeyType="SpellID" SIM="0x740" Auto="True" />
+  <Key KeyName="Shaman.AltWeaponEnchant" ShiftState="None" KeyType="SpellID" SIM="0x2028" Auto="True" />
+  <Key KeyName="Shaman.CureDisease" ShiftState="Alt" KeyType="SpellID" SIM="0xb36" Auto="True" />
+  <Key KeyName="Shaman.CurePoison" ShiftState="Alt" KeyType="SpellID" SIM="0x20e" Auto="True" />
+  <Key KeyName="Shaman.Earthbind" ShiftState="None" KeyType="SpellID" SIM="0x9b4" Auto="True" />
+  <Key KeyName="Shaman.EarthShock" ShiftState="None" KeyType="SpellID" SIM="0x1f6a" Auto="True" />
+  <Key KeyName="Shaman.Heal" ShiftState="Alt" KeyType="SpellID" SIM="0x14b" Auto="True" />
+  <Key KeyName="Shaman.HealOther" ShiftState="None" KeyType="SpellID" SIM="0x14b" Auto="True" />
+  <Key KeyName="Shaman.HealTotem" ShiftState="None" KeyType="SpellID" SIM="0x1512" Auto="True" />
+  <Key KeyName="Shaman.LightningBolt" ShiftState="None" KeyType="SpellID" SIM="0x193" Auto="True" />
+  <Key KeyName="Shaman.LightningShield" ShiftState="None" KeyType="SpellID" SIM="0x144" Auto="True" />
+  <Key KeyName="Shaman.NS" ShiftState="None" KeyType="SpellID" SIM="0x3f3c" Auto="True" />
+  <Key KeyName="Shaman.Rage" ShiftState="None" KeyType="SpellID" SIM="0x7867" Auto="True" />
+  <Key KeyName="Shaman.Rockbiter" ShiftState="None" KeyType="SpellID" SIM="0x1f51" Auto="True" />
+  <Key KeyName="Shaman.StartTotem" ShiftState="None" KeyType="SpellID" SIM="0x2023" Auto="True" />
+  <Key KeyName="Shaman.StoneclawTotem" ShiftState="None" KeyType="SpellID" SIM="0x1662" Auto="True" />
+  <Key KeyName="Shaman.Stormstrike" ShiftState="None" KeyType="SpellID" SIM="0x43d4" Auto="True" />
+  <Key KeyName="Shaman.TotemicCall" ShiftState="None" KeyType="SpellID" SIM="0x9048" Auto="True" />
+  <Key KeyName="Warlock.ConsumeShadows" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="6" Auto="True" />
+  <Key KeyName="Warlock.Corruption" ShiftState="None" KeyType="SpellID" SIM="0xac" Auto="True" />
+  <Key KeyName="Warlock.CreateHealthstone" ShiftState="None" KeyType="SpellID" SIM="0x1839" Auto="True" />
+  <Key KeyName="Warlock.Curse" ShiftState="None" KeyType="SpellID" SIM="0x3d4" Auto="True" />
+  <Key KeyName="Warlock.DarkPact" ShiftState="None" KeyType="SpellID" SIM="0x472c" Auto="True" />
+  <Key KeyName="Warlock.Deathcoil" ShiftState="None" KeyType="SpellID" SIM="0x1a85" Auto="True" />
+  <Key KeyName="Warlock.DemonArmor" ShiftState="None" KeyType="SpellID" SIM="0x2c2" Auto="True" />
+  <Key KeyName="Warlock.DrainLife" ShiftState="None" KeyType="SpellID" SIM="0x2b1" Auto="True" />
+  <Key KeyName="Warlock.DrainSoul" ShiftState="None" KeyType="SpellID" SIM="0x460" Auto="True" />
+  <Key KeyName="Warlock.Fear" ShiftState="None" KeyType="SpellID" SIM="0x1696" Auto="True" />
+  <Key KeyName="Warlock.HealthFunnel" ShiftState="None" KeyType="SpellID" SIM="0x2f3" Auto="True" />
+  <Key KeyName="Warlock.Immolate" ShiftState="None" KeyType="SpellID" SIM="0x15c" Auto="True" />
+  <Key KeyName="Warlock.Lifetap" ShiftState="None" KeyType="SpellID" SIM="0x5ae" Auto="True" />
+  <Key KeyName="Warlock.Reckless" ShiftState="None" KeyType="SpellID" SIM="0x2c0" Auto="True" />
+  <Key KeyName="Warlock.Shadowbolt" ShiftState="None" KeyType="SpellID" SIM="0x2ae" Auto="True" />
+  <Key KeyName="Warlock.SoulLink" ShiftState="None" KeyType="SpellID" SIM="0x4a54" Auto="True" />
+  <Key KeyName="Warlock.SpellLock" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="6" Auto="True" />
+  <Key KeyName="Warlock.Suffering" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="7" Auto="True" />
+  <Key KeyName="Warlock.SummonDemon" ShiftState="None" KeyType="SpellID" SIM="0x2b0" Auto="True" />
+  <Key KeyName="Warlock.UseHealthstone" ShiftState="None" KeyType="ItemDefID" SIM="0x4a3d" Auto="True" />
+  <Key KeyName="Warlock.VoidieSacrifice" ShiftState="Ctrl" KeyType="Char" BarState="Indifferent" Char="5" Auto="True" />
+  <Key KeyName="Warlock.Wand" ShiftState="None" KeyType="SpellID" SIM="0x139b" Auto="True" />
+  <Key KeyName="Warrior.BattleShout" ShiftState="None" KeyType="SpellID" SIM="0x800" Auto="True" />
+  <Key KeyName="Warrior.Bloodrage" ShiftState="None" KeyType="SpellID" SIM="0xa7f" Auto="True" />
+  <Key KeyName="Warrior.Charge" ShiftState="None" KeyType="SpellID" SIM="0x2d3a" Auto="True" />
+  <Key KeyName="Warrior.Cleave" ShiftState="None" KeyType="SpellID" SIM="0x628f" Auto="True" />
+  <Key KeyName="Warrior.Concussion" ShiftState="None" KeyType="SpellID" SIM="0x3209" Auto="True" />
+  <Key KeyName="Warrior.DemoShout" ShiftState="None" KeyType="SpellID" SIM="0x6273" Auto="True" />
+  <Key KeyName="Warrior.Execute" ShiftState="None" KeyType="SpellID" SIM="0x6294" Auto="True" />
+  <Key KeyName="Warrior.Hamstring" ShiftState="None" KeyType="SpellID" SIM="0x627c" Auto="True" />
+  <Key KeyName="Warrior.HeroicStrike" ShiftState="None" KeyType="SpellID" SIM="0x740b" Auto="True" />
+  <Key KeyName="Warrior.MortalStrike" ShiftState="None" KeyType="SpellID" SIM="0x767a" Auto="True" />
+  <Key KeyName="Warrior.Overpower" ShiftState="None" KeyType="SpellID" SIM="0x2d41" Auto="True" />
+  <Key KeyName="Warrior.Ranged" ShiftState="None" KeyType="SpellID" SIM="0xbca" Auto="True" />
+  <Key KeyName="Warrior.Rend" ShiftState="None" KeyType="SpellID" SIM="0x6278" Auto="True" />
+  <Key KeyName="Warrior.ShieldBash" ShiftState="None" KeyType="SpellID" SIM="0x7408" Auto="True" />
+  <Key KeyName="Warrior.SunderArmor" ShiftState="None" KeyType="SpellID" SIM="0x6289" Auto="True" />
+  <Key KeyName="Warrior.Thunderclap" ShiftState="None" KeyType="SpellID" SIM="0x62b0" Auto="True" />
+</Keys>
