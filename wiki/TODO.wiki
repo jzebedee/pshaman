@@ -4,8 +4,6 @@ rev26~~ - Currently looking for ways to implement all restoration talents. Ripti
 
 rev21~~ - Currently looking for ways to implement Cleanse Spirit Skill. ~~  
 
-      - Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
-
 rev26~~ - Update the look of the Config, perhaps add a restoration tab just for the talents.
 
 rev21~~      - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore. ~~
@@ -20,3 +18,5 @@ rev28~~      - Improve on PVP code. I fail at this, will let someone look at it 
 rev26~~ - If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
 ------
 ===* IMPLEMENTATION FOR FUTURE RELEASES*===
+
+      - Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
