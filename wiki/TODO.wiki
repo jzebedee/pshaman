@@ -1,21 +1,12 @@
-===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.11 RELEASE*===
------
-rev26~~ - Currently looking for ways to implement all restoration talents. Riptide to be precise.
+===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.12 RELEASE*===
+------
+- Maelstorm Weapon with different uses Lightning Bolt, Chain Lightning, Healing Wave.
+- Feral Spirit based on always, PVP.
+- Bloodlust/Heroism Support.
+- Fix whatever problem is wrong with Weapon Buffs. It was fixed in SShaman didn't look at how it was done.
+- All problems/fixes in SShaman would be nice to have ported over to PShaman.
+- Look into Ghost Wolf and why it is mounting incorrectly or not mounting at all.
 
-rev21~~ - Currently looking for ways to implement Cleanse Spirit Skill. ~~  
-
-rev26~~ - Update the look of the Config, perhaps add a restoration tab just for the talents.
-
-rev21~~      - Fix some totems issues, Totem of Wrath for example is listed as a Fire totem, it isn't anymore. ~~
-
-rev28~~      - Release a non-pather version. This seems to be popular. ~~ Thanks Hawker.
-
-rev28~~      - Totem Recall isn't working properly. It mounts, run away from the totems, press "totem recall" and remounts. ~~
-
-rev28~~      - Improve on PVP code. I fail at this, will let someone look at it and improve on it.~~
-
-
-rev26~~ - If a mob is below a certain % health threshold we need to cancel out PShamans healing and focus on finishing off the mob.
 ------
 ===* IMPLEMENTATION FOR FUTURE RELEASES*===
 
