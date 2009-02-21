@@ -1,11 +1,16 @@
 ===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.12 RELEASE*===
 ------
-- Maelstorm Weapon with different uses Lightning Bolt, Chain Lightning, Healing Wave.
-- Feral Spirit based on always, PVP.
-- Bloodlust/Heroism Support.
-- Fix whatever problem is wrong with Weapon Buffs. It was fixed in SShaman didn't look at how it was done.
-- All problems/fixes in SShaman would be nice to have ported over to PShaman.
-- Look into Ghost Wolf and why it is mounting incorrectly or not mounting at all.
+-- Maelstorm Weapon with different uses Lightning Bolt, Chain Lightning, Healing Wave.
+
+-- Feral Spirit based on always, PVP.
+
+-- Bloodlust/Heroism Support.
+
+-- Fix whatever problem is wrong with Weapon Buffs. It was fixed in SShaman didn't look at how it was done.
+
+-- All problems/fixes in SShaman would be nice to have ported over to PShaman.
+
+-- Look into Ghost Wolf and why it is mounting incorrectly or not mounting at all.
 
 ------
 ===* IMPLEMENTATION FOR FUTURE RELEASES*===
