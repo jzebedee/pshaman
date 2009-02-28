@@ -1,0 +1,29 @@
+Version - Release date - Release name
+2.1 ??-??-2009 - PShaman
+1.0	02-17-2009 - SShaman (PShaman 2.0.11 edit)
+---
+Specific changes
+---
+2.1 Ghost Wolf support
+2.1 Rewrote mount system
+2.1 Further improved add detection
+2.1 Full Lava Burst support (tested)
+2.1 Fixed approach when out of shock range
+2.1 BLIND Support for Earth Shield healing
+2.1 Fixed player/party healing
+1.0 Fixed immunity detection / combat log reads
+1.0 Improved Feral Spirit
+1.0 Improved Lava Lash
+1.0 Fixed riptide casting
+1.0 Fixed weapon enchant order
+1.0 Fixed interrupt shock order
+1.0 Better Flame Shock usage
+1.0 Maelstrom Weapon support
+1.0 Bloodlust / Heroism support
+1.0 BLIND Lava Burst support
+1.0 BLIND Elemental Mastery support
+1.0 BLIND Hex support
+1.0 BLIND Thunderstorm support
+1.0 BLIND Tidal Force support
+1.0 New condition for Item / Trinket use: "Melee Range"
+1.0 Improved shield support + Low mana usage

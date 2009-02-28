@@ -2,933 +2,973 @@
 <GConfig>
 
   <config>
-    <height>520</height>
-    <width>605</width>
-    <colwidth>300</colwidth>
+	<height>520</height>
+	<width>605</width>
+	<colwidth>300</colwidth>
   </config>
 
   <tab>
-    <label>General</label>
+	<label>General</label>
 
 
-    <group>
-      <label>Pulling</label>
+	<group>
+	  <label>Pulling</label>
 
-      <input>
-        <label>Pull distance</label>
-        <target>PShaman.PullDistance</target>
-      </input>
+	  <input>
+		<label>Pull distance</label>
+		<target>PShaman.PullDistance</target>
+	  </input>
 
-      <combobox>
-        <label>Pull method</label>
-        <target>PShaman.PullMethod</target>
-        <width>110</width>
-        <options>
-          <option>Lightning Bolt</option>
-          <option>Shock</option>
-          <option>Walk up</option>
-        </options>
-      </combobox>
+	  <combobox>
+		<label>Pull method</label>
+		<target>PShaman.PullMethod</target>
+		<width>160</width>
+		<options>
+		  <option>Lightning Bolt</option>
+		  <option>Shock</option>
+		  <option>Lava Burst</option>
+		  <option>Flame Shock + Lava Burst</option>
+		  <option>Walk up</option>
+		</options>
+	  </combobox>
 
-      <checkbox>
-        <label>Drop totems before pull</label>
-        <target>PShaman.TotemsBeforePull</target>
-      </checkbox>
+	  <checkbox>
+		<label>Drop totems before pull</label>
+		<target>PShaman.TotemsBeforePull</target>
+	  </checkbox>
 
-      <input>
-        <label>Max time to wait for mob to approach (s)</label>
-        <target>PShaman.WaitTime</target>
-      </input>
-
-
-
-      
-    </group>
-
-    <group>
-      <label>Add Avoidance</label>
-
-      <input>
-        <label>Avoid possible adds this close</label>
-        <target>PShaman.AvoidAddDist</target>
-      </input>
-
-	<checkbox>
-        <label>Use Feral Spirit on adds</label>
-        <target>PShaman.UseFeralSpirit</target>
-      </checkbox>
-	<checkbox>
-        <label>Use Feral Spirit on PVP</label>
-        <target>PShaman.UseFeralSpirit</target>
-      </checkbox>
-
-    </group>
+	  <input>
+		<label>Max time to wait for mob to approach (s)</label>
+		<target>PShaman.WaitTime</target>
+	  </input>
 
 
 
-    <group>
-      <label>Shield</label>
+	  
+	</group>
 
-      <combobox>
-        <label>Shaman shield</label>
-        <width>90</width>
-        <target>PShaman.Shield</target>
-        <options>
-          <option>None</option>
-          <option>Lightning</option>
-          <option>Water</option>
-		  <option>Earth</option>
-        </options>
-      </combobox>
+	<group>
+	  <label>Add Avoidance</label>
 
-      <combobox>
-        <label>When to cast shield</label>
-        <target>PShaman.WhenShield</target>
-        <options>
-          <option>Never</option>
-          <option>Resting</option>
-          <option>After other cast</option>
-          <option>Always</option>
-        </options>
-      </combobox>
+	  <input>
+		<label>Avoid possible adds this close</label>
+		<target>PShaman.AvoidAddDist</target>
+	  </input>
+	</group>
+	<group>
+	  <label>Runners</label>
 
-    </group>
-
-
-    <group>
-      <label>Runners</label>
-
-      <combobox>
-        <label>If target runs</label>
-        <target>PShaman.RunnerAction</target>
-        <width>130</width>
-        <options>
-          <option>Chase</option>
-          <option>Chase while it is safe</option>
-          <option>Do not chase</option>
-        </options>
-      </combobox>
+	  <combobox>
+		<label>If target runs</label>
+		<target>PShaman.RunnerAction</target>
+		<width>130</width>
+		<options>
+		  <option>Chase</option>
+		  <option>Chase while it is safe</option>
+		  <option>Do not chase</option>
+		</options>
+	  </combobox>
 
 
 <!--
-      <checkbox>
-        <label>(TODO)Lightning Bolt runners</label>
-        <target>PShaman.BoltRunners</target>
-      </checkbox>
+	  <checkbox>
+		<label>(TODO)Lightning Bolt runners</label>
+		<target>PShaman.BoltRunners</target>
+	  </checkbox>
 -->
-    </group>
+	</group>
 
    <group>
    <label>PvP</label>
-      <combobox>
-        <label>PvP style</label>
-        <target>PShaman.PvPStyle</target>
+	  <combobox>
+		<label>PvP style</label>
+		<target>PShaman.PvPStyle</target>
 	<width>100</width>
-        <options>
-          <option>Fight back</option>
+		<options>
+		  <option>Fight back</option>
 		  <option>Active</option>
-        </options>
-      </combobox>
+		</options>
+	  </combobox>
 
    </group>
 
 
-    <group>
-      <label>Misc</label>
+	<group>
+	  <label>Misc</label>
 
-      <checkbox>
-        <label>Use mount when running</label>
-        <target>PShaman.UseMount</target>
-      </checkbox>
+	  <checkbox>
+		<label>Use mount when running</label>
+		<target>PShaman.UseMount</target>
+	  </checkbox>
 
-      <input>
-        <label>Mount only if this far from an enemy</label>
-        <target>PShaman.MountDistance</target>
-      </input>
+	  <input>
+		<label>Mount only if this far from an enemy</label>
+		<target>PShaman.MountDistance</target>
+	  </input>
 
-      <checkbox>
-        <label>Log all combat moves</label>
-        <target>PShaman.SpamAlot</target>
-      </checkbox>
+	  <checkbox>
+		<label>Log all combat moves</label>
+		<target>PShaman.SpamAlot</target>
+	  </checkbox>
 
-      <checkbox>
-        <label>Disable jump out of AoE effects</label>
-        <target>PShaman.NoJumpFromAoE</target>
-      </checkbox>
+	  <checkbox>
+		<label>Disable jump out of AoE effects</label>
+		<target>PShaman.NoJumpFromAoE</target>
+	  </checkbox>
 
-    </group>
-
-
-    <group>
-      <label>Poisons, Diseases, Curses</label>
-
-      <combobox>
-        <label>When to cure Poison</label>
-        <target>PShaman.WhenPoison</target>
-        <options>
-          <option>Never</option>
-          <option>Resting</option>
-          <option>After other cast</option>
-          <option>Always</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>When to cleanse Curse</label>
-        <target>PShaman.WhenCurse</target>
-        <options>
-          <option>Never</option>
-          <option>Resting</option>
-          <option>After other cast</option>
-          <option>Always</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>When to cure Disease</label>
-        <target>PShaman.WhenDisease</target>
-        <options>
-          <option>Never</option>
-          <option>Resting</option>
-          <option>After other cast</option>
-          <option>Always</option>
-        </options>
-      </combobox>
-
-    </group>
-
-
+	</group>
   </tab>
 
 
   <tab>
-    <label>Combat</label>
-
-
-    <group>
-      <label>Shocks</label>
-
-      <combobox>
-        <label>DPS shock to use</label>
-        <target>PShaman.DPSShock</target>
-        <options>
-          <option>None</option>
-          <option>Earth</option>
-          <option>Frost</option>
-          <option>Flame</option>
-        </options>
-      </combobox>
-
-
-      <input>
-        <label>Spam DPS Shock if more than this mana</label>
-        <target>PShaman.DPSShockMana</target>
-      </input>
-
-      <checkbox>
-        <label>DPS shock if Clearcasting or Focus</label>
-        <target>PShaman.DPSShockFocus</target>
-      </checkbox>
-
-      <checkbox>
-        <label>DPS shock if Stormstrike debuff</label>
-        <target>PShaman.DPSShockStormstrike</target>
-      </checkbox>
-
-      
-      <checkbox>
-        <label>Use Casting Interrupt Shock</label>
-        <target>PShaman.UseInterruptShock</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Frost Shock runners</label>
-        <target>PShaman.ShockRunners</target>
-      </checkbox>
-
-
-    </group>
-
-
-    <group>
-      <label>Lightning bolt</label>
-
-      <input>
-        <width>25</width>
-        <label>Lightning Bolt if target is further away than (yds)</label>
-        <target>PShaman.BoltDistance</target>
-      </input>
-
-      <checkbox>
-        <label>Lightning Bolt when Focused Casting</label>
-        <target>PShaman.BoltOnFocused</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Spam Lightning Bolt</label>
-        <target>PShaman.BoltSpam</target>
-      </checkbox>
-
-    </group>
-
-
-
-
-    <group>
-      <label>Shamanistic Rage</label>
-
-      <checkbox>
-        <label>Use Shamanistic Rage</label>
-        <target>PShaman.UseRage</target>
-      </checkbox>
-
-      <input>
-        <label>Min Target Life (%)</label>
-        <target>PShaman.RageMinHealth</target>
-      </input>
-
-      <input>
-        <label>Use at less mana then (%)</label>
-        <target>PShaman.RageMaxMana</target>
-      </input>
-
-    </group>
-
-
-
-    <group>
-      <label>Other skills</label>
-      
-	<checkbox>
-        <label>Lava Lash</label>
-        <target>PShaman.UseLavaLash</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Stormstrike</label>
-        <target>PShaman.UseStormstrike</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Purge</label>
-        <target>PShaman.UsePurge</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Purge again on target gain effect</label>
-        <target>PShaman.PurgeOnGain</target>
-      </checkbox>
-
-    </group>
-
-
-
+	<label>Combat</label>
+	<group>
+	  <label>Shocks</label>
+	  <combobox>
+		<label>DPS shock to use</label>
+		<target>PShaman.DPSShock</target>
+		<options>
+		  <option>None</option>
+		  <option>Earth</option>
+		  <option>Frost</option>
+		  <option>Flame</option>
+		</options>
+	  </combobox>
+	  <input>
+		<label>Spam DPS Shock if more than this mana</label>
+		<target>PShaman.DPSShockMana</target>
+	  </input>
+	  <checkbox>
+		<label>DPS shock if Clearcasting or Focus</label>
+		<target>PShaman.DPSShockFocus</target>
+	  </checkbox>
+	  <checkbox>
+		<label>DPS shock if Stormstrike debuff</label>
+		<target>PShaman.DPSShockStormstrike</target>
+	  </checkbox>
+	  <checkbox>
+		<label>Use Casting Interrupt Shock</label>
+		<target>PShaman.UseInterruptShock</target>
+	  </checkbox>
+	  <checkbox>
+		<label>Frost Shock runners</label>
+		<target>PShaman.ShockRunners</target>
+	  </checkbox>
+	</group>
+	<group>
+	  <label>Lightning bolt</label>
+	  <input>
+		<width>25</width>
+		<label>Lightning Bolt further away than (yds)</label>
+		<target>PShaman.BoltDistance</target>
+	  </input>
+	  <checkbox>
+		<label>Lightning Bolt when Focused Casting</label>
+		<target>PShaman.BoltOnFocused</target>
+	  </checkbox>
+	  <checkbox>
+		<label>Spam Lightning Bolt</label>
+		<target>PShaman.BoltSpam</target>
+	  </checkbox>
+	</group>
+	<group>
+	  <label>Shield</label>
+	  <combobox>
+		<label>Normal shield</label>
+		<width>90</width>
+		<target>PShaman.Shield</target>
+		<options>
+		  <option>None</option>
+		  <option>Lightning</option>
+		  <option>Water</option>
+		  <option>Earth</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Low mana shield</label>
+		<width>90</width>
+		<target>PShaman.LowManaShield</target>
+		<options>
+		  <option>None</option>
+		  <option>Lightning</option>
+		  <option>Water</option>
+		  <option>Earth</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>When to cast shield</label>
+		<target>PShaman.WhenShield</target>
+		<options>
+		  <option>Never</option>
+		  <option>Resting</option>
+		  <option>After other cast</option>
+		  <option>Always</option>
+		</options>
+	  </combobox>
+	<group>
+	  <label>Low mana settings</label>
+	  <input>
+		<label>Low mana at %</label>
+		<target>PShaman.LowManaPoint</target>
+	  </input>
+	  <input>
+		<label>Normal mana %</label>
+		<target>PShaman.LowManaResetPoint</target>
+	  </input>
+	</group>
+	</group>
   </tab>
-
+	<tab>
+		<label>Skills</label>
+		<group>
+		  <label>Maelstrom Weapon</label>
+		  <checkbox>
+			<label>Use Maelstrom Weapon</label>
+			<target>PShaman.UseMaelstrom</target>
+		  </checkbox>
+		  <input>
+			<label>Maelstrom Stacks</label>
+			<target>PShaman.MaelstromStack</target>
+		  </input>
+		  <combobox>
+			<label>Spell to cast on stack goal</label>
+			<target>PShaman.MaelstromSpell</target>
+			<width>110</width>
+			<options>
+			  <option>Dynamic</option>
+			  <option>Chain Lightning</option>
+			  <option>Lightning Bolt</option>
+			</options>
+		  </combobox>
+		</group>
+		<group>
+			<label>Feral Spirit</label>
+			<checkbox>
+				<label>Use Feral Spirit</label>
+				<target>PShaman.UseFeralSpirit</target>
+			</checkbox>
+			<!-- changed to combobox for space consolidation -->
+			<combobox>
+				<label>Activate</label>
+				<target>PShaman.FeralActivation</target>
+				<width>110</width>
+				<options>
+					<option>Always</option>
+					<option>Any condition</option>
+					<option>PVP</option>
+					<option>Adds</option>
+					<option>Emergency health</option>
+				</options>
+			</combobox>
+		</group>
+		<group>
+			<label>Bloodlust / Heroism</label>
+			<checkbox>
+				<label>Use Bloodlust</label>
+				<target>PShaman.UseLust</target>
+			</checkbox>
+			<combobox>
+				<label>Activate</label>
+				<target>PShaman.LustActivation</target>
+				<width>110</width>
+				<options>
+					<option>Always</option>
+					<option>Party (always)</option>
+					<option>Party (condition)</option>
+					<option>Any condition</option>
+					<option>PVP</option>
+					<option>Adds</option>
+					<option>Emergency health</option>
+				</options>
+			</combobox>
+		</group>
+		<group>
+			<label>Lava Burst</label>
+			<checkbox>
+				<label>Use Lava Burst</label>
+				<target>PShaman.UseLavaBurst</target>
+			</checkbox>
+			<checkbox>
+				<label>Require Flame Shock</label>
+				<target>PShaman.UseLavaBurstFlame</target>
+			</checkbox>
+		</group>
+		<group>
+			<label>Lava Lash</label>
+			<checkbox>
+				<label>Use Lava Lash</label>
+				<target>PShaman.UseLavaLash</target>
+			</checkbox>
+			<checkbox>
+				<label>Require Flametongue Offhand</label>
+				<target>PShaman.UseLavaLashFlame</target>
+			</checkbox>
+		</group>
+		<group>
+		  <label>Shamanistic Rage</label>
+		  <checkbox>
+			<label>Use Shamanistic Rage</label>
+			<target>PShaman.UseRage</target>
+		  </checkbox>
+		  <input>
+			<label>Min Target Life (%)</label>
+			<target>PShaman.RageMinHealth</target>
+		  </input>
+		  <input>
+			<label>Use at less mana then (%)</label>
+			<target>PShaman.RageMaxMana</target>
+		  </input>
+		</group>
+		<group>
+			<label>Other skills</label>
+			<checkbox>
+				<label>Stormstrike</label>
+				<target>PShaman.UseStormstrike</target>
+			</checkbox>
+			<checkbox>
+				<label>Thunderstorm</label>
+				<target>PShaman.UseThunderstorm</target>
+			</checkbox>
+			<checkbox>
+				<label>Elemental Mastery</label>
+				<target>PShaman.UseElementalMastery</target>
+			</checkbox>
+			<checkbox>
+				<label>Hex</label>
+				<target>PShaman.UseHex</target>
+			</checkbox>
+			<checkbox>
+				<label>Purge</label>
+				<target>PShaman.UsePurge</target>
+			</checkbox>
+			<checkbox>
+				<label>Purge again on target gain effect</label>
+				<target>PShaman.PurgeOnGain</target>
+			</checkbox>
+		</group>
+	</tab>
   <tab>
-    <label>Totems</label>
-
-    <group>
-      <label>Combat totems</label>
-    
-      <combobox>
-        <label>Fire totem</label>
-        <target>PShaman.CombatFireTotem</target>
-        <options>
-          <option>-</option>
-            <option>Searing Totem</option>
-            <option>Totem of Wrath</option>
-            <option>Frost Resistance Totem</option>
-            <option>Flametongue Totem</option>
-            <option>Fire Nova Totem</option>
-            <option>Magma Totem</option>
-            <option>Fire Elemental Totem</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>Earth totem</label>
-        <target>PShaman.CombatEarthTotem</target>
-        <options>
-          <option>-</option>
-            <option>Strength of Earth Totem</option>
-            <option>Tremor Totem</option>
-            <option>Earthbind Totem</option>
-            <option>Stoneskin Totem</option>
-            <option>Stoneclaw Totem</option>
-            <option>Earth Elemental Totem</option>
-
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>Water totem</label>
-        <target>PShaman.CombatWaterTotem</target>
-        <options>
-          <option>-</option>
-            <option>Healing Stream Totem</option>
-            <option>Mana Spring Totem</option>
-            <option>Fire Resistance Totem</option>
-            <option>Mana Tide Totem</option>
-            <option>Poison Cleansing Totem</option>
-            <option>Disease Cleansing Totem</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>Air totem</label>
-        <target>PShaman.CombatAirTotem</target>
-        <options>
-          <option>-</option>
-            <option>Grounding Totem</option>
-            <option>Nature Resistance Totem</option>
+	<label>Totems</label>
+	<group>
+	  <label>Combat totems</label>
+	  <combobox>
+		<label>Fire totem</label>
+		<target>PShaman.CombatFireTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Searing Totem</option>
+			<option>Totem of Wrath</option>
+			<option>Frost Resistance Totem</option>
+			<option>Flametongue Totem</option>
+			<option>Fire Nova Totem</option>
+			<option>Magma Totem</option>
+			<option>Fire Elemental Totem</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Earth totem</label>
+		<target>PShaman.CombatEarthTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Strength of Earth Totem</option>
+			<option>Tremor Totem</option>
+			<option>Earthbind Totem</option>
+			<option>Stoneskin Totem</option>
+			<option>Stoneclaw Totem</option>
+			<option>Earth Elemental Totem</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Water totem</label>
+		<target>PShaman.CombatWaterTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Healing Stream Totem</option>
+			<option>Mana Spring Totem</option>
+			<option>Fire Resistance Totem</option>
+			<option>Mana Tide Totem</option>
+			<option>Poison Cleansing Totem</option>
+			<option>Disease Cleansing Totem</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Air totem</label>
+		<target>PShaman.CombatAirTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Grounding Totem</option>
+			<option>Nature Resistance Totem</option>
 <!--            <option>Sentry Totem</option> -->
-            <option>Windfury Totem</option>
+			<option>Windfury Totem</option>
 			<option>Wrath of Air Totem</option>
-        </options>
-      </combobox>
-
-    </group>
-
-    <group>
-      <label>Add totems</label>
-    
-      <combobox>
-        <label>Fire totem</label>
-        <target>PShaman.AddFireTotem</target>
-        <options>
-          <option>-</option>
-            <option>Searing Totem</option>
-            <option>Totem of Wrath</option>
-            <option>Frost Resistance Totem</option>
-            <option>Flametongue Totem</option>
-            <option>Fire Nova Totem</option>
-            <option>Magma Totem</option>
-            <option>Fire Elemental Totem</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>Earth totem</label>
-        <target>PShaman.AddEarthTotem</target>
-        <options>
-          <option>-</option>
-            <option>Strength of Earth Totem</option>
-            <option>Tremor Totem</option>
-            <option>Earthbind Totem</option>
-            <option>Stoneskin Totem</option>
-            <option>Stoneclaw Totem</option>
-            <option>Earth Elemental Totem</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>Water totem</label>
-        <target>PShaman.AddWaterTotem</target>
-        <options>
-          <option>-</option>
-            <option>Healing Stream Totem</option>
-            <option>Mana Spring Totem</option>
-            <option>Fire Resistance Totem</option>
-            <option>Mana Tide Totem</option>
-            <option>Poison Cleansing Totem</option>
-            <option>Disease Cleansing Totem</option>
-        </options>
-      </combobox>
-
-      <combobox>
-        <label>Air totem</label>
-        <target>PShaman.AddAirTotem</target>
-        <options>
-          <option>-</option>
-            <option>Grounding Totem</option>
-            <option>Nature Resistance Totem</option>
+		</options>
+	  </combobox>
+	</group>
+	<group>
+	  <label>Add totems</label>
+	  <combobox>
+		<label>Fire totem</label>
+		<target>PShaman.AddFireTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Searing Totem</option>
+			<option>Totem of Wrath</option>
+			<option>Frost Resistance Totem</option>
+			<option>Flametongue Totem</option>
+			<option>Fire Nova Totem</option>
+			<option>Magma Totem</option>
+			<option>Fire Elemental Totem</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Earth totem</label>
+		<target>PShaman.AddEarthTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Strength of Earth Totem</option>
+			<option>Tremor Totem</option>
+			<option>Earthbind Totem</option>
+			<option>Stoneskin Totem</option>
+			<option>Stoneclaw Totem</option>
+			<option>Earth Elemental Totem</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Water totem</label>
+		<target>PShaman.AddWaterTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Healing Stream Totem</option>
+			<option>Mana Spring Totem</option>
+			<option>Fire Resistance Totem</option>
+			<option>Mana Tide Totem</option>
+			<option>Poison Cleansing Totem</option>
+			<option>Disease Cleansing Totem</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>Air totem</label>
+		<target>PShaman.AddAirTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Grounding Totem</option>
+			<option>Nature Resistance Totem</option>
 <!--            <option>Sentry Totem</option> -->
-            <option>Windfury Totem</option>
-            <option>Wrath of Air Totem</option>
-        </options>
-      </combobox>
-
-    </group>
-
+			<option>Windfury Totem</option>
+			<option>Wrath of Air Totem</option>
+		</options>
+	  </combobox>
+	</group>
 <!--
-    <group>
-      <label>Rest totems</label>
-    
-      <combobox>
-        <label>Water totem</label>
-        <target>PShaman.RestWaterTotem</target>
-        <options>
-          <option>-</option>
-            <option>Healing Stream Totem</option>
-            <option>Mana Spring Totem</option>
-            <option>Mana Tide Totem</option>
-        </options>
-      </combobox>
-
-    </group>
+	<group>
+	  <label>Rest totems</label>
+	  <combobox>
+		<label>Water totem</label>
+		<target>PShaman.RestWaterTotem</target>
+		<options>
+		  <option>-</option>
+			<option>Healing Stream Totem</option>
+			<option>Mana Spring Totem</option>
+			<option>Mana Tide Totem</option>
+		</options>
+	  </combobox>
+	</group>
 -->
-
-    <group>
-        <label>Specials</label>
-
-      <checkbox>
-        <label>Use Grounding Totem (air) when fighting casters</label>
-        <target>PShaman.UseGrounding</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Use Tremor Totem (earth) when fighting fearing mobs</label>
-        <target>PShaman.UseTremor</target>
-      </checkbox>
-
+	<group>
+		<label>Specials</label>
+	  <checkbox>
+		<label>Use Grounding Totem (air) when fighting casters</label>
+		<target>PShaman.UseGrounding</target>
+	  </checkbox>
+	  <checkbox>
+		<label>Use Tremor Totem (earth) when fighting fearing mobs</label>
+		<target>PShaman.UseTremor</target>
+	  </checkbox>
 <!--
-      <checkbox>
-        <label>Use Poison Cleansing fighting poisoning mobs</label>
-        <target>PShaman.UsePoisonTotem</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Use Poison Cleansing fighting diseasing mobs</label>
-        <target>PShaman.UseDiseaseTotem</target>
-      </checkbox>
-
-
-      <checkbox>
-        <label>(TODO)Use Earthbind to slow runners</label>
-        <target>PShaman.UseEarthbind</target>
-      </checkbox>
-
-    -->
-
-    </group>
-
-    <group>
-      <label>Totemic Call</label>
-
-
-      <checkbox>
-        <label>Totemic Call when out of range</label>
-        <target>PShaman.UseRecallRange</target>
-      </checkbox>
-
-
-    </group>
-
+	  <checkbox>
+		<label>Use Poison Cleansing fighting poisoning mobs</label>
+		<target>PShaman.UsePoisonTotem</target>
+	  </checkbox>
+	  <checkbox>
+		<label>Use Poison Cleansing fighting diseasing mobs</label>
+		<target>PShaman.UseDiseaseTotem</target>
+	  </checkbox>
+	  <checkbox>
+		<label>(TODO)Use Earthbind to slow runners</label>
+		<target>PShaman.UseEarthbind</target>
+	  </checkbox>
+	-->
+	</group>
+	<group>
+	  <label>Totemic Call</label>
+	  <checkbox>
+		<label>Totemic Call when out of range</label>
+		<target>PShaman.UseRecallRange</target>
+	  </checkbox>
+	</group>
+  </tab>
+  <tab>
+	  <label>Healing</label>
+	<group>
+	  <label>Mana</label>
+	  <input>
+		<label>Reserve Mana For Heals (%)</label>
+		<target>PShaman.HealMana</target>
+	  </input>
+	</group>
+	<group>
+	  <label>Combat healing limits</label>
+	  <input>
+		<label>Panic Heal below life (NS) (%)</label>
+		<target>PShaman.HealPanicLife</target>
+	  </input>
+	  <input>
+		<label>Lesser Healing Heal Below Life (%)</label>
+		<target>PShaman.HealLesserWaveLife</target>
+	  </input>
+		<input>
+			<label>Riptide Below Life (%)</label>
+			<target>PShaman.HealRiptideLife</target>
+		</input>
+		<input>
+			<label>Earth Shield Below Life (%)</label>
+			<target>PShaman.HealESLife</target>
+		</input>
+	  <input>
+		<label>Healing wave under (%)</label>
+		<target>PShaman.HealWaveLife</target>
+	  </input>
+	  <input>
+		<label>Chain Heal if at least 2 members are below(%)</label>
+		<target>PShaman.HealChainLife</target>
+	  </input>
+	</group>
+	<group>
+	  <label>Rest healing limits</label>
+	  <input>
+		<label>Healing wave under (%)</label>
+		<target>PShaman.RestHealWaveLife</target>
+	  </input>
+	  <input>
+		<label>Riptide under (%)</label>
+		<target>PShaman.RestRiptideLife</target>
+	  </input>
+	  <input>
+		<label>Chain Heal if at least 2 members are below(%)</label>
+		<target>PShaman.RestHealChainLife</target>
+	  </input>
+	</group>
+	<group>
+		<label>Healing Others</label>
+		<checkbox>
+			<label>Heal friendly players</label>
+			<target>PShaman.HealFriendly</target>
+		</checkbox>
+		<checkbox>
+			<label>Heal party members</label>
+			<target>PShaman.HealParty</target>
+		</checkbox>
+	</group>
+	<group>
+	  <label>Poisons, Diseases, Curses</label>
+	  <combobox>
+		<label>When to cure Poison</label>
+		<target>PShaman.WhenPoison</target>
+		<options>
+		  <option>Never</option>
+		  <option>Resting</option>
+		  <option>After other cast</option>
+		  <option>Always</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>When to cleanse Curse</label>
+		<target>PShaman.WhenCurse</target>
+		<options>
+		  <option>Never</option>
+		  <option>Resting</option>
+		  <option>After other cast</option>
+		  <option>Always</option>
+		</options>
+	  </combobox>
+	  <combobox>
+		<label>When to cure Disease</label>
+		<target>PShaman.WhenDisease</target>
+		<options>
+		  <option>Never</option>
+		  <option>Resting</option>
+		  <option>After other cast</option>
+		  <option>Always</option>
+		</options>
+	  </combobox>
+	</group>
+	<group>
+		<label>Other</label>
+		<checkbox>
+			<label>Use Riptide</label>
+			<target>PShaman.UseRiptide</target>
+		</checkbox>
+		<label>Earth Shield</label>
+		<checkbox>
+			<label>Use Earth Shield</label>
+			<target>PShaman.UseEarthShield</target>
+		</checkbox>
+		<label>Tidal Force</label>
+		<checkbox>
+			<label>Use Tidal Force</label>
+			<target>PShaman.UseTidalForce</target>
+		</checkbox>
+	</group>
   </tab>
 
 
   <tab>
-      <label>Healing</label>
+	<label>Party</label>
 
-    <group>
-      <label>Mana</label>
-
-      <input>
-        <label>Reserve Mana For Heals (%)</label>
-        <target>PShaman.HealMana</target>
-      </input>
-
-    </group>
-
-    <group>
-      <label>Combat healing limits</label>
-
-      <input>
-        <label>Panic Heal below life (NS) (%)</label>
-        <target>PShaman.HealPanicLife</target>
-      </input>
-
-      <input>
-        <label>Lesser Healing Heal Below Life (%)</label>
-        <target>PShaman.HealLesserWaveLife</target>
-      </input>
+	<group>
+	  <label>Aggro management (only valid if follower)</label>
 
 	  <input>
-        <label>Riptide Below Life (%)</label>
-        <target>PShaman.HealRiptideLife</target>
-      </input>
-	  
-      <input>
-        <label>Healing wave under (%)</label>
-        <target>PShaman.HealWaveLife</target>
-      </input>
-
-      <input>
-        <label>Chain Heal if at least 2 members are below(%)</label>
-        <target>PShaman.HealChainLife</target>
-      </input>
-      
-
-    </group>
-
-
-    <group>
-      <label>Rest healing limits</label>
-
-      <input>
-        <label>Healing wave under (%)</label>
-        <target>PShaman.RestHealWaveLife</target>
-      </input>
+		<label>Wait until target has this life before White DPS</label>
+		<target>PShaman.WhiteDPSLife</target>
+	  </input>
 
 	  <input>
-        <label>Riptide under (%)</label>
-        <target>PShaman.RestRiptideLife</target>
-      </input>
-	  
-      <input>
-        <label>Chain Heal if at least 2 members are below(%)</label>
-        <target>PShaman.RestHealChainLife</target>
-      </input>
-
-    </group>
-
-  </tab>
+		<label>Wait until target has this life before more DPS</label>
+		<target>PShaman.DPSLife</target>
+	  </input>
 
 
-  <tab>
-    <label>Party</label>
-
-    <group>
-      <label>Aggro management (only valid if follower)</label>
-
-      <input>
-        <label>Wait until target has this life before White DPS</label>
-        <target>PShaman.WhiteDPSLife</target>
-      </input>
-
-      <input>
-        <label>Wait until target has this life before more DPS</label>
-        <target>PShaman.DPSLife</target>
-      </input>
-
-
-      <checkbox>
-        <label>Stop DPS if aggro</label>
-        <target>PShaman.StopDPSOnAggro</target>
-      </checkbox>
-    </group>
+	  <checkbox>
+		<label>Stop DPS if aggro</label>
+		<target>PShaman.StopDPSOnAggro</target>
+	  </checkbox>
+	</group>
 
   </tab>
 
 
   <tab>
-    <label>Trinkets and Buffs</label>
+	<label>Trinkets and Buffs</label>
 
   <group>
-      <label>"Use items", such as trinkets or racials</label>
+	  <label>"Use items", such as trinkets or racials</label>
 
-      <combobox>
-        <label>Use Item 1 when</label>
-        <target>PShaman.UseItem1</target>
+	  <combobox>
+		<label>Use Item 1 when</label>
+		<target>PShaman.UseItem1</target>
 	<width>160</width>
-        <options>
-          <option>Do not use</option>
-          <option>My health &lt;50%</option>
-          <option>My health &lt;25%</option>
-          <option>Monster health &gt;75%</option>
-          <option>Monster health &gt;50%</option>
-          <option>We got adds</option>
-          <option>Feared/Charmed/Sleeped</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>My health &lt;50%</option>
+		  <option>My health &lt;25%</option>
+		  <option>Monster health &gt;75%</option>
+		  <option>Monster health &gt;50%</option>
+		  <option>Melee range</option>
+		  <option>We got adds</option>
+		  <option>Feared/Charmed/Sleeped</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Item 1 cooldown (seconds)</label>
-        <target>PShaman.UseItem1CD</target>
-      </input>
+	  <input>
+		<label>Item 1 cooldown (seconds)</label>
+		<target>PShaman.UseItem1CD</target>
+	  </input>
 
 
-      <combobox>
-        <label>Use Item 2 when</label>
-        <target>PShaman.UseItem2</target>
+	  <combobox>
+		<label>Use Item 2 when</label>
+		<target>PShaman.UseItem2</target>
 	<width>160</width>
-        <options>
-          <option>Do not use</option>
-          <option>My health &lt;50%</option>
-          <option>My health &lt;25%</option>
-          <option>Monster health &gt;75%</option>
-          <option>Monster health &gt;50%</option>
-          <option>We got adds</option>
-          <option>Feared/Charmed/Sleeped</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>My health &lt;50%</option>
+		  <option>My health &lt;25%</option>
+		  <option>Monster health &gt;75%</option>
+		  <option>Monster health &gt;50%</option>
+		  <option>Melee range</option>
+		  <option>We got adds</option>
+		  <option>Feared/Charmed/Sleeped</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Item 2 cooldown (seconds)</label>
-        <target>PShaman.UseItem2CD</target>
-      </input>
+	  <input>
+		<label>Item 2 cooldown (seconds)</label>
+		<target>PShaman.UseItem2CD</target>
+	  </input>
 
 
-      <combobox>
-        <label>Use Item 3 when</label>
-        <target>PShaman.UseItem3</target>
+	  <combobox>
+		<label>Use Item 3 when</label>
+		<target>PShaman.UseItem3</target>
 	<width>160</width>
-        <options>
-          <option>Do not use</option>
-          <option>My health &lt;50%</option>
-          <option>My health &lt;25%</option>
-          <option>Monster health &gt;75%</option>
-          <option>Monster health &gt;50%</option>
-          <option>We got adds</option>
-          <option>Feared/Charmed/Sleeped</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>My health &lt;50%</option>
+		  <option>My health &lt;25%</option>
+		  <option>Monster health &gt;75%</option>
+		  <option>Monster health &gt;50%</option>
+		  <option>Melee range</option>
+		  <option>We got adds</option>
+		  <option>Feared/Charmed/Sleeped</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Item 3 cooldown (seconds)</label>
-        <target>PShaman.UseItem3CD</target>
-      </input>
+	  <input>
+		<label>Item 3 cooldown (seconds)</label>
+		<target>PShaman.UseItem3CD</target>
+	  </input>
 
 
-      <combobox>
-        <label>Use Item 4 when</label>
-        <target>PShaman.UseItem4</target>
+	  <combobox>
+		<label>Use Item 4 when</label>
+		<target>PShaman.UseItem4</target>
 	<width>160</width>
-        <options>
-          <option>Do not use</option>
-          <option>My health &lt;50%</option>
-          <option>My health &lt;25%</option>
-          <option>Monster health &gt;75%</option>
-          <option>Monster health &gt;50%</option>
-          <option>We got adds</option>
-          <option>Feared/Charmed/Sleeped</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>My health &lt;50%</option>
+		  <option>My health &lt;25%</option>
+		  <option>Monster health &gt;75%</option>
+		  <option>Monster health &gt;50%</option>
+		  <option>Melee range</option>
+		  <option>We got adds</option>
+		  <option>Feared/Charmed/Sleeped</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Item 4 cooldown (seconds)</label>
-        <target>PShaman.UseItem4CD</target>
-      </input>
+	  <input>
+		<label>Item 4 cooldown (seconds)</label>
+		<target>PShaman.UseItem4CD</target>
+	  </input>
 
    </group>
 
 
-    <group>
-      <label>Food and potions</label>
+	<group>
+	  <label>Food and potions</label>
 
-      <combobox>
-        <label>Buff item 1 type</label>
-        <target>PShaman.BuffItem1</target>
+	  <combobox>
+		<label>Buff item 1 type</label>
+		<target>PShaman.BuffItem1</target>
 	<width>120</width>
-        <options>
-          <option>Do not use</option>
-          <option>Food</option>
-          <option>Potion/Usable item</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>Food</option>
+		  <option>Potion/Usable item</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Buff Name 1</label>
-        <target>PShaman.BuffName1</target>
-        <width>100</width>
-      </input>
+	  <input>
+		<label>Buff Name 1</label>
+		<target>PShaman.BuffName1</target>
+		<width>100</width>
+	  </input>
 
-      <combobox>
-        <label>Buff item 2 type</label>
-        <target>PShaman.BuffItem2</target>
+	  <combobox>
+		<label>Buff item 2 type</label>
+		<target>PShaman.BuffItem2</target>
 	<width>120</width>
-        <options>
-          <option>Do not use</option>
-          <option>Food</option>
-          <option>Potion/Usable item</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>Food</option>
+		  <option>Potion/Usable item</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Buff Name 2</label>
-        <target>PShaman.BuffName2</target>
-        <width>100</width>
-      </input>
+	  <input>
+		<label>Buff Name 2</label>
+		<target>PShaman.BuffName2</target>
+		<width>100</width>
+	  </input>
 
-      <combobox>
-        <label>Buff item 3 type</label>
-        <target>PShaman.BuffItem3</target>
+	  <combobox>
+		<label>Buff item 3 type</label>
+		<target>PShaman.BuffItem3</target>
 	<width>120</width>
-        <options>
-          <option>Do not use</option>
-          <option>Food</option>
-          <option>Potion/Usable item</option>
-        </options>
-      </combobox>
+		<options>
+		  <option>Do not use</option>
+		  <option>Food</option>
+		  <option>Potion/Usable item</option>
+		</options>
+	  </combobox>
 
-      <input>
-        <label>Buff Name 3</label>
-        <target>PShaman.BuffName3</target>
-        <width>100</width>
-      </input>
-      
-    </group>
+	  <input>
+		<label>Buff Name 3</label>
+		<target>PShaman.BuffName3</target>
+		<width>100</width>
+	  </input>
+	  
+	</group>
 
 
   </tab>
 
 
   <tab>
-    <label>Repair and Sell</label>
+	<label>Repair and Sell</label>
 
 
-    <group>
-      <label>Settings</label>
-      <input>
-        <label>Vendor Name</label>
-        <target>PShaman.VendorName</target>
-        <width>160</width>
-      </input>
+	<group>
+	  <label>Settings</label>
+	  <input>
+		<label>Vendor Name</label>
+		<target>PShaman.VendorName</target>
+		<width>160</width>
+	  </input>
 
-      <checkbox>
-        <label>Repair when close to vendor</label>
-        <target>PShaman.UseRepair</target>
-      </checkbox>
-
-
-      <checkbox>
-        <label>Sell when close to vendor</label>
-        <target>PShaman.UseSell</target>
-      </checkbox>
-
-    </group>
-
-    <group>
-      <label>Quality protection</label>
+	  <checkbox>
+		<label>Repair when close to vendor</label>
+		<target>PShaman.UseRepair</target>
+	  </checkbox>
 
 
-      <checkbox>
-        <label>Sell Poor (gray) items</label>
-        <target>PShaman.SellPoor</target>
-      </checkbox>
+	  <checkbox>
+		<label>Sell when close to vendor</label>
+		<target>PShaman.UseSell</target>
+	  </checkbox>
 
-      <checkbox>
-        <label>Sell Common (white) items </label>
-        <target>PShaman.SellCommon</target>
-      </checkbox>
+	</group>
 
-      <checkbox>
-        <label>Sell Uncommon (green) items </label>
-        <target>PShaman.SellUncommon</target>
-      </checkbox>
-
-      <checkbox>
-        <label>Sell Rare (blue) items </label>
-        <target>PShaman.SellRare</target>
-      </checkbox>
+	<group>
+	  <label>Quality protection</label>
 
 
-    </group>
+	  <checkbox>
+		<label>Sell Poor (gray) items</label>
+		<target>PShaman.SellPoor</target>
+	  </checkbox>
 
-    <group>
-      <label>Protected items</label>
+	  <checkbox>
+		<label>Sell Common (white) items </label>
+		<target>PShaman.SellCommon</target>
+	  </checkbox>
 
-      <input>
-        <label></label>
-        <target>PShaman.Protected0</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected1</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected2</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected3</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected4</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected5</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected6</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected7</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected8</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected9</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected10</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected11</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected12</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected13</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected14</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected15</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected16</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected17</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected18</target>
-        <width>200</width>
-      </input>
-      <input>
-        <label></label>
-        <target>PShaman.Protected19</target>
-        <width>200</width>
-      </input>
+	  <checkbox>
+		<label>Sell Uncommon (green) items </label>
+		<target>PShaman.SellUncommon</target>
+	  </checkbox>
 
-    </group>
+	  <checkbox>
+		<label>Sell Rare (blue) items </label>
+		<target>PShaman.SellRare</target>
+	  </checkbox>
+
+
+	</group>
+
+	<group>
+	  <label>Protected items</label>
+
+	  <input>
+		<label></label>
+		<target>PShaman.Protected0</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected1</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected2</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected3</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected4</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected5</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected6</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected7</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected8</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected9</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected10</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected11</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected12</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected13</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected14</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected15</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected16</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected17</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected18</target>
+		<width>200</width>
+	  </input>
+	  <input>
+		<label></label>
+		<target>PShaman.Protected19</target>
+		<width>200</width>
+	  </input>
+
+	</group>
   </tab>
 
   <tab>
-    <label>TendencyEditor</label>
+	<label>TendencyEditor</label>
 
-    <tendencyeditor>
-        <file>Classes/MobTendencies.txt</file>
-    </tendencyeditor>
+	<tendencyeditor>
+		<file>Classes/MobTendencies.txt</file>
+	</tendencyeditor>
 
   </tab>
 </GConfig>
