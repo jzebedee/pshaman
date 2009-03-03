@@ -3,7 +3,7 @@
 /*
 Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
 Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
-Developers: TheUltimateParadox
+Developers: TheUltimateParadox and Scorpiona
 */
 #if PPATHERENABLED
 //!Reference: PPather.dll
@@ -28,7 +28,7 @@ namespace Glider.Common.Objects
 	public class PShaman : PPather
 #endif
 	{
-		string version = "2.1DEV1.1"; //only used in strings
+		string version = "2.0.12"; //only used in strings
 
 #if !PPATHERENABLED
 		static Mover mover = null;
