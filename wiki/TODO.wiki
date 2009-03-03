@@ -1,18 +1,4 @@
-===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.12 RELEASE*===
+===* IMPLEMENTATION THAT NEEDS DONE BEFORE 2.0.13 RELEASE*===
 ------
--- Maelstorm Weapon with different uses Lightning Bolt, Chain Lightning, Healing Wave.
-
--- Feral Spirit based on always, PVP.
-
--- Bloodlust/Heroism Support.
-
--- Fix whatever problem is wrong with Weapon Buffs. It was fixed in SShaman didn't look at how it was done.
-
--- All problems/fixes in SShaman would be nice to have ported over to PShaman.
-
--- Look into Ghost Wolf and why it is mounting incorrectly or not mounting at all.
-
+-- Just waiting on a new bug list to work on.
 ------
-===* IMPLEMENTATION FOR FUTURE RELEASES*===
-
-      - Support for Earth Shielding any Player done by selection on the Config. Athene does it with Paladin buffs maybe look at how it's done over there.
