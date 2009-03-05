@@ -1,5 +1,4 @@
 ﻿#define PPATHERENABLED
-// Code from here down is same for PPather and non PPather classes.
 /*
 Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
 Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
@@ -10,6 +9,7 @@ Developers: TheUltimateParadox and Scorpiona
 using Pather;
 using Pather.Graph;
 #endif
+// Code from here down is same for PPather and non PPather classes.
 using System;
 using System.Globalization;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace Glider.Common.Objects
 	public class PShaman : PPather
 #endif
 	{
-		string version = "2.0.12"; //only used in strings
+		string version = "2.0.13"; //only used in strings
 
 #if !PPATHERENABLED
 		static Mover mover = null;
@@ -4676,32 +4676,24 @@ namespace Glider.Common.Objects
 
 
 		void Context_CombatLog(string RawTextOriginal) {
+			//The overall syntax of the combat log has changed significantly since this
+			//function was written. Most of these are probably outdated and need to be
+			//retested and rewritten.
 			if (Context.CurrentMode != GGlideMode.Glide && Context.CurrentMode != GGlideMode.OneKill) return;
-			//mlog(" CB: " + RawTextOriginal);
 			string ParsedText = CombatLogDecoder(RawTextOriginal);
+			ParsedText = ParsedText.Replace("ffffffff","");
 			string ParsedTextLow = ParsedText.ToLower();
 			String name = Me.Name.ToLower();
-
-			//mlog("'" + ParsedTextLow + "'");
-			if (ParsedTextLow.StartsWith(name))
-			{
-				if (ParsedTextLow.Contains("is drowning"))
-				{
+			if (ParsedTextLow.StartsWith(name)) {
+				if (ParsedTextLow.Contains("is drowning")) {
 					// !!!!!!  This is bad !!!!!
 					mlog("I AM DROWNING!!!!");
 					mover.SwimUp(true);
 					Thread.Sleep(1000);
 					mover.SwimUp(false);
-
 				}
 
-				if (ParsedTextLow.Contains("in afflicted") || ParsedTextLow.Contains("suffer"))
-				{
-					if (ParsedTextLow.Contains("spore cloud") || ParsedTextLow.Contains("chemical flames") || ParsedTextLow.Contains("flames wave"))
-					{
-						StandingInAoE = true; // Someone should move us!!
-					}
-				}
+				if((ParsedTextLow.Contains("in afflicted") || ParsedTextLow.Contains("suffer")) && (ParsedTextLow.Contains("spore cloud") || ParsedTextLow.Contains("chemical flames") || ParsedTextLow.Contains("flames wave"))) StandingInAoE = true; // Someone should move us!!
 				if(ParsedTextLow.Contains("was immune")) {
 					// something is immune to something
 					// Name Lightning Bolt failed. Sundered Rumbler was immune.
@@ -4709,7 +4701,6 @@ namespace Glider.Common.Objects
 					int end = ParsedTextLow.IndexOf(" was immune.");
 					if (start != -1 && end != -1) {
 						start += 8; // skip "failed. "
-						ParsedTextLow = ParsedTextLow.Replace("ffffffff","");
 						string monster = ParsedText.Substring(start, end - start);
 						if(ParsedTextLow.Contains(" lightning bolt") || ParsedTextLow.Contains(" chain lightning") || ParsedTextLow.Contains(" earth shock")) {
 							// nature, lightning shield won't show
@@ -4728,48 +4719,32 @@ namespace Glider.Common.Objects
 							AddFrostImmune(monster);
 						}
 					}
-
-
-
 				}
-				if (ParsedTextLow.Contains("suffer")) // TODO fix
-				{
-					if (!ParsedTextLow.Contains("from") && ParsedTextLow.Contains("fire"))
-					{
-						// hmm, stading in a fire?!
+				if(ParsedTextLow.Contains("suffer")) {
+					if (!ParsedTextLow.Contains("from") && ParsedTextLow.Contains("fire")) {
 						StepOutOfFire();
 					}
-
-				}
-				else if (ParsedTextLow.Contains("fissure's consumption hits you")) // TODO
-				{
+				} else if (ParsedTextLow.Contains("fissure's consumption hits you")) {
 					RandomJump(); // Very very bad!
-				}
-				else if (ParsedTextLow.Contains("evade"))
-				{
+				} else if (ParsedTextLow.Contains("evade")) {
 					sawAnEvade = true;
 					evades++;
 					mlog("Evade #" + evades);
 				}
 			}
-
-			if (ParsedTextLow.Contains("hits you") ||
-			   ParsedTextLow.Contains("crits you"))
-			{
-
+			//"hits you" / "crits you" is deprecated
+			//Shandaral Hunter Spirit's Shoot hits Myshaman for 426 Physical.
+			//Shandaral Druid Spirit's melee swing hits Myshaman for 732 Physical. (Critical)
+			if(ParsedTextLow.Contains("hits "+name)) {
 				int i = ParsedText.IndexOf("\'s");
-				if (i != -1)
-				{
+				if (i != -1) {
 					string MonsterName = ParsedText.Substring(0, i);
 
-					if (ParsedTextLow.Contains("throw") ||
-					   ParsedTextLow.Contains("shoot"))
-					{
+					if(ParsedTextLow.Contains("throw") || ParsedTextLow.Contains("shoot")) {
 						// Ranged mob...
 						AddRanged(MonsterName);
 					}
-					if (Me.Target != null && Me.Target.Name == MonsterName)
-					{
+					if(Me.Target != null && Me.Target.Name == MonsterName) {
 						// my target
 						if (Me.Target.DistanceToSelf > Context.MeleeDistance + 2)
 						{
@@ -4781,20 +4756,14 @@ namespace Glider.Common.Objects
 						}
 					}
 				}
-			}
-			else if (ParsedTextLow.Contains("gains"))
-			{
+			} else if (ParsedTextLow.Contains("gains")) {
 				// Someone gained something, lets see if it is my target
-				if (Me.Target != null)
-				{
-					if (UsePurge && PurgeOnGain)
-					{
+				if (Me.Target != null) {
+					if (UsePurge && PurgeOnGain) {
 						int i = ParsedText.IndexOf(" gains ");
-						if (i != -1)
-						{
+						if(i != -1) {
 							string MonsterName = ParsedText.Substring(0, i);
-							if (MonsterName == Me.Target.Name)
-							{
+							if (MonsterName == Me.Target.Name) {
 								//Spam("  " + 
 								Spam("  " + ParsedText);
 								//mlog("My target, '" + MonsterName + "' gained an effect. PurgeIt");
@@ -4803,83 +4772,58 @@ namespace Glider.Common.Objects
 						}
 					}
 				}
+			} else if (ParsedTextLow.Contains("removed by")) {
+				if(ParsedTextLow.Contains("purge")) Spam("  " + ParsedText);
 			}
-			else if (ParsedTextLow.Contains("removed by"))
-			{
-				if (ParsedTextLow.Contains("purge"))
-				{
-					Spam("  " + ParsedText);
+			//Myshaman is afflicted by Shandaral Druid Spirit's Dazed.
+			string[] ccstrings = {"terror","fear","terrify","psychic scream","shriek","charm","sleep","seduce","slumber"};
+			if(ParsedTextLow.Contains(name+" is afflicted by")) {
+				bool wehavecc = false;
+				int j;
+				for(j=0;j<ccstrings.Length;j++) {
+					if(ParsedTextLow.Contains(ccstrings[j])) wehavecc = true;
+				}
+				if(wehavecc) {
+					int i = ParsedText.IndexOf("\'s");
+					if(i!=-1) {
+						string MonsterName = ParsedText.Substring(0,i);
+						if(MonsterName==Me.Target.Name) AddFearer(Me.Target.Name);
+						Spam("Got feared/charmed/sleeped.");
+						Feared.Reset();
+					}
 				}
 			}
-
-
-			if (ParsedTextLow.Contains("you are afflicted by") &&
-		(ParsedTextLow.Contains("terror") ||
-		 ParsedTextLow.Contains("fear") ||
-		 ParsedTextLow.Contains("terrify") ||
-		 ParsedTextLow.Contains("psychic scream") ||
-		 ParsedTextLow.Contains("shriek") ||
-		 ParsedTextLow.Contains("charm") ||
-		 ParsedTextLow.Contains("sleep") ||
-		 ParsedTextLow.Contains("charm") ||
-		 ParsedTextLow.Contains("sleep") ||
-		 ParsedTextLow.Contains("seduce") ||
-		 ParsedTextLow.Contains("slumber")))
-			{
-				if (Me.Target != null) AddFearer(Me.Target.Name);
-				Spam("Got feared/charmed/sleeped.");
-				Feared.Reset();
-			}
-
-			if (ParsedTextLow.Contains("fades from you"))
-			{
-				if (ParsedTextLow.Contains("terror") ||
-					ParsedTextLow.Contains("fear") ||
-					ParsedTextLow.Contains("terrify") ||
-					ParsedTextLow.Contains("psychic scream") ||
-					ParsedTextLow.Contains("shriek"))
-				{
+			if(ParsedTextLow.Contains("fades from "+name)) {
+				bool wehavecc = false;
+				int j;
+				for(j=0;j<ccstrings.Length;j++) {
+					if(ParsedTextLow.Contains(ccstrings[j])) wehavecc = true;
+				}
+				if(wehavecc) {
 					Spam("Fear Ran out.");
 					Feared.ForceReady();
 				}
 			}
-
-			if (ParsedTextLow.Contains("your"))
-			{
-				if (ParsedTextLow.Contains("shock") || ParsedTextLow.Contains("stormstrike") || ParsedTextLow.Contains("lightning"))
-				{
-					if (!ParsedTextLow.Contains("suffers") && !ParsedTextLow.Contains("heals"))
-						Spam("  " + ParsedText);
-				}
-				if (ParsedTextLow.Contains("healing wave") || ParsedTextLow.Contains("chain heal"))
-				{
-					Spam("  " + ParsedText);
-				}
-			}
+			/*if(ParsedTextLow.Contains(name+"\'s")) {
+				if((!ParsedTextLow.Contains("suffers") && !ParsedTextLow.Contains("heals")) || (ParsedTextLow.Contains("healing wave") || ParsedTextLow.Contains("chain heal")) || (ParsedTextLow.Contains("shock") || ParsedTextLow.Contains("stormstrike") || ParsedTextLow.Contains("lightning"))) Spam("  " + ParsedText);
+			}*/
+			//Unnecessary, and spammy.
 		}
 
-		void Context_ChatLog(string RawText, string ParsedText)
-		{
-			if (Context.CurrentMode != GGlideMode.Glide && Context.CurrentMode != GGlideMode.OneKill) return;
-			if (ParsedText.Contains("attempts to run away") ||
-			   ParsedText.Contains("senses danger and flees"))
-			{
+		void Context_ChatLog(string RawText, string ParsedText) {
+			if(Context.CurrentMode != GGlideMode.Glide && Context.CurrentMode != GGlideMode.OneKill) return;
+			if(ParsedText.Contains("attempts to run away") || ParsedText.Contains("senses danger and flees")) {
 				int i = ParsedText.IndexOf(" attempts");
-				if (i != -1)
-				{
+				if(i != -1) {
 					string MonsterName = ParsedText.Substring(0, i);
 					AddRunner(MonsterName);
 					mlog(MonsterName + " attempts to run away");
 					IsRunning = true;
 				}
-			}
-			else if (ParsedText.Contains("calls for help") ||
-				ParsedText.Contains("lets out a shriek, calling for help"))
-			{
+			} else if(ParsedText.Contains("calls for help") || ParsedText.Contains("lets out a shriek, calling for help")) {
 				int i = ParsedText.IndexOf(" calls");
-				if (i == -1) i = ParsedText.IndexOf(" lets out");
-				if (i != -1)
-				{
+				if(i == -1) i = ParsedText.IndexOf(" lets out");
+				if(i != -1) {
 					string MonsterName = ParsedText.Substring(0, i);
 					AddCrybaby(MonsterName);
 					mlog(MonsterName + " calls for help");
@@ -4887,33 +4831,19 @@ namespace Glider.Common.Objects
 			}
 		}
 
-		public string CombatLogDecoder(string raw)
-		{
+		public string CombatLogDecoder(string raw) {
 			StringBuilder sb = new StringBuilder();
-
-			/*
-			* Syntax: 
-			* |Hunit:0xXXXXXXXXXXXXXXXX:Name|hName|h
-			* |cXXXXXXXXstring|r
-			* */
-
 			int len = raw.Length;
-			for (int i = 0; i < len; i++)
-			{
+			for(int i = 0; i < len; i++) {
 				char c = raw[i];
-				if (c == '|')
-				{
+				if(c=='|') {
 					c = raw[++i];
-					if (c == 'H')
-					{
+					if(c=='H') {
 						while (raw[i++] != '|') ;
 						i++; // skip the 'h'
 						while (raw[i] != '|') sb.Append(raw[i++]);
 						i++; // skip the 'r'
-
-					}
-					else if (c == 'c')
-					{
+					} else if (c == 'c') {
 						i += 9;
 						while (raw[i] != '|') sb.Append(raw[i++]);
 						i++; // skip the 'r'
@@ -4922,7 +4852,6 @@ namespace Glider.Common.Objects
 				else
 					sb.Append(c);
 			}
-
 			return sb.ToString();
 		}
 
