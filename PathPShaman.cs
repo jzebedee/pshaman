@@ -5518,7 +5518,7 @@ namespace Glider.Common.Objects
 		{
 			if (Me.IsDead) return;
 			if (!ForceNoMount.IsReady) return; // avoids lag causing too many calls
-			int MIN_MOUNT_LEVEL = 30;
+			int MIN_MOUNT_LEVEL = 20;
 			if (GPlayerSelf.Me.Level < MIN_MOUNT_LEVEL) return;
 			if (IsMounted(Me)) return;
 			if (GPlayerSelf.Me.IsInCombat) return;
