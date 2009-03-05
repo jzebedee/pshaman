@@ -1,15 +1,14 @@
 #define NOPPATHERENABLED
+// Apparently the conditional PPather declaration will still reference
+// PPather.dll even if the conditional is false. Leave it out of the
+// waypoint class.
+
 // Code from here down is same for PPather and non PPather classes.
 /*
 Party Shaman is the complete work of Pontus - I just maintain it since he has retired.
 Latest version can always be found at: http://vforums.mmoglider.com/showthread.php?t=162461 
 Developers: TheUltimateParadox and Scorpiona
 */
-#if PPATHERENABLED
-//!Reference: PPather.dll
-using Pather;
-using Pather.Graph;
-#endif
 using System;
 using System.Globalization;
 using System.Collections.Generic;
@@ -5518,7 +5517,7 @@ namespace Glider.Common.Objects
 		{
 			if (Me.IsDead) return;
 			if (!ForceNoMount.IsReady) return; // avoids lag causing too many calls
-			int MIN_MOUNT_LEVEL = 30;
+			int MIN_MOUNT_LEVEL = 20;
 			if (GPlayerSelf.Me.Level < MIN_MOUNT_LEVEL) return;
 			if (IsMounted(Me)) return;
 			if (GPlayerSelf.Me.IsInCombat) return;
