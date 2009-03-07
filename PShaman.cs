@@ -366,7 +366,6 @@ namespace Glider.Common.Objects
 				mlog("Checking bags for what to sell when reaching vendor '" + VendorName + "'");
 				CheckBags(true);
 			}
-			mountBuffID = 0;
 		}
 
 
@@ -1529,7 +1528,7 @@ namespace Glider.Common.Objects
 				case "Monster health >50%": UseItem1 = ItemUse_e.MobHealth50; break;
 				case "Melee range": UseItem1 = ItemUse_e.MeleeRange; break;
 				case "We got adds": UseItem1 = ItemUse_e.SaveForAdds; break;
-				case "Feared/Charmed/Sleeped": UseItem1 = ItemUse_e.Feared; break;
+				case "Crowd controlled": UseItem1 = ItemUse_e.Feared; break;
 			}
 			UseItem1CD = Context.GetConfigInt("PShaman.UseItem1CD");
 			UseItem1Timer = new GSpellTimer(UseItem1CD * 1000);
@@ -1546,7 +1545,7 @@ namespace Glider.Common.Objects
 				case "Monster health >50%": UseItem2 = ItemUse_e.MobHealth50; break;
 				case "Melee range": UseItem2 = ItemUse_e.MeleeRange; break;
 				case "We got adds": UseItem2 = ItemUse_e.SaveForAdds; break;
-				case "Feared/Charmed/Sleeped": UseItem2 = ItemUse_e.Feared; break;
+				case "Crowd controlled": UseItem2 = ItemUse_e.Feared; break;
 			}
 			UseItem2CD = Context.GetConfigInt("PShaman.UseItem2CD");
 			UseItem2Timer = new GSpellTimer(UseItem2CD * 1000);
@@ -1563,7 +1562,7 @@ namespace Glider.Common.Objects
 				case "Monster health >50%": UseItem3 = ItemUse_e.MobHealth50; break;
 				case "Melee range": UseItem3 = ItemUse_e.MeleeRange; break;
 				case "We got adds": UseItem3 = ItemUse_e.SaveForAdds; break;
-				case "Feared/Charmed/Sleeped": UseItem3 = ItemUse_e.Feared; break;
+				case "Crowd controlled": UseItem3 = ItemUse_e.Feared; break;
 			}
 			UseItem3CD = Context.GetConfigInt("PShaman.UseItem3CD");
 			UseItem3Timer = new GSpellTimer(UseItem3CD * 1000);
@@ -1580,7 +1579,7 @@ namespace Glider.Common.Objects
 				case "Monster health >50%": UseItem4 = ItemUse_e.MobHealth50; break;
 				case "Melee range": UseItem4 = ItemUse_e.MeleeRange; break;
 				case "We got adds": UseItem4 = ItemUse_e.SaveForAdds; break;
-				case "Feared/Charmed/Sleeped": UseItem4 = ItemUse_e.Feared; break;
+				case "Crowd controlled": UseItem4 = ItemUse_e.Feared; break;
 			}
 			UseItem4CD = Context.GetConfigInt("PShaman.UseItem4CD");
 			UseItem4Timer = new GSpellTimer(UseItem4CD * 1000);
@@ -1905,29 +1904,15 @@ namespace Glider.Common.Objects
 			return didSomething;
 		}
 
-		int mountBuffID = 0;
-
-		private bool IsMounted() {
-			if (mountBuffID == 0) return false;
-			GBuff[] buffs = Me.GetBuffSnapshot();
-			for (int i = 0; i < buffs.Length; i++)
-			{
-				if (buffs[i].SpellID == mountBuffID) return true;
-			}
-			return false;
-		}
-
 		private GBuff[] BuffSnap;
-		private void BuffSnapshot()
-		{
+		private void BuffSnapshot() {
 			BuffSnap = Me.GetBuffSnapshot();
 			//mlog("Snapshot");
 			//DumpBuffs();
 		}
 
 		// Find a buff not present in last BuffSnapshot
-		private GBuff FindNewBuff()
-		{
+		private GBuff FindNewBuff() {
 			GBuff[] buffs = Me.GetBuffSnapshot();
 			//mlog("Search for new");
 			//DumpBuffs();
@@ -2177,7 +2162,6 @@ namespace Glider.Common.Objects
 				   s.Contains("Raven Lord")
 				) { return true; }
 			}
-
 			return false;
 		}
 
@@ -2200,7 +2184,7 @@ namespace Glider.Common.Objects
 			if (EarthTotem != null && !IsTotemStillUseful(EarthTotem)) recall = true;
 			if (WaterTotem != null && !IsTotemStillUseful(WaterTotem)) recall = true;
 			if (AirTotem != null && !IsTotemStillUseful(AirTotem)) recall = true;
-			if (recall && Interface.IsKeyReady("PShaman.TotemicCall") && !IsMounted()) {
+			if (recall && Interface.IsKeyReady("PShaman.TotemicCall") && !IsMounted(Me)) {
 				RecallTotems();
 			}
 		}
@@ -2464,11 +2448,10 @@ namespace Glider.Common.Objects
 			return false;
 		}
 
-		private bool WantShield()
-		{
+		private bool WantShield() {
 			if (Shield == Shield_e.None) return false;
 			if (!ShieldCooldown.IsReady) return false;
-			if (IsMounted()) return false;
+			if (IsMounted(Me)) return false;
 			if (HaveShield(Shield) && CheckLowManaMode()==false) return false;
 			if (HaveShield(LowManaShield) && CheckLowManaMode()==true) return false;
 			if (!EvalWhenCast(WhenShield)) return false;
@@ -4173,15 +4156,13 @@ namespace Glider.Common.Objects
 			return CastSpellMana(name, true, false);
 		}
 
-		bool CastSpellMana(String KeyName, Boolean WaitGCD, Boolean FastReturn)
-		{
+		bool CastSpellMana(String KeyName, Boolean WaitGCD, Boolean FastReturn) {
 			bool knownMana = SpellCost.HasKnownCost(KeyName);
 			//Spam("CastOther: " + KeyName + " Me mana " + Me.ManaPoints + " cost " + SpellCost.GetCostOfSpell(KeyName));
 			mover.Stop();
 			if (WaitGCD)
 				WaitForGCD(KeyName, 1500);
-			if (knownMana && SpellCost.GetCostOfSpell(KeyName) > Me.ManaPoints)
-			{
+			if (knownMana && SpellCost.GetCostOfSpell(KeyName) > Me.ManaPoints) {
 				Spam("  OOM!!!!");
 				return false;
 			}
@@ -4190,25 +4171,21 @@ namespace Glider.Common.Objects
 			Context.SendKey(KeyName);
 			GSpellTimer r = new GSpellTimer(0);
 			//bool res= Context.CastSpell(KeyName, WaitGCD, FastReturn);
-			if (!FastReturn)
-			{
+			if(!FastReturn) {
 				Thread.Sleep(500);
-				while (Me.IsCasting)
-				{
+				while (Me.IsCasting) {
 					res = true;
 					if (Me.Target != null)
 						Target.Face();
 					Thread.Sleep(100);
 				}
-				if (!res)
-				{
+				if(!res) {
 					string err = Context.RedMessage;
-					if (err == "Target not in line of sight" ||
-					   err == "Out of range" ||
-					   err == "You are too far away")
-					{
+					if(err == "Target not in line of sight" || err == "Out of range" || err == "You are too far away") {
 						mlog("Problem: " + err);
 						LoSBlacklist(Me.Target, 3);
+					} else if(err=="Can't do that while stunned") {
+						mlog("Problem: " + err);
 					}
 				}
 			}
@@ -4216,8 +4193,7 @@ namespace Glider.Common.Objects
 				res = true;
 			FSR.Reset();
 
-			if (!knownMana)
-			{
+			if (!knownMana) {
 				int cost = WaitForManaLoss(1000);
 				if (cost != -1 && !Me.IsDead)
 				{
@@ -4770,7 +4746,7 @@ namespace Glider.Common.Objects
 				if(ParsedTextLow.Contains("purge")) Spam("  " + ParsedText);
 			}
 			//Myshaman is afflicted by Shandaral Druid Spirit's Dazed.
-			string[] ccstrings = {"terror","fear","terrify","psychic scream","shriek","charm","sleep","seduce","slumber"};
+			string[] ccstrings = {"terror","fear","terrify","psychic scream","shriek","charm","sleep","seduce","slumber","polymorph","hex","wyvern sting"};
 			if(ParsedTextLow.Contains(name+" is afflicted by")) {
 				bool wehavecc = false;
 				int j;
@@ -4782,7 +4758,7 @@ namespace Glider.Common.Objects
 					if(i!=-1) {
 						string MonsterName = ParsedText.Substring(0,i);
 						if(MonsterName==Me.Target.Name) AddFearer(Me.Target.Name);
-						Spam("Got feared/charmed/sleeped.");
+						Spam("Got crowd controlled.");
 						Feared.Reset();
 					}
 				}
@@ -5420,7 +5396,7 @@ namespace Glider.Common.Objects
 			return true;
 		}
 		private void Dismount() {
-			if (!IsMounted()) return;
+			if (!IsMounted(Me)) return;
 			//mover.Stop(); // glider waypoint followe gets really sad
 			mlog("Dismount");
 			SendKey("Common.Mount");
