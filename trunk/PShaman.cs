@@ -46,7 +46,8 @@ namespace Glider.Common.Objects
 		enum Shield_e { None, Lightning, Water, Earth }
 		enum WhenCast_e { Never, Resting, AfterCast, Always }
 		enum Shock_e { None, Earth, Frost, Flame }
-
+		enum RangedPrio_e { Damage, Healing, Movement }
+		
 		enum Totem_e
 		{
 			None,
@@ -93,6 +94,7 @@ namespace Glider.Common.Objects
 		// Configurable parameters
 
 		bool keySpam = true;
+		Dictionary<string,bool> invulnerable = new Dictionary<string,bool>();
 
 		Shield_e Shield;
 		Shield_e LowManaShield;
@@ -179,6 +181,8 @@ namespace Glider.Common.Objects
 		double WhiteDPSLife;
 		bool StopDPSOnAggro;
 
+		RangedPrio_e RP;
+		
 		Shock_e DPSShock;
 		double DPSShockMana;
 		bool DPSShockFocus;
@@ -571,6 +575,8 @@ namespace Glider.Common.Objects
 					SetConfigValueFromContext(configDialog, "PShaman.UseInterruptShock");
 					SetConfigValueFromContext(configDialog, "PShaman.ShockRunners");
 
+					SetConfigValueFromContext(configDialog, "PShaman.RangedPriority");
+
 					SetConfigValueFromContext(configDialog, "PShaman.UseMount");
 					SetConfigValueFromContext(configDialog, "PShaman.MountDistance");
 					SetConfigValueFromContext(configDialog, "PShaman.UseItem1");
@@ -713,6 +719,7 @@ namespace Glider.Common.Objects
 						SetConfigValueFromDialog(configDialog, "PShaman.UseInterruptShock");
 						SetConfigValueFromDialog(configDialog, "PShaman.ShockRunners");
 
+						SetConfigValueFromDialog(configDialog, "PShaman.RangedPriority");
 
 						SetConfigValueFromDialog(configDialog, "PShaman.UseMount");
 						SetConfigValueFromDialog(configDialog, "PShaman.MountDistance");
@@ -1161,7 +1168,7 @@ namespace Glider.Common.Objects
 			Context.SetConfigValue("PShaman.UseInterruptShock", "True", false);
 			Context.SetConfigValue("PShaman.ShockRunners", "True", false);
 
-
+			Context.SetConfigValue("PShaman.RangedPriority", "Movement", false);
 
 			Context.SetConfigValue("PShaman.UseMount", "False", false);
 			Context.SetConfigValue("PShaman.MountDistance", "45", false);
@@ -1422,6 +1429,12 @@ namespace Glider.Common.Objects
 			DPSShockStormstrike = Context.GetConfigBool("PShaman.DPSShockStormstrike");
 			UseInterruptShock = Context.GetConfigBool("PShaman.UseInterruptShock");
 			ShockRunners = Context.GetConfigBool("PShaman.ShockRunners");
+
+			String rp = Context.GetConfigString("PShaman.RangedPriority");
+			RP = RangedPrio_e.Movement;
+			if(rp == "Damage") RP = RangedPrio_e.Damage;
+			if(rp == "Healing") RP = RangedPrio_e.Healing;
+			if(rp == "Movement") RP = RangedPrio_e.Movement;
 
 
 			UseMount = Context.GetConfigBool("PShaman.UseMount");
@@ -1875,9 +1888,8 @@ namespace Glider.Common.Objects
 
 			oom = false;
 
-			if (Enchants.IsReady)
-			{
-				if (Me.IsSitting)
+			if(Enchants.IsReady) {
+				if(Me.IsSitting)
 					SendKey("Common.Sit");
 				CastSpellMana("PShaman.MainWeaponEnchant");
 				CastSpellMana("PShaman.OffWeaponEnchant");
@@ -1885,8 +1897,7 @@ namespace Glider.Common.Objects
 				SendKey("Common.Escape"); // Just to be on the safe side                
 			}
 #if !PPATHERENABLED
-			if (UseMount && (ForceNoMount.IsReady))
-			{
+			if(UseMount && (ForceNoMount.IsReady)) {
 				if (WantMount()) DoMount();
 			}
 #endif
@@ -1896,8 +1907,7 @@ namespace Glider.Common.Objects
 
 		int mountBuffID = 0;
 
-		private bool IsMounted()
-		{
+		private bool IsMounted() {
 			if (mountBuffID == 0) return false;
 			GBuff[] buffs = Me.GetBuffSnapshot();
 			for (int i = 0; i < buffs.Length; i++)
@@ -2173,13 +2183,8 @@ namespace Glider.Common.Objects
 
 
 
-		private void RecallTotems()
-		{
-			if (FireTotem != null ||
-			   EarthTotem != null ||
-			   WaterTotem != null ||
-			   AirTotem != null)
-			{
+		private void RecallTotems() {
+			if(FireTotem != null || EarthTotem != null || WaterTotem != null || AirTotem != null) {
 				Spam("Totemic Call");
 				CastSpell("PShaman.TotemicCall", true, true);
 				FireTotem = null; FireTotemType = Totem_e.None;
@@ -2189,15 +2194,13 @@ namespace Glider.Common.Objects
 			}
 		}
 
-		private void RecallTotemsIfNeeded()
-		{
+		private void RecallTotemsIfNeeded() {
 			bool recall = false;
 			if (FireTotem != null && !IsTotemStillUseful(FireTotem)) recall = true;
 			if (EarthTotem != null && !IsTotemStillUseful(EarthTotem)) recall = true;
 			if (WaterTotem != null && !IsTotemStillUseful(WaterTotem)) recall = true;
 			if (AirTotem != null && !IsTotemStillUseful(AirTotem)) recall = true;
-			if (recall && Interface.IsKeyReady("PShaman.TotemicCall"))
-			{
+			if (recall && Interface.IsKeyReady("PShaman.TotemicCall") && !IsMounted()) {
 				RecallTotems();
 			}
 		}
@@ -2219,19 +2222,16 @@ namespace Glider.Common.Objects
 		}
 
 
-		public override void RunningAction()
-		{
+		public override void RunningAction() {
 			if (Me.IsDead) return;
 			if (Me.IsSitting)
 				SendKey("Common.Sit");
 
-			if (UseRecallRange)
-			{
+			if (UseRecallRange) {
 				//RecallTotems();
 				RecallTotemsIfNeeded();
 			}
-			if (UseSell || UseRepair)
-			{
+			if (UseSell || UseRepair) {
 				if (SellTimer.IsReady)
 				{
 					GUnit vendor = GObjectList.FindUnit(VendorName);
@@ -2416,22 +2416,28 @@ namespace Glider.Common.Objects
 		/////////////////////////////////////////////////////////////////
 
 
-		private bool ShouldWhiteDPS()
-		{
+		private bool ShouldWhiteDPS() {
 			if (Context.Party.Mode == GPartyMode.Solo) return true;
 			if (Context.Party.Mode == GPartyMode.Leader) return true;
 			if (Context.Party.HealMode == GHealDisposition.Dedicated) return false;
+			bool isinv = false;
+			if(invulnerable.TryGetValue(Target.Name,out isinv)) {
+				if(isinv) return false;
+			}
 
 			if (Target.IsTargetingMe && StopDPSOnAggro) return false;
 			return Target.Health < WhiteDPSLife;
 		}
 
 
-		private bool ShouldDPS()
-		{
+		private bool ShouldDPS() {
 			if (Context.Party.Mode == GPartyMode.Solo) return true;
 			if (Context.Party.Mode == GPartyMode.Leader) return true;
 			if (Context.Party.HealMode == GHealDisposition.Dedicated) return false;
+			bool isinv = false;
+			if(invulnerable.TryGetValue(Target.Name,out isinv)) {
+				if(isinv) return false;
+			}
 
 			if (Target.IsTargetingMe && StopDPSOnAggro) return false;
 			return Target.Health < DPSLife;
@@ -2508,32 +2514,34 @@ namespace Glider.Common.Objects
 			List<GPlayer> targets = new List<GPlayer>(); // potential guys to heal
 			targets.Add(Me);
 			//mlog(Me.Name + " is a viable heal target");
+			try {
+				if(HealFriendly) {
+					GPlayer[] plys = GObjectList.GetPlayers();
+					foreach (GPlayer p in plys) {
+						if (p.IsSameFaction && p != Me &&
+							p.DistanceToSelf < 40 &&
+							!p.IsDead && p.HealthPoints != 1)
+						{
+							if (!IsLoSBlacklisted(p))
+								targets.Add(p);
+						}
+					}
+				} else if (HealParty) {
+					long[] PartyMembers = Context.Party.GetPartyMembers();
+					foreach(long OneGuy in PartyMembers) {
+						GUnit TargetObject = (GUnit)GObjectList.FindObject(OneGuy);
 
-			if(HealFriendly) {
-				GPlayer[] plys = GObjectList.GetPlayers();
-				foreach (GPlayer p in plys) {
-					if (p.IsSameFaction && p != Me &&
-						p.DistanceToSelf < 34 &&
-						!p.IsDead && p.HealthPoints != 1)
-					{
-						if (!IsLoSBlacklisted(p))
-							targets.Add(p);
+						if(TargetObject == null || TargetObject.DistanceToSelf > 40 || TargetObject.IsDead || Target.HealthPoints == 1)  // Party member is not around or dead, no big deal.
+							continue;
+
+						GPlayer Member = (GPlayer)TargetObject;
+						if (!IsLoSBlacklisted(Member))
+							targets.Add(Member);
+						//mlog(Member.Name + " is a viable heal target");
 					}
 				}
-			} else if (HealParty) {
-				long[] PartyMembers = Context.Party.GetPartyMembers();
-				foreach (long OneGuy in PartyMembers)
-				{
-					GUnit TargetObject = (GUnit)GObjectList.FindObject(OneGuy);
-
-					if (TargetObject == null || TargetObject.DistanceToSelf > 34 || TargetObject.IsDead || Target.HealthPoints == 1)  // Party member is not around or dead, no big deal.
-						continue;
-
-					GPlayer Member = (GPlayer)TargetObject;
-					if (!IsLoSBlacklisted(Member))
-						targets.Add(Member);
-					//mlog(Member.Name + " is a viable heal target");
-				}
+			} catch {
+				mlog("Error while trying to find healable targets.");
 			}
 			return targets;
 		}
@@ -2750,6 +2758,26 @@ namespace Glider.Common.Objects
 			Spam("Tidal Force");
 			CastSpellMana("PShaman.TidalForce", true, true);
 			return true;
+		}
+		
+		private bool HandleRanged() {
+			bool noDamage = false;
+			string keyCast = "PShaman.";
+			if(Target.DistanceToSelf <= Context.MeleeDistance) return false;
+			if(IsLoSBlacklisted(Target) || !ShouldDPS() || Target.Health < 0.05 || Me.Mana <= HealMana || !MeIsFacing(Target)) noDamage=true;
+			if(!noDamage && RP==RangedPrio_e.Damage) {
+				if(Interface.IsKeyReady("PShaman.LavaBurst")) {
+					if(!IsFireImmune(Target.Name)) keyCast+="LavaBurst";
+				} else if(Interface.IsKeyReady("PShaman.LightningBolt")) {
+					if((ForceBolt || BoltSpam || (BoltOnFocused && FindBuff("Focused Casting")!=null)) && !IsNatureImmune(Target.Name)) keyCast+="LightningBolt";
+				}
+				return CastSpellMana(keyCast);
+			} else if(RP==RangedPrio_e.Healing) {
+				if(WantHeal()) DoHeal();
+			} else if(RP==RangedPrio_e.Movement) {
+				//try
+			}
+			return false;
 		}
 		// Lighning Bolt
 		private bool WantBolt() {
@@ -3488,12 +3516,11 @@ namespace Glider.Common.Objects
 
 			TryPurge = UsePurge; // Do one initial purge
 
-			if (PvPStyle == PvPStyle_e.Active)
-			{
+			if(PvPStyle == PvPStyle_e.Active) {
 				mlog("Actively searching for PVP targets");
 			}
-			if (Target.Name == "Wild Sparrowhawk") return GCombatResult.Bugged;
-			if (Target.Name == "Stormpike Bowman") return GCombatResult.Bugged;
+			if(Target.Name == "Wild Sparrowhawk") return GCombatResult.Bugged;
+			if(Target.Name == "Stormpike Bowman") return GCombatResult.Bugged;
 			CombatTimer.Reset();
 			CombatStartHealth = Me.Health;
 			sawAnEvade = false;
@@ -3508,31 +3535,24 @@ namespace Glider.Common.Objects
 
 			mlog("--- Kill '" + Target.Name + "' lvl " + Target.Level + " distance " + (int)Target.DistanceToSelf + (IsAmbush ? " Ambush" : "") + " ---");
 
-			if (IsCrybaby(Target.Name))
+			if(IsCrybaby(Target.Name))
 				mlog("  this monster cries for help, we have to be extra careful");
 
 			bool isUnmovable = IsUnmovable(Target.Name);
 
-			if (Me.IsInCombat)
-			{
+			if(Me.IsInCombat) {
 				// hmm i am in combat
 				IsAmbush = true;
 			}
 
-			if (Context.Party.Mode == GPartyMode.Follower && !Target.IsInCombat && !IsAmbush) // IsTargetingParty(Target))
-			{
-				//mlog("  looks like glider is sending me on a solo mission. No way!"); 
-				//return GCombatResult.Retry;
-			}
-
 			GUnit Monster = (GUnit)Target;
 			if(Target.IsMonster) {
-				if (!IsAmbush) {
+				if(!IsAmbush) {
 					GCombatResult res = DoOpener(Monster);
-					if (res != GCombatResult.Unknown) return EndCombat(res, Monster);
+					if(res != GCombatResult.Unknown) return EndCombat(res, Monster);
 				}
 			} else {
-				if (Target.IsPlayer) {
+				if(Target.IsPlayer) {
 					WaitForMobT = new GSpellTimer(WaitTime * 1000, false);
 					mlog("Attack player!");
 				}
@@ -3545,34 +3565,24 @@ namespace Glider.Common.Objects
 			while (true) {
 				//mlog("dt: " + -t.TicksLeft);
 				t.Reset();
-				if (Monster.IsPlayer
-					&& (Monster.DistanceToSelf > 50 || MyCombatStartLocation.GetDistanceTo(Me.Location) > MaxDistanceFromStart))
-				{
+				if(Monster.IsPlayer && (MyCombatStartLocation.GetDistanceTo(Me.Location) > MaxDistanceFromStart)) {
 					mlog("Target ran off ");
 					return EndCombat(GCombatResult.Retry, Monster);
 				}
 
 				GUnit changetargetto = null;
-				if (Monster.IsPlayer && !Monster.IsInMeleeRange && PvPStyle == PvPStyle_e.Active)
-				{
+				if(Monster.IsPlayer && !Monster.IsInMeleeRange && PvPStyle == PvPStyle_e.Active) {
 					GPlayer topwn = GetClosestPvPPlayer();
-					if (Monster != topwn)
-					{
+					if(Monster != topwn) {
 						mlog("Another player is closer '" + topwn.Name + "'");
 						changetargetto = topwn;
 					}
 
 				}
-				if (!Monster.IsPlayer)
-				{
+				if(!Monster.IsPlayer) {
 					GUnit closestAgressivePlayer = GetClosestPvPPlayerAttackingMe();
-					if (closestAgressivePlayer != null)
-					{
-						// someone is targetting me
-
-						if ((PvPStyle == PvPStyle_e.Active) || // some slag targetting me
-						   (PvPStyle == PvPStyle_e.FightBack && IsPlayerFaction(Monster))) // ..while I attack a pet
-						{
+					if(closestAgressivePlayer != null) {
+						if((PvPStyle==PvPStyle_e.Active || PvPStyle==PvPStyle_e.FightBack) && IsPlayerFaction(Monster)) {
 							mlog("Ignoring mob, switched to PvP target");
 							changetargetto = closestAgressivePlayer;
 						}
@@ -3584,10 +3594,9 @@ namespace Glider.Common.Objects
 				//                   ChangeToTarget(changetargetto);
 				//               }
 				//
-				if (Monster.IsDead) return EndCombat(GCombatResult.Success, Target);
-				if (Me.IsDead) return EndCombat(GCombatResult.Died, Target);
-				if (Me.Target == null || Me.Target != Target)
-				{
+				if(Monster.IsDead) return EndCombat(GCombatResult.Success, Target);
+				if(Me.IsDead) return EndCombat(GCombatResult.Died, Target);
+				if(Me.Target == null || Me.Target != Target) {
 					mlog("Lost my target"); // Hmm, this is usually because the mob is dead
 					return EndCombat(GCombatResult.Success, Target);
 				}
@@ -3598,34 +3607,30 @@ namespace Glider.Common.Objects
 				else
 					CommonResult = PvPCommonResult(Monster);
 
-				if (CommonResult == GCombatResult.Bugged)
-				{
+				if(CommonResult == GCombatResult.Bugged) {
 					if (IgnoreBugged.IsReady)
 						return EndCombat(CommonResult, Target);
-				}
-				else if (CommonResult != GCombatResult.Unknown)
-				{
+				} else if (CommonResult != GCombatResult.Unknown) {
 					return EndCombat(CommonResult, Target);
 				}
 
-				if (evades > 5)
-				{
+				if(evades > 5) {
 					// evaded 5 attacks, must be bugged
 					mlog("Evaded many times now. Must be bugged");
 					return EndCombat(GCombatResult.Bugged, Target);
 				}
 
 				isUnmovable = IsUnmovable(Monster.Name);
-				if (Monster.IsCasting) AddCaster(Target.Name);
+				if(Monster.IsCasting) AddCaster(Target.Name);
 
 
 				/////////////////////////////////////////////////////////////////
 				//
 				// first of all check heals
 
-				if (WantManaPotion()) DoManaPotion();
-
-				if (WantHeal()) if (DoHeal() || Monster.IsDead) continue;
+				//if (WantManaPotion()) DoManaPotion();
+				//if (WantHeal()) if (DoHeal() || Monster.IsDead) continue;
+				//disabling for now, leave it to combat loops
 
 
 				/////////////////////////////////////////////////////////////////
@@ -3649,14 +3654,11 @@ namespace Glider.Common.Objects
 						//GUnit addd = FindClosestPotentialAddSmart(Monster, avoidDistance);	    
 						//if(addd != null) continue; // we need to move more
 
-						if (!Me.IsInCombat)
-						{
+						if(!Me.IsInCombat) {
 							// hmm, avoiding add during approach
 							ForceBolt = true;
 						}
-					}
-					else
-					{
+					} else {
 						if (StandingInAoE) // we are inside some AoE effect (posions cloud thunderstom etc)
 						{
 							Spam("avoid AoE effect");
@@ -3664,16 +3666,12 @@ namespace Glider.Common.Objects
 							PullAway.Reset();
 						}
 					}
-				}
-				else
-				{
+				} else {
 					Thread.Sleep(200);
 				}
 
 				if (Monster.IsDead) return EndCombat(GCombatResult.Success, Target);
-
-				if (sawAnEvade)
-				{
+				if (sawAnEvade) {
 					mlog("Saw an evade!!! Jump");
 					// this is no good
 					mover.MoveRandom();
@@ -3704,8 +3702,7 @@ namespace Glider.Common.Objects
 				double Distance = Monster.DistanceToSelf;
 
 				Target.Face();
-				if (IsRunning && Distance <= 20)
-				{
+				if (IsRunning && Distance <= ShockDistance) {
 					if (ShockRunners && Interface.IsKeyReady("PShaman.FrostShock"))
 					{
 						Spam("Shock runner");
@@ -3743,16 +3740,12 @@ namespace Glider.Common.Objects
 				/////////////////////////////////////////////////////////////////
 				// Special combat moves
 
-				if (!Me.IsMeleeing)
-				{
-					if (ShouldWhiteDPS())
-					{
+				if (!Me.IsMeleeing) {
+					if (ShouldWhiteDPS()) {
 						Spam("Start White DPS");
 						SendKey("Common.ToggleCombat"); // Start DPS
 					}
-				}
-				else
-				{
+				} else {
 					if (!ShouldWhiteDPS())
 					{
 						Spam("Stop White DPS");
@@ -3761,8 +3754,9 @@ namespace Glider.Common.Objects
 				}
 
 				GCD = !Interface.IsKeyReady("PShaman.LightningBolt"); // Just to avoid a lot of bar flipping
-				if (!GCD) {
+				if(!GCD) {
 					// Heal is important
+					if(WantManaPotion()) DoManaPotion();
 					if(WantHeal()) {
 						if(WantTidalForce()) if(DoTidalForce() || Monster.IsDead) continue;
 						if(DoHeal() || Monster.IsDead) continue;
@@ -3774,70 +3768,55 @@ namespace Glider.Common.Objects
 					if(WantHex()) if (DoHex() || Monster.IsDead) continue;
 
 					// Get me some mana!
-					if (WantRage()) if (DoRage() || Monster.IsDead) continue;
-					if (WantShield()) if (DoShield() || Monster.IsDead) continue;
+					if(WantRage()) if (DoRage() || Monster.IsDead) continue;
+					if(WantShield()) if (DoShield() || Monster.IsDead) continue;
 
 					// DPS
-					if (WantFeralSpirit()) if (DoFeralSpirit() || Monster.IsDead) continue;
-					if (WantLust()) if (DoLust() || Monster.IsDead) continue;
-					if (WantStormstrike()) if (DoStormstrike() || Monster.IsDead) continue;
-					if (WantMW()) if (DoMW() || Monster.IsDead) continue;
-					if (WantDPSShock()) if (DoDPSShock() || Monster.IsDead) continue;
-					if (WantBolt()) {
-						if(WantElementalMastery()) if(DoElementalMastery() || Monster.IsDead) continue;
-						if(DoBolt() || Monster.IsDead) continue;
-					}
-					if (WantLavaLash()) if (DoLavaLash() || Monster.IsDead) continue;
-					if (WantLavaBurst()) if (DoLavaBurst() || Monster.IsDead) continue;
+					if(WantFeralSpirit()) if (DoFeralSpirit() || Monster.IsDead) continue;
+					if(WantLust()) if (DoLust() || Monster.IsDead) continue;
+					if(WantStormstrike()) if (DoStormstrike() || Monster.IsDead) continue;
+					if(WantMW()) if (DoMW() || Monster.IsDead) continue;
+					if(WantDPSShock()) if (DoDPSShock() || Monster.IsDead) continue;
+					if(WantElementalMastery()) if(DoElementalMastery() || Monster.IsDead) continue;
+					if(HandleRanged() || Monster.IsDead) continue;
+					if(WantLavaLash()) if (DoLavaLash() || Monster.IsDead) continue;
+					if(WantLavaBurst()) if (DoLavaBurst() || Monster.IsDead) continue;
 					// Totem popping
-					if (WantEarthTotem()) if (DoEarthTotem() || Monster.IsDead) continue;
-					if (WantFireTotem()) if (DoFireTotem() || Monster.IsDead) continue;
-					if (WantWaterTotem()) if (DoWaterTotem() || Monster.IsDead) continue;
-					if (WantAirTotem()) if (DoAirTotem() || Monster.IsDead) continue;
+					if(WantEarthTotem()) if (DoEarthTotem() || Monster.IsDead) continue;
+					if(WantFireTotem()) if (DoFireTotem() || Monster.IsDead) continue;
+					if(WantWaterTotem()) if (DoWaterTotem() || Monster.IsDead) continue;
+					if(WantAirTotem()) if (DoAirTotem() || Monster.IsDead) continue;
 
-					if (WantPurge()) if (DoPurge() || Monster.IsDead) continue;
-					if (WantCurePoison()) if (DoCurePoison() || Monster.IsDead) continue;
-					if (WantCureDisease()) if (DoCureDisease() || Monster.IsDead) continue;
-					if (WantCureCurse()) if (DoCureCurse() || Monster.IsDead) continue;
-				}
-				else
-				{
+					if(WantPurge()) if (DoPurge() || Monster.IsDead) continue;
+					if(WantCurePoison()) if (DoCurePoison() || Monster.IsDead) continue;
+					if(WantCureDisease()) if (DoCureDisease() || Monster.IsDead) continue;
+					if(WantCureCurse()) if (DoCureCurse() || Monster.IsDead) continue;
+				} else {
 					// dont do anything during GCD
 				}
 
-				if (IsRunning)
-				{
-					if (ChaseStyle == ChaseStyle_e.Chase)
-					{
-						if (Approach(Monster, true, ApproachTimeout))
+				if(IsRunning) {
+					if(ChaseStyle == ChaseStyle_e.Chase) {
+						if(Approach(Monster, true, ApproachTimeout))
 							TweakMelee(Monster);
-					}
-					else if (ChaseStyle == ChaseStyle_e.ChaseSafe)
-					{
+					} else if (ChaseStyle == ChaseStyle_e.ChaseSafe) {
 						// Chase if it is safe
 						GUnit add = FindPotentialAdd(Monster);
-						if (add == null)
-						{
+						if(add == null) {
 							if (Approach(Monster, true, ApproachTimeout))
 								TweakMelee(Monster);
 						}
 					}
 					else
 						mover.Stop();
-				}
-				else
-				{
-					if (PullAway.IsReady && WaitForMobT.IsReady)
-					{
+				} else {
+					if(PullAway.IsReady && WaitForMobT.IsReady) {
 						if (Approach(Monster, true, ApproachTimeout))
 							TweakMelee(Monster);
-
 					}
 					else
 						mover.Stop();
 				}
-
-
 			}
 		}
 
@@ -4713,6 +4692,26 @@ namespace Glider.Common.Objects
 							mlog("'" + monster + "' is immune to frost");
 							AddFrostImmune(monster);
 						}
+						if(ParsedTextLow.Contains("attack failed")) {
+							mlog("'" + monster + "' is invulnerable.");
+							invulnerable.Add(monster,true);
+						}
+					}
+				}
+				if(ParsedTextLow.Contains(name+"\'s melee swing hits ")) {
+					//we made a successful hit
+					int start = ParsedTextLow.IndexOf("hits ");
+					int end = ParsedTextLow.IndexOf(" for");
+					if(start!=-1 && end!=-1) {
+						start+=5;
+						string monster = ParsedText.Substring(start, end-start);
+						bool isinv = false;
+						if(invulnerable.TryGetValue(monster,out isinv)) {
+							if(isinv) {
+								mlog("'" + monster + "' is vulnerable again.");
+								invulnerable.Remove(monster);
+							}
+						}
 					}
 				}
 				if(ParsedTextLow.Contains("suffer")) {
@@ -4886,7 +4885,6 @@ namespace Glider.Common.Objects
 
 		bool IsFrostImmune(string Name) { return MobTendencies.MobHasTendency(Name, "frostimmune"); }
 		void AddFrostImmune(string Name) { MobTendencies.AddTendency(Name, "frostimmune"); }
-
 
 		#endregion
 
@@ -5402,25 +5400,17 @@ namespace Glider.Common.Objects
 
 		#region Non-pather utilities
 #if NOPPATHERENABLED // Hawker 10 November 2008
-		private bool WantMount()
-		{
-			if (Context.IsCorpseNearby)
-			{
-				return false;
-			}
-
+		private bool WantMount() {
+			if (Context.IsCorpseNearby) { return false; }
 			GUnit[] Monsters = GObjectList.GetMonsters();
 			double minDist = 1E100; // Far far away
 			string mobName = "Monster";
 			string oldMobName = mobName;
 
-			foreach (GMonster Add in Monsters)
-			{
+			foreach(GMonster Add in Monsters) {
 				double d = Add.GetDistanceTo(Me);
-				if (!Add.IsDead && d < minDist)
-				{
-					if (Add.IsValidProfileTarget)
-					{
+				if(!Add.IsDead && d < minDist) {
+					if(Add.IsValidProfileTarget) {
 						mobName = Add.Name;
 						minDist = d;
 					}
@@ -5429,17 +5419,14 @@ namespace Glider.Common.Objects
 			if (minDist < MountDistance) return false;
 			return true;
 		}
-
-		private void Dismount()
-		{
+		private void Dismount() {
 			if (!IsMounted()) return;
 			//mover.Stop(); // glider waypoint followe gets really sad
 			mlog("Dismount");
 			SendKey("Common.Mount");
 		}
 
-		private void DoMount()
-		{
+		private void DoMount() {
 			if (Me.IsDead) return;
 			if (!ForceNoMount.IsReady) return; // avoids lag causing too many calls
 			int MIN_MOUNT_LEVEL = 20;
@@ -5459,25 +5446,20 @@ namespace Glider.Common.Objects
 
 			string badMount = null; // from ppather mount.cs - June 7 2008
 
-			if (GContext.Main.RedMessage.Contains("while swimming"))
-			{
+			if(GContext.Main.RedMessage.Contains("while swimming")) {
 				badMount = "Trying to mount while swimming";
-			}
-			else if (GContext.Main.RedMessage.Contains("can't mount here"))
-			{
+			} else if(GContext.Main.RedMessage.Contains("can't mount here")) {
 				badMount = "Trying to mount inside";
 			}
 
-			if (null != badMount)
-			{
+			if(null != badMount) {
 				mlog(badMount);
 				ForceNoMount.Reset();
 				return;
 			}
 		}
 
-		class StuckDetecter
-		{
+		class StuckDetecter {
 			GLocation oldLocation = null;
 			double oldHeading;
 			GSpellTimer StuckTimeout = new GSpellTimer(500); // Check every 500ms
